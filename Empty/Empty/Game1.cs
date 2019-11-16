@@ -39,15 +39,22 @@ namespace Empty
 			main = new Main();
 		}
 
-		/// <summary>
-		/// LoadContent will be called once per game and is the place to load
-		/// all of your content.
-		/// </summary>
+        /// <summary>
+        /// LoadContent will be called once per game and is the place to load
+        /// all of your content.
+        /// </summary>
+        public static Texture2D generator;
+        public static Texture2D weapon;
+        public static Texture2D engine;
+        public static Texture2D bonus;
+
 		protected override void LoadContent()
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            generator = Content.Load<Texture2D>("generator");
+            weapon = Content.Load<Texture2D>("weapon");
+            bonus = Content.Load<Texture2D>("bonus");
 			// TODO: use this.Content to load your game content here
 		}
 

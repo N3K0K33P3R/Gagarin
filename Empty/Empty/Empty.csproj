@@ -7,7 +7,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BB7F8B34-9639-423D-9CFB-67EEDE1361A1}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Empty</RootNamespace>
     <AssemblyName>Empty</AssemblyName>
@@ -40,8 +40,18 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
+    <Compile Include="Inventory\Cell.cs" />
+    <Compile Include="Inventory\Inventory.cs" />
+    <Compile Include="Items\Bonus.cs" />
+    <Compile Include="Items\Engine.cs" />
+    <Compile Include="Items\Generator.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\Weapon.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Panet\Environments\EnvironmentState.cs" />
     <Compile Include="Panet\Environments\GravState.cs" />
