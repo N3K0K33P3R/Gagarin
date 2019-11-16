@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Empty", "Empty\Empty.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoFlashLib", "MonoFlashLib\MonoFlashLib.csproj", "{6872D55E-2511-4D1C-8B77-30C583B8FB8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelcroPhysics.MonoGame", "VelcroPhysics\VelcroPhysics.MonoGame.csproj", "{8A9CF367-D55B-4EEC-988A-C06DE8EA7CC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -21,6 +23,10 @@ Global
 		{6872D55E-2511-4D1C-8B77-30C583B8FB8D}.Debug|x86.Build.0 = Debug|x86
 		{6872D55E-2511-4D1C-8B77-30C583B8FB8D}.Release|x86.ActiveCfg = Release|x86
 		{6872D55E-2511-4D1C-8B77-30C583B8FB8D}.Release|x86.Build.0 = Release|x86
+		{8A9CF367-D55B-4EEC-988A-C06DE8EA7CC4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8A9CF367-D55B-4EEC-988A-C06DE8EA7CC4}.Debug|x86.Build.0 = Debug|Any CPU
+		{8A9CF367-D55B-4EEC-988A-C06DE8EA7CC4}.Release|x86.ActiveCfg = Release|Any CPU
+		{8A9CF367-D55B-4EEC-988A-C06DE8EA7CC4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
