@@ -39,8 +39,6 @@ namespace Empty
 			main = new Main();
 		}
 
-        Planet planet;
-
 		/// <summary>
 		/// LoadContent will be called once per game and is the place to load
 		/// all of your content.
@@ -49,22 +47,9 @@ namespace Empty
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
-            Assets.textures["sky0"] = Content.Load<Texture2D>("Skys/sky0");
-            Assets.textures["sky1"] = Content.Load<Texture2D>("Skys/sky1");
-
-
-            Assets.textures["desert"] = Content.Load<Texture2D>("Fons/desert");
-            Assets.textures["fly"] = Content.Load<Texture2D>("Fons/fly");
-            Assets.textures["mountincold"] = Content.Load<Texture2D>("Fons/mountincold");
-            Assets.textures["mountin"] = Content.Load<Texture2D>("Fons/mountin");
-            Assets.textures["fongrib"] = Content.Load<Texture2D>("Fons/fongrib");
             
-
-
             Assets.font = Content.Load<SpriteFont>("font");
             // TODO: use this.Content to load your game content here
-
-            new Planet();
         }
 
 		/// <summary>
@@ -91,7 +76,6 @@ namespace Empty
 
 			KeyboardInput.Update();
 			main.Update(0);
-            Planet.CurrentPlanet.Update(gameTime);
 			// TODO: Add your update logic here
 
 			base.Update(gameTime);
@@ -107,7 +91,6 @@ namespace Empty
 
 			main.Draw(spriteBatch);
             // TODO: Add your drawing code here
-            Planet.CurrentPlanet.Draw(spriteBatch);
 			base.Draw(gameTime);
 		}
 	}
