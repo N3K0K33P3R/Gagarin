@@ -43,6 +43,11 @@
   <ItemGroup>
     <Compile Include="Game1.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Panet\Environments\EnvironmentState.cs" />
+    <Compile Include="Panet\Environments\GravState.cs" />
+    <Compile Include="Panet\Environments\TermalState.cs" />
+    <Compile Include="Panet\Environments\WindState.cs" />
+    <Compile Include="Panet\Planet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
