@@ -25,251 +25,316 @@
 // For more information, please refer to <http://unlicense.org>
 // ***************************************************************************
 
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using KeyboardInput = MonoFlash.Engine.KeyboardInput;
 
 namespace MonoGame_Textbox
 {
-    public class TextBox
-    {
-        public readonly Cursor Cursor;
-        public readonly TextRenderer Renderer;
+	public class TextBox
+	{
+		private         string       clipboard;
+		public readonly Cursor       Cursor;
+		public readonly TextRenderer Renderer;
 
-        public readonly Text Text;
+		public readonly Text Text;
 
-        private string clipboard;
+		public GraphicsDevice GraphicsDevice { get; set; }
 
-        public TextBox(Rectangle area, int maxCharacters, string text, GraphicsDevice graphicsDevice,
-            SpriteFont spriteFont, Color textColor,
-            Color cursorColor, Color selectionColor, int ticksPerToggle)
-        {
-            GraphicsDevice = graphicsDevice;
+		public Rectangle Area
+		{
+			get { return Renderer.Area; }
+			set { Renderer.Area = value; }
+		}
 
-            Text = new Text(maxCharacters)
-            {
-                String = text
-            };
+		public bool Active { get; set; }
 
-            Renderer = new TextRenderer(this)
-            {
-                Area = area,
-                Font = spriteFont,
-                Color = textColor
-            };
+		public event EventHandler<KeyboardInput.KeyEventArgs> EnterDown;
+
+		public TextBox(
+			Rectangle area,
+			int maxCharacters,
+			string text,
+			GraphicsDevice graphicsDevice,
+			SpriteFont spriteFont,
+			Color textColor,
+			Color cursorColor,
+			Color selectionColor,
+			int ticksPerToggle)
+		{
+			GraphicsDevice = graphicsDevice;
+
+			Text = new Text(maxCharacters) { String = text };
+
+			Renderer = new TextRenderer(this) { Area = area, Font = spriteFont, Color = textColor };
 
 
-            Cursor = new Cursor(this, cursorColor, selectionColor, new Rectangle(0, 0, 1, 1), ticksPerToggle);
+			Cursor = new Cursor(this, cursorColor, selectionColor, new Rectangle(0, 0, 1, 1), ticksPerToggle);
 
-            KeyboardInput.CharPressed += CharacterTyped;
-            KeyboardInput.KeyPressed += KeyPressed;
-        }
+			KeyboardInput.CharPressed += CharacterTyped;
+			KeyboardInput.KeyPressed  += KeyPressed;
+		}
 
-        public GraphicsDevice GraphicsDevice { get; set; }
+		public static bool IsLegalCharacter(SpriteFont font, char c) => font.Characters.Contains(c) || c == '\r' || c == '\n';
 
-        public Rectangle Area
-        {
-            get { return Renderer.Area; }
-            set { Renderer.Area = value; }
-        }
+		public static int IndexOfNextCharAfterWhitespace(int pos, char[] characters)
+		{
+			char[] chars           = characters;
+			char   c               = chars[pos];
+			var    whiteSpaceFound = false;
 
-        public bool Active { get; set; }
+			while (true)
+			{
+				if (c.Equals(' '))
+				{
+					whiteSpaceFound = true;
+				}
+				else if (whiteSpaceFound)
+				{
+					return pos;
+				}
 
-        public event EventHandler<KeyboardInput.KeyEventArgs> EnterDown;
+				++pos;
 
-        public void Dispose()
-        {
-            KeyboardInput.Dispose();
-        }
+				if (pos >= chars.Length)
+				{
+					return chars.Length;
+				}
 
-        public void Clear()
-        {
-            Text.RemoveCharacters(0, Text.Length);
-            Cursor.TextCursor = 0;
-            Cursor.SelectedChar = null;
-        }
+				c = chars[pos];
+			}
+		}
 
-        private void KeyPressed(object sender, KeyboardInput.KeyEventArgs e, KeyboardState ks)
-        {
-            if (Active)
-            {
-                var oldPos = Cursor.TextCursor;
-                switch (e.KeyCode)
-                {
-                    case Keys.Enter:
-                        EnterDown?.Invoke(this, e);
-                        break;
-                    case Keys.Left:
-                        if (KeyboardInput.CtrlDown)
-                            Cursor.TextCursor = IndexOfLastCharBeforeWhitespace(Cursor.TextCursor, Text.Characters);
-                        else
-                            Cursor.TextCursor--;
-                        ShiftMod(oldPos);
-                        break;
-                    case Keys.Right:
-                        if (KeyboardInput.CtrlDown)
-                            Cursor.TextCursor = IndexOfNextCharAfterWhitespace(Cursor.TextCursor, Text.Characters);
-                        else
-                            Cursor.TextCursor++;
-                        ShiftMod(oldPos);
-                        break;
-                    case Keys.Home:
-                        Cursor.TextCursor = 0;
-                        ShiftMod(oldPos);
-                        break;
-                    case Keys.End:
-                        Cursor.TextCursor = Text.Length;
-                        ShiftMod(oldPos);
-                        break;
-                    case Keys.Delete:
-                        if (DelSelection() == null && Cursor.TextCursor < Text.Length)
-                            Text.RemoveCharacters(Cursor.TextCursor, Cursor.TextCursor + 1);
-                        break;
-                    case Keys.Back:
-                        if (DelSelection() == null && Cursor.TextCursor > 0)
-                        {
-                            Text.RemoveCharacters(Cursor.TextCursor - 1, Cursor.TextCursor);
-                            Cursor.TextCursor--;
-                        }
+		public static int IndexOfLastCharBeforeWhitespace(int pos, char[] characters)
+		{
+			char[] chars = characters;
 
-                        break;
-                    case Keys.A:
-                        if (KeyboardInput.CtrlDown)
-                            if (Text.Length > 0)
-                            {
-                                Cursor.SelectedChar = 0;
-                                Cursor.TextCursor = Text.Length;
-                            }
+			var charFound = false;
 
-                        break;
-                    case Keys.C:
-                        if (KeyboardInput.CtrlDown) clipboard = DelSelection(true);
-                        break;
-                    case Keys.X:
-                        if (KeyboardInput.CtrlDown)
-                            if (Cursor.SelectedChar.HasValue)
-                                clipboard = DelSelection();
-                        break;
-                    case Keys.V:
-                        if (KeyboardInput.CtrlDown)
-                            if (clipboard != null)
-                            {
-                                DelSelection();
-                                foreach (var c in clipboard)
-                                    if (Text.Length < Text.MaxLength)
-                                    {
-                                        Text.InsertCharacter(Cursor.TextCursor, c);
-                                        Cursor.TextCursor++;
-                                    }
-                            }
+			while (true)
+			{
+				--pos;
 
-                        break;
-                }
-            }
-        }
+				if (pos <= 0)
+				{
+					return 0;
+				}
 
-        private void ShiftMod(int oldPos)
-        {
-            if (KeyboardInput.ShiftDown)
-            {
-                if (Cursor.SelectedChar == null) Cursor.SelectedChar = oldPos;
-            }
-            else
-            {
-                Cursor.SelectedChar = null;
-            }
-        }
+				char c = chars[pos];
 
-        private void CharacterTyped(object sender, KeyboardInput.CharacterEventArgs e, KeyboardState ks)
-        {
-            if (Active && !KeyboardInput.CtrlDown)
-                if (IsLegalCharacter(Renderer.Font, e.Character) && !e.Character.Equals('\r') &&
-                    !e.Character.Equals('\n'))
-                {
-                    DelSelection();
-                    if (Text.Length < Text.MaxLength)
-                    {
-                        Text.InsertCharacter(Cursor.TextCursor, e.Character);
-                        Cursor.TextCursor++;
-                    }
-                }
-        }
+				if (c.Equals(' '))
+				{
+					if (charFound)
+					{
+						return ++pos;
+					}
+				}
+				else
+				{
+					charFound = true;
+				}
+			}
+		}
 
-        private string DelSelection(bool fakeForCopy = false)
-        {
-            if (!Cursor.SelectedChar.HasValue) return null;
-            var tc = Cursor.TextCursor;
-            var sc = Cursor.SelectedChar.Value;
-            var min = Math.Min(sc, tc);
-            var max = Math.Max(sc, tc);
-            var result = Text.String.Substring(min, max - min);
+		public void Dispose()
+		{
+			KeyboardInput.Dispose();
+		}
 
-            if (!fakeForCopy)
-            {
-                Text.Replace(Math.Min(sc, tc), Math.Max(sc, tc), string.Empty);
-                if (Cursor.SelectedChar.Value < Cursor.TextCursor) Cursor.TextCursor -= tc - sc;
-                Cursor.SelectedChar = null;
-            }
+		public void Clear()
+		{
+			Text.RemoveCharacters(0, Text.Length);
+			Cursor.TextCursor   = 0;
+			Cursor.SelectedChar = null;
+		}
 
-            return result;
-        }
+		public void Update()
+		{
+			Renderer.Update();
+			Cursor.Update();
+		}
 
-        public static bool IsLegalCharacter(SpriteFont font, char c)
-        {
-            return font.Characters.Contains(c) || c == '\r' || c == '\n';
-        }
+		public void Draw(SpriteBatch spriteBatch)
+		{
+			Renderer.Draw(spriteBatch);
 
-        public static int IndexOfNextCharAfterWhitespace(int pos, char[] characters)
-        {
-            var chars = characters;
-            var c = chars[pos];
-            var whiteSpaceFound = false;
-            while (true)
-            {
-                if (c.Equals(' '))
-                    whiteSpaceFound = true;
-                else if (whiteSpaceFound) return pos;
+			if (Active)
+			{
+				Cursor.Draw(spriteBatch);
+			}
+		}
 
-                ++pos;
-                if (pos >= chars.Length) return chars.Length;
-                c = chars[pos];
-            }
-        }
+		private void KeyPressed(object sender, KeyboardInput.KeyEventArgs e, KeyboardState ks)
+		{
+			if (Active)
+			{
+				int oldPos = Cursor.TextCursor;
 
-        public static int IndexOfLastCharBeforeWhitespace(int pos, char[] characters)
-        {
-            var chars = characters;
+				switch (e.KeyCode)
+				{
+					case Keys.Enter:
+						EnterDown?.Invoke(this, e);
+						break;
+					case Keys.Left:
+						if (KeyboardInput.CtrlDown)
+						{
+							Cursor.TextCursor = IndexOfLastCharBeforeWhitespace(Cursor.TextCursor, Text.Characters);
+						}
+						else
+						{
+							Cursor.TextCursor--;
+						}
 
-            var charFound = false;
-            while (true)
-            {
-                --pos;
-                if (pos <= 0) return 0;
-                var c = chars[pos];
+						ShiftMod(oldPos);
+						break;
+					case Keys.Right:
+						if (KeyboardInput.CtrlDown)
+						{
+							Cursor.TextCursor = IndexOfNextCharAfterWhitespace(Cursor.TextCursor, Text.Characters);
+						}
+						else
+						{
+							Cursor.TextCursor++;
+						}
 
-                if (c.Equals(' '))
-                {
-                    if (charFound) return ++pos;
-                }
-                else
-                {
-                    charFound = true;
-                }
-            }
-        }
+						ShiftMod(oldPos);
+						break;
+					case Keys.Home:
+						Cursor.TextCursor = 0;
+						ShiftMod(oldPos);
+						break;
+					case Keys.End:
+						Cursor.TextCursor = Text.Length;
+						ShiftMod(oldPos);
+						break;
+					case Keys.Delete:
+						if (DelSelection() == null && Cursor.TextCursor < Text.Length)
+						{
+							Text.RemoveCharacters(Cursor.TextCursor, Cursor.TextCursor + 1);
+						}
 
-        public void Update()
-        {
-            Renderer.Update();
-            Cursor.Update();
-        }
+						break;
+					case Keys.Back:
+						if (DelSelection() == null && Cursor.TextCursor > 0)
+						{
+							Text.RemoveCharacters(Cursor.TextCursor - 1, Cursor.TextCursor);
+							Cursor.TextCursor--;
+						}
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            Renderer.Draw(spriteBatch);
-            if (Active) Cursor.Draw(spriteBatch);
-        }
-    }
+						break;
+					case Keys.A:
+						if (KeyboardInput.CtrlDown)
+						{
+							if (Text.Length > 0)
+							{
+								Cursor.SelectedChar = 0;
+								Cursor.TextCursor   = Text.Length;
+							}
+						}
+
+						break;
+					case Keys.C:
+						if (KeyboardInput.CtrlDown)
+						{
+							clipboard = DelSelection(true);
+						}
+
+						break;
+					case Keys.X:
+						if (KeyboardInput.CtrlDown)
+						{
+							if (Cursor.SelectedChar.HasValue)
+							{
+								clipboard = DelSelection();
+							}
+						}
+
+						break;
+					case Keys.V:
+						if (KeyboardInput.CtrlDown)
+						{
+							if (clipboard != null)
+							{
+								DelSelection();
+
+								foreach (char c in clipboard)
+								{
+									if (Text.Length < Text.MaxLength)
+									{
+										Text.InsertCharacter(Cursor.TextCursor, c);
+										Cursor.TextCursor++;
+									}
+								}
+							}
+						}
+
+						break;
+				}
+			}
+		}
+
+		private void ShiftMod(int oldPos)
+		{
+			if (KeyboardInput.ShiftDown)
+			{
+				if (Cursor.SelectedChar == null)
+				{
+					Cursor.SelectedChar = oldPos;
+				}
+			}
+			else
+			{
+				Cursor.SelectedChar = null;
+			}
+		}
+
+		private void CharacterTyped(object sender, KeyboardInput.CharacterEventArgs e, KeyboardState ks)
+		{
+			if (Active && !KeyboardInput.CtrlDown)
+			{
+				if (IsLegalCharacter(Renderer.Font, e.Character) &&
+					!e.Character.Equals('\r') &&
+					!e.Character.Equals('\n'))
+				{
+					DelSelection();
+
+					if (Text.Length < Text.MaxLength)
+					{
+						Text.InsertCharacter(Cursor.TextCursor, e.Character);
+						Cursor.TextCursor++;
+					}
+				}
+			}
+		}
+
+		private string DelSelection(bool fakeForCopy = false)
+		{
+			if (!Cursor.SelectedChar.HasValue)
+			{
+				return null;
+			}
+
+			int    tc     = Cursor.TextCursor;
+			int    sc     = Cursor.SelectedChar.Value;
+			int    min    = Math.Min(sc, tc);
+			int    max    = Math.Max(sc, tc);
+			string result = Text.String.Substring(min, max - min);
+
+			if (!fakeForCopy)
+			{
+				Text.Replace(Math.Min(sc, tc), Math.Max(sc, tc), string.Empty);
+
+				if (Cursor.SelectedChar.Value < Cursor.TextCursor)
+				{
+					Cursor.TextCursor -= tc - sc;
+				}
+
+				Cursor.SelectedChar = null;
+			}
+
+			return result;
+		}
+	}
 }

@@ -30,119 +30,139 @@ using System;
 namespace MonoGame_Textbox
 {
     /// <summary>
-    ///     Data structure responsible for keeping track of the characters.
+    /// Data structure responsible for keeping track of the characters.
     /// </summary>
     public class Text
-    {
-        private readonly char[] _char;
+	{
+		private readonly char[] _char;
 
-        private int length;
+		private int length;
 
-        public Text(int maxLength)
-        {
-            MaxLength = maxLength;
+		public string String
+		{
+			get { return new string(_char).Substring(0, Length); }
+			set { ResetText(value); }
+		}
 
-            _char = new char[MaxLength];
+		public char[] Characters
+		{
+			get { return _char; }
+			set { ResetText(new string(value)); }
+		}
 
-            IsDirty = true;
-        }
+		public int Length
+		{
+			get { return length; }
+			private set
+			{
+				length = value;
 
-        public string String
-        {
-            get { return new string(_char).Substring(0, Length); }
-            set { ResetText(value); }
-        }
+				if (length < MaxLength)
+				{
+					_char[length] = '\0';
+				}
 
-        public char[] Characters
-        {
-            get { return _char; }
-            set { ResetText(new string(value)); }
-        }
+				IsDirty = true;
+			}
+		}
 
-        public int Length
-        {
-            get { return length; }
-            private set
-            {
-                length = value;
-                if (length < MaxLength) _char[length] = '\0';
-                IsDirty = true;
-            }
-        }
+		public int MaxLength { get; }
 
-        public int MaxLength { get; }
+		public bool IsDirty { get; set; }
 
-        public bool IsDirty { get; set; }
+		public Text(int maxLength)
+		{
+			MaxLength = maxLength;
 
-        public void InsertCharacter(int location, char character)
-        {
-            ValidateEditRange(location, location);
-            ValidateLenght(location, location, 1);
+			_char = new char[MaxLength];
 
-            // Validation.
-            if (!(Length < MaxLength)) return;
+			IsDirty = true;
+		}
 
-            // Shift everything right once then insert the character into the gap.
-            Array.Copy(
-                _char, location,
-                _char, location + 1,
-                Length - location);
+		public void InsertCharacter(int location, char character)
+		{
+			ValidateEditRange(location, location);
+			ValidateLenght(location, location, 1);
 
-            _char[location] = character;
-            Length++;
-            IsDirty = true;
-        }
+			// Validation.
+			if (!(Length < MaxLength))
+			{
+				return;
+			}
 
-        public void Replace(int start, int end, string replacement)
-        {
-            ValidateEditRange(start, end);
-            ValidateLenght(start, end, replacement.Length);
+			// Shift everything right once then insert the character into the gap.
+			Array.Copy(
+				_char,
+				location,
+				_char,
+				location + 1,
+				Length - location);
 
-            RemoveCharacters(start, end);
-            foreach (var character in replacement)
-            {
-                InsertCharacter(start, character);
-                start++;
-            }
+			_char[location] = character;
+			Length++;
+			IsDirty = true;
+		}
 
-            IsDirty = true;
-        }
+		public void Replace(int start, int end, string replacement)
+		{
+			ValidateEditRange(start, end);
+			ValidateLenght(start, end, replacement.Length);
 
-        public void RemoveCharacters(int start, int end)
-        {
-            ValidateEditRange(start, end);
+			RemoveCharacters(start, end);
 
-            Array.Copy(_char, end, _char, start, Length - end);
-            Length -= end - start;
-            IsDirty = true;
-        }
+			foreach (char character in replacement)
+			{
+				InsertCharacter(start, character);
+				start++;
+			}
 
-        private void ResetText(string value)
-        {
-            Length = 0;
-            ValidateLenght(0, 0, value.Length);
+			IsDirty = true;
+		}
 
-            var x = value.IndexOf('\0');
-            if (x != -1) value = value.Substring(0, x);
+		public void RemoveCharacters(int start, int end)
+		{
+			ValidateEditRange(start, end);
 
-            Length = value.Length;
-            Array.Clear(_char, 0, _char.Length);
-            value.ToCharArray().CopyTo(_char, 0);
-            IsDirty = true;
-        }
+			Array.Copy(_char, end, _char, start, Length - end);
+			Length  -= end - start;
+			IsDirty =  true;
+		}
 
-        // ReSharper disable UnusedParameter.Local
-        private void ValidateEditRange(int start, int end)
-        {
-            if (end > Length || start < 0 || start > end) throw new ArgumentException("Invalid character range");
-        }
+		private void ResetText(string value)
+		{
+			Length = 0;
+			ValidateLenght(0, 0, value.Length);
 
-        private void ValidateLenght(int start, int end, int added)
-        {
-            if (Length - (end - start) + added > MaxLength)
-                throw new ArgumentException("Character limit of " + MaxLength + " exceeded.");
-        }
+			int x = value.IndexOf('\0');
 
-        // ReSharper restore UnusedParameter.Local
-    }
+			if (x != -1)
+			{
+				value = value.Substring(0, x);
+			}
+
+			Length = value.Length;
+			Array.Clear(_char, 0, _char.Length);
+			value.ToCharArray().CopyTo(_char, 0);
+			IsDirty = true;
+		}
+
+		// ReSharper disable UnusedParameter.Local
+		private void ValidateEditRange(int start, int end)
+		{
+			if (end > Length || start < 0 || start > end)
+			{
+				throw new ArgumentException("Invalid character range");
+			}
+		}
+
+		private void ValidateLenght(int start, int end, int added)
+		{
+			if (Length - (end - start) + added > MaxLength)
+			{
+				throw new ArgumentException("Character limit of " + MaxLength + " exceeded.");
+			}
+		}
+
+		// ReSharper restore UnusedParameter.Local
+	}
 }

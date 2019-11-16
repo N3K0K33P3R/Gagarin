@@ -1,45 +1,45 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace MonoFlash.Engine
 {
-    public interface IDrawable
-    {
-        double x { get; set; }
-        double y { get; set; }
+	public interface IDrawable
+	{
+		double x { get; set; }
+		double y { get; set; }
 
-        double globalX { get; }
-        double globalY { get; }
+		double globalX { get; }
+		double globalY { get; }
 
-        double width { get; }
-        double height { get; }
+		double width  { get; }
+		double height { get; }
 
-        double rotation { get; set; }
+		double rotation { get; set; }
 
-        double Alpha { get; set; }
+		double Alpha { get; set; }
 
-        double Scale { get; set; }
-        double ScaleX { get; set; }
-        double ScaleY { get; set; }
+		double Scale  { get; set; }
+		double ScaleX { get; set; }
+		double ScaleY { get; set; }
 
-        List<IDrawable> childs { get; }
+		List<IDrawable> childs { get; }
 
-        IDrawable parent { get; set; }
+		IDrawable parent { get; set; }
 
 
-        void Update(float delta);
+		void Update(float delta);
 
-        void Draw(SpriteBatch sb, GameTime gameTime);
+		void Draw(SpriteBatch sb, GameTime gameTime);
 
-        void AddChild(IDrawable child);
+		void AddChild(IDrawable child);
 
-        void RemoveChild(IDrawable child);
+		void RemoveChild(IDrawable child);
 
-        void RemoveChildAt(int id);
+		void RemoveChildAt(int id);
 
-        void RemoveChildren();
+		void RemoveChildren();
 
-        void AddChildAt(IDrawable child, int id);
-    }
+		void AddChildAt(IDrawable child, int id);
+	}
 }

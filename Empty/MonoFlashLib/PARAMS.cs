@@ -1,7 +1,7 @@
 ﻿namespace MonoFlashLib
 {
-    public class PARAMS
-    {
-        public static bool IsActive = true;
-    }
+	public class PARAMS
+	{
+		public static bool IsActive = true;
+	}
 }
