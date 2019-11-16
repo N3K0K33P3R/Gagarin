@@ -43,14 +43,6 @@
   <ItemGroup>
     <Compile Include="Game1.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="PlanetComponents\Assets.cs" />
-    <Compile Include="PlanetComponents\BackgroundDrawer.cs" />
-    <Compile Include="PlanetComponents\Environments\EnvironmentState.cs" />
-    <Compile Include="PlanetComponents\Environments\GravState.cs" />
-    <Compile Include="PlanetComponents\Environments\TermalState.cs" />
-    <Compile Include="PlanetComponents\Environments\WindState.cs" />
-    <Compile Include="PlanetComponents\Perlin.cs" />
-    <Compile Include="PlanetComponents\Planet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
