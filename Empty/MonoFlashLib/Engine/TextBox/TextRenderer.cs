@@ -30,196 +30,221 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGame_Textbox
 {
-    public class TextRenderer
-    {
-        private readonly TextBox box;
+	public class TextRenderer
+	{
+		private readonly TextBox box;
 
-        // Row the character is on.
-        private readonly byte[] row;
+		// Row the character is on.
+		private readonly byte[]         row;
+		private          SpriteBatch    batch;
+		private          RenderTarget2D target;
 
-        // With of the character.
-        internal readonly byte[] Width;
+		// Cached texture that has all of the characters.
+		private Texture2D text;
 
-        // Location of the character.
-        internal readonly short[] X;
-        internal readonly short[] Y;
-        private SpriteBatch batch;
-        private RenderTarget2D target;
+		// With of the character.
+		internal readonly byte[] Width;
 
-        // Cached texture that has all of the characters.
-        private Texture2D text;
+		// Location of the character.
+		internal readonly short[] X;
+		internal readonly short[] Y;
 
-        public TextRenderer(TextBox box)
-        {
-            this.box = box;
+		public Rectangle  Area  { get; set; }
+		public SpriteFont Font  { get; set; }
+		public Color      Color { get; set; }
 
-            X = new short[this.box.Text.MaxLength];
-            Y = new short[this.box.Text.MaxLength];
-            Width = new byte[this.box.Text.MaxLength];
+		public TextRenderer(TextBox box)
+		{
+			this.box = box;
 
-            row = new byte[this.box.Text.MaxLength];
-        }
+			X     = new short[this.box.Text.MaxLength];
+			Y     = new short[this.box.Text.MaxLength];
+			Width = new byte[this.box.Text.MaxLength];
 
-        public Rectangle Area { get; set; }
-        public SpriteFont Font { get; set; }
-        public Color Color { get; set; }
+			row = new byte[this.box.Text.MaxLength];
+		}
 
-        public void Dispose()
-        {
-            text?.Dispose();
-            text = null;
-            target?.Dispose();
-            target = null;
-            Font = null;
-            batch?.Dispose();
-            batch = null;
-        }
+		public void Dispose()
+		{
+			text?.Dispose();
+			text = null;
+			target?.Dispose();
+			target = null;
+			Font   = null;
+			batch?.Dispose();
+			batch = null;
+		}
 
-        public void Update()
-        {
-            if (!box.Text.IsDirty) return;
+		public void Update()
+		{
+			if (!box.Text.IsDirty)
+			{
+				return;
+			}
 
-            MeasureCharacterWidths();
-            text = RenderText();
-        }
+			MeasureCharacterWidths();
+			text = RenderText();
+		}
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            if (text != null) spriteBatch.Draw(text, Area, Color.White);
-        }
+		public void Draw(SpriteBatch spriteBatch)
+		{
+			if (text != null)
+			{
+				spriteBatch.Draw(text, Area, Color.White);
+			}
+		}
 
-        public int CharAt(Point localLocation)
-        {
-            var charRectangle = new Rectangle(0, 0, 0, Font.LineSpacing);
+		public int CharAt(Point localLocation)
+		{
+			var charRectangle = new Rectangle(0, 0, 0, Font.LineSpacing);
 
-            var r = localLocation.Y / Font.LineSpacing;
+			int r = localLocation.Y / Font.LineSpacing;
 
-            for (short i = 0; i < box.Text.Length; i++)
-            {
-                if (row[i] != r) continue;
+			for (short i = 0; i < box.Text.Length; i++)
+			{
+				if (row[i] != r)
+				{
+					continue;
+				}
 
-                // Rectangle that encompasses the current character.
-                charRectangle.X = X[i];
-                charRectangle.Y = Y[i];
-                charRectangle.Width = Width[i];
+				// Rectangle that encompasses the current character.
+				charRectangle.X     = X[i];
+				charRectangle.Y     = Y[i];
+				charRectangle.Width = Width[i];
 
-                // Click on a character so put the cursor in front of it.
-                if (charRectangle.Contains(localLocation)) return i;
+				// Click on a character so put the cursor in front of it.
+				if (charRectangle.Contains(localLocation))
+				{
+					return i;
+				}
 
-                // Next character is not on the correct row so this is the last character for this row so select it.
-                if (i < box.Text.Length - 1 && row[i + 1] != r) return i;
-            }
+				// Next character is not on the correct row so this is the last character for this row so select it.
+				if (i < box.Text.Length - 1 && row[i + 1] != r)
+				{
+					return i;
+				}
+			}
 
-            // Missed a character so return the end.
-            return box.Text.Length;
-        }
+			// Missed a character so return the end.
+			return box.Text.Length;
+		}
 
-        private void MeasureCharacterWidths()
-        {
-            for (var i = 0; i < box.Text.Length; i++) Width[i] = MeasureCharacter(i);
-        }
+		private void MeasureCharacterWidths()
+		{
+			for (var i = 0; i < box.Text.Length; i++)
+			{
+				Width[i] = MeasureCharacter(i);
+			}
+		}
 
-        private byte MeasureCharacter(int location)
-        {
-            var value = box.Text.String;
-            var front = Font.MeasureString(value.Substring(0, location)).X;
-            var end = Font.MeasureString(value.Substring(0, location + 1)).X;
+		private byte MeasureCharacter(int location)
+		{
+			string value = box.Text.String;
+			float  front = Font.MeasureString(value.Substring(0, location)).X;
+			float  end   = Font.MeasureString(value.Substring(0, location + 1)).X;
 
-            return (byte) (end - front);
-        }
+			return (byte)(end - front);
+		}
 
-        private Texture2D RenderText()
-        {
-            if (batch == null) batch = new SpriteBatch(box.GraphicsDevice);
-            if (target == null) target = new RenderTarget2D(box.GraphicsDevice, Area.Width, Area.Height);
+		private Texture2D RenderText()
+		{
+			if (batch == null)
+			{
+				batch = new SpriteBatch(box.GraphicsDevice);
+			}
 
-            box.GraphicsDevice.SetRenderTarget(target);
+			if (target == null)
+			{
+				target = new RenderTarget2D(box.GraphicsDevice, Area.Width, Area.Height);
+			}
 
-            box.GraphicsDevice.Clear(Color.Transparent);
+			box.GraphicsDevice.SetRenderTarget(target);
 
-            var start = 0;
-            var height = 0.0f;
+			box.GraphicsDevice.Clear(Color.Transparent);
 
-            batch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+			var start  = 0;
+			var height = 0.0f;
 
-            while (true)
-            {
-                start = RenderLine(batch, start, height);
+			batch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
-                if (start >= box.Text.Length)
-                {
-                    batch.End();
-                    box.GraphicsDevice.SetRenderTarget(null);
+			while (true)
+			{
+				start = RenderLine(batch, start, height);
 
-                    return target;
-                }
+				if (start >= box.Text.Length)
+				{
+					batch.End();
+					box.GraphicsDevice.SetRenderTarget(null);
 
-                height += Font.LineSpacing;
-            }
-        }
+					return target;
+				}
 
-        private int RenderLine(SpriteBatch spriteBatch, int start, float height)
-        {
-            var breakLocation = start;
-            var lineLength = 0.0f;
-            var r = (byte) (height / Font.LineSpacing);
+				height += Font.LineSpacing;
+			}
+		}
 
-            var t = box.Text.String;
-            string tempText;
+		private int RenderLine(SpriteBatch spriteBatch, int start, float height)
+		{
+			int breakLocation = start;
+			var lineLength    = 0.0f;
+			var r             = (byte)(height / Font.LineSpacing);
 
-            // Starting from end of last line loop though the characters.
-            for (var iCount = start; iCount < box.Text.Length; iCount++)
-            {
-                // Calculate screen location of current character.
-                X[iCount] = (short) lineLength;
-                Y[iCount] = (short) height;
-                row[iCount] = r;
+			string t = box.Text.String;
+			string tempText;
 
-                // Calculate the width of the current line.
-                lineLength += Width[iCount];
+			// Starting from end of last line loop though the characters.
+			for (int iCount = start; iCount < box.Text.Length; iCount++)
+			{
+				// Calculate screen location of current character.
+				X[iCount]   = (short)lineLength;
+				Y[iCount]   = (short)height;
+				row[iCount] = r;
 
-                // Current line is too long need to split it.
-                if (lineLength > Area.Width)
-                {
-                    if (breakLocation == start)
-                    {
-                        // Have to split a word.
-                        // Render line and return start of new line.
-                        tempText = t.Substring(start, iCount - start);
-                        spriteBatch.DrawString(Font, tempText, new Vector2(0.0f, height), Color);
-                        return iCount + 1;
-                    }
+				// Calculate the width of the current line.
+				lineLength += Width[iCount];
 
-                    // Have a character we can split on.
-                    // Render line and return start of new line.
-                    tempText = t.Substring(start, breakLocation - start);
-                    spriteBatch.DrawString(Font, tempText, new Vector2(0.0f, height), Color);
-                    return breakLocation + 1;
-                }
+				// Current line is too long need to split it.
+				if (lineLength > Area.Width)
+				{
+					if (breakLocation == start)
+					{
+						// Have to split a word.
+						// Render line and return start of new line.
+						tempText = t.Substring(start, iCount - start);
+						spriteBatch.DrawString(Font, tempText, new Vector2(0.0f, height), Color);
+						return iCount + 1;
+					}
 
-                // Handle characters that force/allow for breaks.
-                switch (box.Text.Characters[iCount])
-                {
-                    // These characters force a line break.
-                    case '\r':
-                    case '\n':
-                        //Render line and return start of new line.
-                        tempText = t.Substring(start, iCount - start);
-                        spriteBatch.DrawString(Font, tempText, new Vector2(0.0f, height), Color);
-                        return iCount + 1;
-                    // These characters are good break locations.
-                    case '-':
-                    case ' ':
-                        breakLocation = iCount + 1;
-                        break;
-                }
-            }
+					// Have a character we can split on.
+					// Render line and return start of new line.
+					tempText = t.Substring(start, breakLocation - start);
+					spriteBatch.DrawString(Font, tempText, new Vector2(0.0f, height), Color);
+					return breakLocation + 1;
+				}
 
-            // We hit the end of the text box render line and return
-            // _textData.Length so RenderText knows to return.
-            tempText = t.Substring(start, box.Text.Length - start);
-            spriteBatch.DrawString(Font, tempText, new Vector2(0.0f, height), Color);
-            return box.Text.Length;
-        }
-    }
+				// Handle characters that force/allow for breaks.
+				switch (box.Text.Characters[iCount])
+				{
+					// These characters force a line break.
+					case '\r':
+					case '\n':
+						//Render line and return start of new line.
+						tempText = t.Substring(start, iCount - start);
+						spriteBatch.DrawString(Font, tempText, new Vector2(0.0f, height), Color);
+						return iCount + 1;
+					// These characters are good break locations.
+					case '-':
+					case ' ':
+						breakLocation = iCount + 1;
+						break;
+				}
+			}
+
+			// We hit the end of the text box render line and return
+			// _textData.Length so RenderText knows to return.
+			tempText = t.Substring(start, box.Text.Length - start);
+			spriteBatch.DrawString(Font, tempText, new Vector2(0.0f, height), Color);
+			return box.Text.Length;
+		}
+	}
 }
