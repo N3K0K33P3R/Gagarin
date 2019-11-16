@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Empty.Panet
+namespace Empty.Environments
 {
-    abstract class EnvironmentState
+    public abstract class EnvironmentState
     {
        public abstract float MainEnvironmentProperty { get; }
        public abstract string State { get; }

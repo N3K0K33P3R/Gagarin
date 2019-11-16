@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Empty.Panet
+namespace Empty.Environments
 {
-    class GravState:EnvironmentState
+   public class GravState:EnvironmentState
     {
         public GravState()
         {
