@@ -74,3 +74,10 @@ C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\obj\x86\Debug\Empty.csproj
 C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\stone.xnb
 C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\iron.xnb
 C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\wood.xnb
+C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Tile\Grass.xnb
+C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Tile\Sand.xnb
+C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Tile\Stone.xnb
+C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Pers\human.xnb
+C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Pers\orc.xnb
+C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Pers\skeleton.xnb
+C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\font.xnb

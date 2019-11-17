@@ -1,0 +1,48 @@
+<<<<<<< HEAD
+﻿using Empty.GameObjects;
+using Microsoft.Xna.Framework;
+=======
+﻿using Microsoft.Xna.Framework;
+>>>>>>> origin/UI
+using Microsoft.Xna.Framework.Graphics;
+using MonoFlash.Engine;
+
+namespace Empty
+{
+<<<<<<< HEAD
+	internal class Main : Sprite
+	{
+		private Island island;
+		/// <inheritdoc />
+		public Main()
+		{
+			island = new Island();
+			AddChild(island);
+		}
+
+		/// <inheritdoc />
+		public override void Draw(SpriteBatch sb, GameTime gameTime = null)
+		{
+			sb.Begin();
+			base.Draw(sb, gameTime);
+			sb.End();
+		}
+	}
+=======
+    internal class Main : Sprite
+    {
+        public Main()
+        {
+            AddChild(new UI.Property());
+        }
+
+        public override void Draw(SpriteBatch sb, GameTime gameTime = null)
+        {
+            sb.Begin();
+            base.Draw(sb, gameTime);
+            sb.End();
+        }
+    }
+
+>>>>>>> origin/UI
+}
