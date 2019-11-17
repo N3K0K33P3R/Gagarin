@@ -117,10 +117,12 @@ namespace Empty.GameObjects.Humans
 
 					var structure = island.Structures.FirstOrDefault(s => s.position / 16 == new Vector2(i, j));
 
-					if (structure is Wall)
+					map[i, j] = structure switch
 					{
-						map[i, j] = 0;
-					}
+						Wall _ => (byte)0,
+						Most _ => (byte)1,
+						_      => (byte)mapEnum[i, j]
+					};
 				}
 			}
 
