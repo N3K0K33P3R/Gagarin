@@ -46,7 +46,7 @@ namespace Empty.UI.Building
 					Mouse.GetState().Y < globalY + quadWidth)
 				{
 					icon.Alpha = 1;
-					if (Mouse.GetState().LeftButton == ButtonState.Pressed && wasPressed != ButtonState.Pressed)
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed && wasPressed != ButtonState.Pressed)
 					{
 						LeftButtonPressed();
 					}
@@ -72,35 +72,8 @@ namespace Empty.UI.Building
 			base.Draw(sb, gameTime);
 		}
 
-        private ButtonState wasPressed = ButtonState.Released;
-        public override void Update(float delta)
-        {
-            if (Resources.Stone >= costStone &&
-                Resources.Timber >= costTimber &&
-                Resources.Iron >= costIron)
-            {
-                if (Mouse.GetState().X > globalX && Mouse.GetState().X < globalX + quadWidth &&
-                Mouse.GetState().Y > globalY && Mouse.GetState().Y < globalY + quadWidth)
-                {
-                    icon.Alpha = 1;
-                    Empty.Building.BuildProcessing.lockFlag = true;
-                    if (Mouse.GetState().LeftButton == ButtonState.Pressed && wasPressed != ButtonState.Pressed)
-                    {
-                        LeftButtonPressed();
-                    }
-                }
-                else
-                {
-                    icon.Alpha = 0.15;
-                    Empty.Building.BuildProcessing.lockFlag = false;
-                }
-            }
-            else icon.Alpha = 0.15;
 
-
-            wasPressed = Mouse.GetState().LeftButton;
-            base.Update(delta);
-        }
+        
 		public void DrawCosts()
 		{
 			costs = new Property(false);

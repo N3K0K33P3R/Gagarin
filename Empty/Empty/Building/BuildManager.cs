@@ -14,11 +14,12 @@ namespace Empty.Building
 
         public static void CallBuilding(this Island island, Structure structure)
         {
-            if (curStructure!=null) return;
+            if (curStructure != null) return;
             Game1.UpdateEvent += Bulding;
             island.Structures.Add(structure);
             BuildProcessing.island = island;
             curStructure = structure;
+        }
 
 		public static void Bulding()
 		{
@@ -55,14 +56,5 @@ namespace Empty.Building
             curStructure.StateColor = Color.White;
             curStructure = null;
         }
-
-		public static void SetBuild()
-		{
-			Vector2 vector = curStructure.position;
-			Game1.UpdateEvent -= Bulding;
-			curStructure.OnAddOnGrid(ref island.Cells, (int)vector.X, (int)vector.Y);
-			curStructure.StateColor = Color.White;
-			curStructure            = null;
-		}
 	}
 }

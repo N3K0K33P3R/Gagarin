@@ -14,10 +14,6 @@ namespace Empty.Building
 			workCost,
 			offset) { }
 
-		public override bool IsCanPut(Island island)
-		{
-			Vector2 vector = position / 16f;
-
         public override bool IsCanPut(GameObjects.Island island)
         {
             var vector = position / 16f;
@@ -27,7 +23,6 @@ namespace Empty.Building
             vector.Y > 0 &&
             vector.X < 25 &&
             vector.Y < 25;
-;
         }
 
 
