@@ -32,7 +32,7 @@ namespace Empty.GameObjects
 				var v1    = new Vector2(g.position.X + Values.TILE_SIZE / 2,              g.position.Y + Values.TILE_SIZE / 2);
 				var v2    = new Vector2(node.X * Values.TILE_SIZE + Values.TILE_SIZE / 2, node.Y * Values.TILE_SIZE + Values.TILE_SIZE / 2);
 				var angle = Ball.GetAngle(v1, v2);
-				Trace(angle);
+				//Trace(angle);
 
 				Color color = angle < 0.5 && angle > -0.5 ? Color.Green : Color.Red;
 

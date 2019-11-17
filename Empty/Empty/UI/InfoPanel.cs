@@ -16,8 +16,6 @@ namespace Empty.UI
 		public InfoPanel(BaseHuman human)
 		{
 			rows              = new List<Row>();
-			human.GunSkill    = (float)0.2;
-			human.RepairSkill = 1;
 			rows.Add(new Row($"NAME: {human.Name}"));
 			rows.Add(new Row("GUN SKILL: ",    human.GunSkill));
 			rows.Add(new Row("REPAIR SKILL: ", human.RepairSkill));

@@ -136,7 +136,7 @@ namespace Empty
 			if (enemyIsland?.y > 570)
 			{
 				enemyIsland = null;
-				Trace("Killed");
+				//Trace("Killed");
 				SetTimer();
 			}
 
@@ -193,7 +193,7 @@ namespace Empty
 		private void SetTimer()
 		{
 			timer      = 1;
-			timerSpeed = Values.RANDOM.NextDouble(0.001, 0.01);
+			timerSpeed = Values.RANDOM.NextDouble(0.0001, 0.001);
 		}
 
 		private void ShowInfo(BaseHuman human)

@@ -42,6 +42,9 @@ namespace Empty.GameObjects.Humans
 
 			SetTransition(Transitions.position);
 			Name = Values.GetRandomName();
+
+			GunSkill = (float)Values.RANDOM.NextDouble();
+			RepairSkill = (float)Values.RANDOM.NextDouble();
 		}
 
 		/// <inheritdoc />
