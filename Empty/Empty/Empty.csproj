@@ -64,6 +64,7 @@
     <Compile Include="UI\Building\BuildingCell.cs" />
     <Compile Include="UI\Building\Interface.cs" />
     <Compile Include="UI\InfoBox.cs" />
+    <Compile Include="UI\InfoPanel.cs" />
     <Compile Include="Values.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="UI\Property.cs" />

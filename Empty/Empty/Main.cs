@@ -26,18 +26,19 @@ namespace Empty
 
 		private Vector2 node;
 
-		/// <inheritdoc />
-		public Main(GraphicsDevice gd)
-		{
-			instance    = this;
-			this.gd     = gd;
-			island      = new Island(25, 25);
-			cloudCanvas = new CloudCanvas();
-			AddChild(new UI.Property());
-			buildingInterface = new UI.Building.Interface(TestAction);
-			AddChild(buildingInterface);
-			camera = new CameraNew(gd.Viewport) { Zoom = 2f, Position = Vector2.UnitY * 350 + Vector2.UnitX * 600 };
+        /// <inheritdoc />
+        public Main(GraphicsDevice gd)
+        {
+            instance = this;
+            this.gd = gd;
+            island = new Island(25, 25);
+            cloudCanvas = new CloudCanvas();
+            AddChild(new UI.Property());
+            buildingInterface = new UI.Building.Interface(TestAction);
+            AddChild(buildingInterface);
+            camera = new CameraNew(gd.Viewport) { Zoom = 2f, Position = Vector2.UnitY * 350 + Vector2.UnitX * 600 };
 
+            AddChild(new InfoPanel(new BaseHuman(Assets.textures["Human"], 0,0)));
 
 			int humanCount = 5;
 			humans = new List<BaseHuman>();
@@ -71,6 +72,11 @@ namespace Empty
 				}
 			}
 		}
+
+        private void ShowInfo(BaseHuman human)
+        {
+
+        }
 
 		public override void Update(float delta)
 		{
