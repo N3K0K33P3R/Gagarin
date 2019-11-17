@@ -125,7 +125,7 @@ namespace Empty
 				}
 				else
 				{
-					(int x1, int x2) = (node / 16).ToPoint();
+					(int x1, int x2) = (mouseTilePos).ToPoint();
 					selectedHuman.SetTilePos(x1, x2);
 					selectedHuman = null;
 				}
