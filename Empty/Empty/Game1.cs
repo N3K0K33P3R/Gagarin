@@ -35,18 +35,27 @@ namespace Empty
 			KeyboardInput.Initialize(this, 500f, 20);
 
 			main = new Main();
+            
 		}
 
-		/// <summary>
-		/// LoadContent will be called once per game and is the place to load
-		/// all of your content.
-		/// </summary>
+        /// <summary>
+        /// LoadContent will be called once per game and is the place to load
+        /// all of your content.
+        /// </summary>
+        public static SpriteFont fontForProperties;
+        public static Texture2D stoneTexture;
+        public static Texture2D woodTexture;
+        public static Texture2D ironTexture;
 		protected override void LoadContent()
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
 			Assets.font = Content.Load<SpriteFont>("font");
+            fontForProperties = Content.Load<SpriteFont>("fontForProperties");
+            stoneTexture = Content.Load<Texture2D>("stone");
+            woodTexture = Content.Load<Texture2D>("wood");
+            ironTexture = Content.Load<Texture2D>("iron");
 			// TODO: use this.Content to load your game content here
 		}
 
