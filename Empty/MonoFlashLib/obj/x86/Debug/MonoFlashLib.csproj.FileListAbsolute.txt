@@ -105,7 +105,7 @@ C:\Projects\Planet\Empty\MonoFlashLib\bin\Windows\x86\Debug\SharpDX.DXGI.xml
 C:\Projects\Planet\Empty\MonoFlashLib\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
 C:\Projects\Planet\Empty\MonoFlashLib\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
 C:\Projects\Planet\Empty\MonoFlashLib\bin\Windows\x86\Debug\SharpDX.XInput.xml
-C:\Projects\Planet\Empty\MonoFlashLib\obj\x86\Debug\MonoFlashLib.csprojAssemblyReference.cache
 C:\Projects\Planet\Empty\MonoFlashLib\obj\x86\Debug\MonoFlashLib.csproj.CopyComplete
 C:\Projects\Planet\Empty\MonoFlashLib\obj\x86\Debug\MonoFlashLib.exe
 C:\Projects\Planet\Empty\MonoFlashLib\obj\x86\Debug\MonoFlashLib.pdb
+C:\Projects\Planet\Empty\MonoFlashLib\obj\x86\Debug\MonoFlashLib.csprojAssemblyReference.cache

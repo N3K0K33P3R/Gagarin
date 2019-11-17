@@ -47,6 +47,7 @@
     <Compile Include="Building\Structure.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameObjects\CameraNew.cs" />
     <Compile Include="GameObjects\Humans\BaseHuman.cs" />
     <Compile Include="GameObjects\CameraMover.cs" />
     <Compile Include="GameObjects\Island.cs" />

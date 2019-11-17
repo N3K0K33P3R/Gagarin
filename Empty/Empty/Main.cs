@@ -10,60 +10,74 @@ using IDrawable = MonoFlash.Engine.IDrawable;
 
 namespace Empty
 {
-	internal class Main : Sprite
-	{
-		private readonly Camera         camera;
-		private readonly GraphicsDevice gd;
-		private readonly Island         island;
-		public static    Main           instance;
+    internal class Main : Sprite
+    {
+        private readonly CameraNew camera;
+        private readonly GraphicsDevice gd;
+        private readonly Island island;
+        public static Main instance;
 
 
-		private Vector2 node;
+        private Vector2 node;
 
-		/// <inheritdoc />
-		public Main(GraphicsDevice gd)
-		{
-			this.gd = gd;
-			island  = new Island(25, 25);
-			AddChild(new Property());
-			camera = new Camera { Zoom = 2.3f };
+        /// <inheritdoc />
+        public Main(GraphicsDevice gd)
+        {
+            instance = this;
 
-			var bh = new BaseHuman(Assets.textures["Human"], 0, 0);
-			bh.SetTilePos(4, 5);
-			AddChild(bh);
-		}
+            this.gd = gd;
+            island = new Island(25, 25);
+            AddChild(new Property());
+            camera = new CameraNew(gd.Viewport) { Zoom = 1f, Position = Vector2.UnitY * 150 };
 
-		public override void Update(float delta)
-		{
-			Vector2 mouse = Mouse.GetState().Position.ToVector2();
-			node = (mouse / 16f).ToPoint().ToVector2() * 16;
-			island.Posing(node);
+            var bh = new BaseHuman(Assets.textures["Human"], 0, 0);
+            bh.SetTilePos(4, 5);
+            AddChild(bh);
+        }
 
-			if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-			{
-				if (island.GetCellByMouse == TileType.Empty)
-				{
-					island.re = Color.Red;
-				}
+        public override void Update(float delta)
+        {
+            Vector2 mouse = Mouse.GetState().Position.ToVector2();
+            mouse -= camera.Bounds.Size.ToVector2() / (2f) - camera.Position;
 
-				if (island.GetCellByMouse != TileType.Empty)
-				{
-					island.re = Color.Blue;
-				}
-			}
+            node = (mouse / 16f).ToPoint().ToVector2() * 16;
+            island.Posing(node);
 
-			base.Update(delta);
-		}
+            camera.UpdateCamera(gd.Viewport);
 
-		/// <inheritdoc />
-		public override void Draw(SpriteBatch sb, GameTime gameTime = null)
-		{
-			sb.Begin(samplerState: SamplerState.PointClamp); //UI
-			base.Draw(sb, gameTime);
-			island.Draw(sb);
-			sb.End();
-		}
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                if (island.GetCellByPose(mouse) == TileType.Empty)
+                {
+                    island.re = Color.Red;
+                }
 
-		public TileType[,] GetMap() => island.GetMap();
-	}
+                if (island.GetCellByPose(mouse) != TileType.Empty)
+                {
+                    island.re = Color.Blue;
+                }
+            }
+            else
+            {
+                island.re = Color.White;
+            }
+
+            base.Update(delta);
+        }
+
+        /// <inheritdoc />
+        public override void Draw(SpriteBatch sb, GameTime gameTime = null)
+        {
+            sb.Begin(samplerState: SamplerState.PointClamp, transformMatrix: camera.Transform); //UI
+            island.Draw(sb);
+            sb.End();
+
+            sb.Begin(samplerState: SamplerState.PointClamp); //UI
+            base.Draw(sb, gameTime);
+            //island.Draw(sb);
+            sb.End();
+        }
+
+        public TileType[,] GetMap() => island.GetMap();
+    }
 }
