@@ -67,7 +67,6 @@ namespace Empty.GameObjects
 				}
 			}
 
-			Trace(node);
 			sb.DrawRectangle(node*Values.TILE_SIZE, Vector2.One * Values.TILE_SIZE, re, 4, 0);
 			base.Draw(sb, gameTime);
 		}
