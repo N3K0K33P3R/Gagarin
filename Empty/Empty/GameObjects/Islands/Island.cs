@@ -104,7 +104,7 @@ namespace Empty.GameObjects
 						continue;
 					}
 
-					var bh = new BaseHuman(Assets.textures["Human"], i, j);
+					var bh = new BaseHuman(Assets.textures["Human"], i, j, this);
 					AddChild(bh);
 					humans.Add(bh);
 					humanCount--;
