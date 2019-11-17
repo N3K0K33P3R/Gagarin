@@ -9,11 +9,13 @@ namespace Empty.Building
     public class Castle
     {
         public int Healty = 1000;
-        private readonly Rectangle rect;
+        private Rectangle rect;
         private readonly Texture2D texture;
         private readonly Color startColor;
 
         private Island island;
+
+        public Point position;
 
         public Castle(Rectangle rect, Texture2D texture, Color startColor, Island island)
         {
@@ -34,11 +36,15 @@ namespace Empty.Building
             island.Cells[pt.X, pt.Y + 1] = TileType.Castle;
             island.Cells[pt.X + 1, pt.Y + 1] = TileType.Castle;
 
-            this.rect.Location = new Point((pt.X-1) * 16, (pt.Y-1) * 16);
+            position = new Point((pt.X - 1) * 16, (pt.Y - 1) * 16);
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+
+            rect.Location = new Point((int)island.globalX, (int)island.globalY) + position;
+
             spriteBatch.Draw(texture, rect, startColor);
         }
 
