@@ -25,6 +25,7 @@ namespace Empty.UI
 		public void SetTimer(float timer)
 		{
 			quad.width = baseWidth * timer;
+			quad.color = Colors.colorLerp( 0xe74c3c, 0x2ecc71, timer);
 		}
 	}
 }

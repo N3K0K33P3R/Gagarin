@@ -5,7 +5,7 @@ namespace MonoFlash.Engine
 {
 	public class Quad : Sprite
 	{
-		private readonly uint  color;
+		public           uint  color;
 		private readonly int   depth;
 		public           Color XNAColor;
 
