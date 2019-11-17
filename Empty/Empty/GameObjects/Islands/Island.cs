@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoFlash.Engine;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Empty.GameObjects
 {
@@ -39,6 +40,8 @@ namespace Empty.GameObjects
 		{
 			this.node = node;
 		}
+
+		public BaseHuman FindHuman(Point point) => humans.FirstOrDefault(h => h.tilePos == point);
 
 		public TileType[,] GetMap() => Cells;
 

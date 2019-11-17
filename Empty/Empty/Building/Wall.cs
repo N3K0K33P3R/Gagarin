@@ -14,7 +14,7 @@ namespace Empty.Building
 			workCost,
 			offset) { }
 
-		public override bool IsCanPut(Island island) => island.GetCellByMouse != TileType.Empty;
+		public override bool IsCanPut(Island island) => island.GetCellByMouse != TileType.Empty && island.FindHuman(Main.instance.MousePosition.ToPoint()) == null;
 
 
 		public override void OnAddOnGrid(ref TileType[,] types, int i, int j) { }

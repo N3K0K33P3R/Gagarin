@@ -32,7 +32,7 @@ namespace Empty.GameObjects
 		{
 			if (selectedHuman == null)
 			{
-				BaseHuman human = humans.FirstOrDefault(h => h.tilePos == tile);
+				BaseHuman human = FindHuman(tile);
 
 				if (human != null)
 				{
