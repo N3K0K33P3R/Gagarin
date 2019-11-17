@@ -33,7 +33,7 @@ namespace Empty
 			island      = new Island(25, 25);
 			cloudCanvas = new CloudCanvas();
 			AddChild(new Property());
-			camera = new CameraNew(gd.Viewport) { Zoom = 1f, Position = Vector2.UnitY * 350 + Vector2.UnitX * 600 };
+			camera = new CameraNew(gd.Viewport) { Zoom = 2f, Position = Vector2.UnitY * 350 + Vector2.UnitX * 600 };
 
 
 			int humanCount = 5;
@@ -71,22 +71,38 @@ namespace Empty
 
 		public override void Update(float delta)
 		{
-			Vector2 mouse = Mouse.GetState().Position.ToVector2();
-			mouse -= camera.Bounds.Size.ToVector2() / (2f) - camera.Position;
-
-            node = (mouse / (16f)).ToPoint().ToVector2() * 16;
-            island.Posing(node);
+			//Vector2 mouse = Mouse.GetState().Position.ToVector2();
+			//mouse -= camera.Bounds.Size.ToVector2() / (2f) - camera.Position;
+			//
+			//node = (mouse / (16f)).ToPoint().ToVector2() * 16;
+			//island.Posing(node);
 
 			camera.UpdateCamera(gd.Viewport);
 
+			var mouseTilePos =
+				(Mouse.GetState().Position.ToVector2() 
+				 - 
+				 new Point(Values.SCREEN_WIDTH / 2, Values.SCREEN_HEIGHT / 2).ToVector2() 
+				 + 
+				 camera.Position
+				 * 
+				 camera.Zoom) 
+				/
+				Values.TILE_SIZE 
+				/
+				camera.Zoom;
+
+			island.Posing(mouseTilePos.ToPoint().ToVector2());
+
+
 			if (Mouse.GetState().LeftButton == ButtonState.Pressed)
 			{
-				if (island.GetCellByPose(mouse) == TileType.Empty)
+				if (island.GetCellByPose(mouseTilePos) == TileType.Empty)
 				{
 					island.re = Color.Red;
 				}
 
-				if (island.GetCellByPose(mouse) != TileType.Empty)
+				if (island.GetCellByPose(mouseTilePos) != TileType.Empty)
 				{
 					island.re = Color.Blue;
 				}
@@ -94,13 +110,10 @@ namespace Empty
 
 				if (selectedHuman == null)
 				{
-					BaseHuman human = humans.FirstOrDefault(h => h.tilePos == (node / 16).ToPoint());
+					BaseHuman human = humans.FirstOrDefault(h => h.tilePos == (mouseTilePos).ToPoint());
 
-					var v =
-						(Mouse.GetState().Position.ToVector2() - new Point(Values.SCREEN_WIDTH / 2, Values.SCREEN_HEIGHT / 2).ToVector2() 
-						 * Values.MAP_SCALE
-						 + camera.Position * Values.MAP_SCALE);
-					Trace(v);
+
+					Trace(mouseTilePos);
 
 					if (human != null)
 					{

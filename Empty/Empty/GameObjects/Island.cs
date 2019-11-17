@@ -67,7 +67,8 @@ namespace Empty.GameObjects
 				}
 			}
 
-			sb.DrawRectangle(node, Vector2.One * 16, re, 4, 1);
+			Trace(node);
+			sb.DrawRectangle(node*Values.TILE_SIZE, Vector2.One * Values.TILE_SIZE, re, 4, 0);
 			base.Draw(sb, gameTime);
 		}
 
@@ -81,14 +82,12 @@ namespace Empty.GameObjects
 
 		internal TileType GetCellByPose(Vector2 vector)
 		{
-			Vector2 vc = vector /= 16f;
-
-			if (vc.X > 0 &&
-				vc.Y > 0 &&
-				vc.X < wight &&
-				vc.Y < height)
+			if (vector.X > 0 &&
+				vector.Y > 0 &&
+				vector.X < wight &&
+				vector.Y < height)
 			{
-				return cells[(int)(vc.X), (int)(vc.Y)];
+				return cells[(int)(vector.X), (int)(vector.Y)];
 			}
 
 			return TileType.Empty;
