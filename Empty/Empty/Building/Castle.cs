@@ -24,9 +24,7 @@ namespace Empty.Building
 
             var pt = GetCastlePoint;
 
-            island.Cells[pt.X - 1, pt.Y - 1] = TileType.Castle;
-            island.Cells[pt.X, pt.Y - 1] = TileType.Castle;
-            island.Cells[pt.X + 1, pt.Y - 1] = TileType.Castle;
+
 
             island.Cells[pt.X - 1, pt.Y] = TileType.Castle;
             island.Cells[pt.X, pt.Y] = TileType.Castle;
@@ -36,7 +34,7 @@ namespace Empty.Building
             island.Cells[pt.X, pt.Y + 1] = TileType.Castle;
             island.Cells[pt.X + 1, pt.Y + 1] = TileType.Castle;
 
-            rect.Location = new Point(pt.X * 16, pt.Y * 16);
+            this.rect.Location = new Point((pt.X-1) * 16, (pt.Y-1) * 16);
         }
 
         public void Draw(SpriteBatch spriteBatch)

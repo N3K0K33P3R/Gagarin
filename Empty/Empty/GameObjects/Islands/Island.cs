@@ -33,7 +33,7 @@ namespace Empty.GameObjects
 			height          = h;
 			islandGenerator = new IslandGenerator(wight, height);
 			Cells           = islandGenerator.island;
-            castle = new Castle(new Rectangle(16, 13*16, 48, 48), Assets.textures["Castle"], Color.White, this);
+            castle = new Castle(new Rectangle(0, 0, 48, 48), Assets.textures["Castle"], Color.White, this);
 			PlaceHumans();
 		}
 
