@@ -59,13 +59,13 @@ namespace Empty.GameObjects
 
         internal TileType GetCellByPose(Vector2 vector)
         {     
-                var vc = vector /= 16f;
+                var vc = vector / 16f;
                 if (vc.X > 0 &&
                     vc.Y > 0 &&
-                    vc.X < wight / 16f &&
-                    vc.Y < height / 16f)
+                    vc.X < wight &&
+                    vc.Y < height)
                 {
-                    return cells[(int)(vc.X * 16), (int)(vc.Y * 16)];
+                    return cells[(int)(vc.X), (int)(vc.Y)];
                 }
                 return TileType.Empty;       
         }
