@@ -189,3 +189,4 @@ C:\Projects\Planet\Empty\Empty\obj\x86\Debug\Empty.csproj.CopyComplete
 C:\Projects\Planet\Empty\Empty\bin\Windows\x86\Debug\Content\Tile\Castle.xnb
 C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\explosion.xnb
 C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Tile\Castle.xnb
+C:\Projects\Planet\Empty\Empty\bin\Windows\x86\Debug\Content\explosion.xnb
