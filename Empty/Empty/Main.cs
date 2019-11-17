@@ -13,6 +13,7 @@ namespace Empty
 		{
 			island = new Island();
 			AddChild(island);
+			AddChild(new UI.Property());
 		}
 
 		/// <inheritdoc />
