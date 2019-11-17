@@ -19,8 +19,9 @@ namespace Empty
 			graphics              = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = 1600, PreferredBackBufferHeight = 800 };
 			IsMouseVisible        = true;
 			Content.RootDirectory = "Content";
-            graphics.ToggleFullScreen();
-		}
+            
+
+        }
 
 		/// <summary>
 		/// Allows the game to perform any initialization it needs to before starting to run.
@@ -53,6 +54,8 @@ namespace Empty
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
 			Assets.font = Content.Load<SpriteFont>("font");
+
+
             fontForProperties = Content.Load<SpriteFont>("fontForProperties");
             stoneTexture = Content.Load<Texture2D>("stone");
             woodTexture = Content.Load<Texture2D>("wood");

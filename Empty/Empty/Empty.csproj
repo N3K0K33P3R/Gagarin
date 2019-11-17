@@ -43,6 +43,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets.cs" />
+    <Compile Include="Building\BuildManager.cs" />
+    <Compile Include="Building\Structure.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\CameraMover.cs" />

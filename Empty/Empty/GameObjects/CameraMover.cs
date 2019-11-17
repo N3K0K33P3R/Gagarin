@@ -31,7 +31,6 @@ namespace Empty.GameObjects
             {
 
                 cameraMovement.X = moveSpeed * (prevMouseX - Mouse.GetState().X);
-                cameraMovement.Y = moveSpeed * (prevMouseY - Mouse.GetState().Y);
             }
 
             prevMouseX = Mouse.GetState().X;
