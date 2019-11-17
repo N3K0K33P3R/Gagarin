@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoFlash.Engine;
 using KeyboardInput = MonoFlash.Engine.KeyboardInput;
 
 namespace Empty
@@ -16,7 +17,7 @@ namespace Empty
 
 		public Game1()
 		{
-			graphics              = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = 1600, PreferredBackBufferHeight = 800 };
+			graphics              = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = Values.SCREEN_WIDTH, PreferredBackBufferHeight = Values.SCREEN_HEIGHT };
 			IsMouseVisible        = true;
 			Content.RootDirectory = "Content";
             
@@ -66,6 +67,11 @@ namespace Empty
             Assets.textures.Add("Grass", Content.Load<Texture2D>("Tile/Grass"));
             Assets.textures.Add("Sand", Content.Load<Texture2D>("Tile/Sand"));
             Assets.textures.Add("Stone", Content.Load<Texture2D>("Tile/Stone"));
+
+			for (int i = 0; i < 8; i++)
+			{
+				Assets.clouds.Add(Content.Load<Texture2D>($"Clouds/Cloud{i+1}"));
+			}
             // TODO: use this.Content to load your game content here
         }
 
@@ -99,7 +105,7 @@ namespace Empty
 		}
 
 
-        Color sky = new Color(49, 47, 47);
+        Color sky = Colors.hexToRGB(0x3498db);
 
 		/// <summary>
 		/// This is called when the game should draw itself.
