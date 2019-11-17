@@ -1,4 +1,5 @@
 ﻿using Empty.Building;
+using Empty.UI.Building;
 using MonoFlash.Engine;
 using System;
 
@@ -8,12 +9,12 @@ namespace Empty.GameObjects
 	{
 		private readonly AnimationController acY;
 		private readonly AnimationController acSpeed;
-		public           float               Velocity     { get; set; }
-		public           float               Acceleration { get; set; }
+
+		public bool  Builded;
+		public float Velocity     { get; set; }
+		public float Acceleration { get; set; }
 
 		public bool IsDefeated { get; set; }
-
-		public bool Builded = false;
 
 		/// <inheritdoc />
 		public EnemyIsland(int w = IslandSize, int h = IslandSize) : base(w, h)
@@ -47,8 +48,8 @@ namespace Empty.GameObjects
 			{
 				Kill();
 			}
-			
-            UpdateAI();
+
+			UpdateAI();
 			base.Update(delta);
 		}
 
@@ -60,72 +61,92 @@ namespace Empty.GameObjects
 
 		private double GetTime() => -(Math.Sqrt(2 * Acceleration * x + Velocity * Velocity) + Velocity) / Acceleration;
 
-        private void UpdateAI()
-        {
-            int randomHuman = -1;
-            bool allIsNotMoving = true;
-            for (int i = 0; i < humans.Count; i++)
-            {
-                if (!humans[i].isMoving) randomHuman = i;
-            }
-            if (randomHuman != -1)
-            {
-                int randomX;
-                int randomY;
+		private void UpdateAI()
+		{
+			int randomHuman    = -1;
+			var allIsNotMoving = true;
 
-                int whatToDo = Values.RANDOM.Next(0, 100);
-                if (humans[randomHuman].tilePos.X <= 4 && whatToDo < 45)
-                {
-                    int whatToBuild = Values.RANDOM.Next(0, 100);
-                    UI.Building.Interface.BuildType bt = UI.Building.Interface.BuildType.Bridge;
-                    if (whatToBuild < 33) bt = UI.Building.Interface.BuildType.Cannon;
-                    if (whatToBuild > 66) bt = UI.Building.Interface.BuildType.Wall;
-                    if (bt != UI.Building.Interface.BuildType.Bridge)
-                    {
-                        if (humans[randomHuman].tilePos.X - 1 >= 0)
-                        {
-                            if (Cells[humans[randomHuman].tilePos.X - 1, humans[randomHuman].tilePos.Y] == TileType.Grass ||
-                            Cells[humans[randomHuman].tilePos.X - 1, humans[randomHuman].tilePos.Y] == TileType.Sand ||
-                            Cells[humans[randomHuman].tilePos.X - 1, humans[randomHuman].tilePos.Y] == TileType.Stone)
-                            {
-								if (!Builded)
-								{
-									Building.Structure structure = Building.StructureFabric.GetStructure(bt);
-									Structures.Add(structure);
-									structure.position.X =  humans[randomHuman].tilePos.X - 1;
-									structure.position.Y =  humans[randomHuman].tilePos.Y;
-									structure.position   *= Values.TILE_SIZE;
-									structure.parent     =  this;
-									Builded = true;
-								}
+			for (var i = 0; i < humans.Count; i++)
+			{
+				if (!humans[i].isMoving)
+				{
+					randomHuman = i;
+				}
+			}
 
-								//    Building.BuildProcessing.island = this;
-                                //    Building.BuildProcessing.SetBuild(structure);
-                                /*Building.BuildProcessing.vector.X = humans[randomHuman].tilePos.X - 1;
-                                Building.BuildProcessing.vector.Y = humans[randomHuman].tilePos.Y;
-                                Building.Structure structure = Building.StructureFabric.GetStructure(bt);
-                                Building.BuildProcessing.CallBuilding(this, structure);
-                                Building.BuildProcessing.vector = Building.BuildProcessing.curStructure.position;*/
-                            }
-                        }
-                            
-                    }
-                }
-                else
-                {
-                    do
-                    {
-                        randomX = Values.RANDOM.Next(0, Cells.GetLength(0));
-                        randomY = Values.RANDOM.Next(0, Cells.GetLength(1));
-                    } while (Cells[randomX, randomY] != TileType.Grass &&
-                        Cells[randomX, randomY] != TileType.Sand &&
-                        Cells[randomX, randomY] != TileType.Stone);
+			if (randomHuman != -1)
+			{
+				int randomX;
+				int randomY;
 
-                    if (allIsNotMoving) humans[randomHuman].SetTilePos(randomX, randomY);
-                }
-            }
-            
+				int whatToDo = Values.RANDOM.Next(0, 100);
 
-        }
+				if (humans[randomHuman].tilePos.X <= 4 && whatToDo < 45)
+				{
+					int whatToBuild = Values.RANDOM.Next(0, 100);
+					var bt          = Interface.BuildType.Bridge;
+
+					if (whatToBuild < 33)
+					{
+						bt = Interface.BuildType.Cannon;
+					}
+
+					if (whatToBuild > 66)
+					{
+						bt = Interface.BuildType.Wall;
+					}
+
+					if (bt == Interface.BuildType.Bridge)
+					{
+						return;
+					}
+
+					if (humans[randomHuman].tilePos.X - 1 < 0)
+					{
+						return;
+					}
+
+					if (Cells[humans[randomHuman].tilePos.X - 1, humans[randomHuman].tilePos.Y] != TileType.Grass &&
+						Cells[humans[randomHuman].tilePos.X - 1, humans[randomHuman].tilePos.Y] != TileType.Sand &&
+						Cells[humans[randomHuman].tilePos.X - 1, humans[randomHuman].tilePos.Y] != TileType.Stone)
+					{
+						return;
+					}
+
+					Structure structure = StructureFabric.GetStructure(bt);
+					Structures.Add(structure);
+					structure.position.X =  humans[randomHuman].tilePos.X - 1;
+					structure.position.Y =  humans[randomHuman].tilePos.Y;
+					structure.position   *= Values.TILE_SIZE;
+					structure.parent     =  this;
+					Builded              =  true;
+
+
+					//    Building.BuildProcessing.island = this;
+					//    Building.BuildProcessing.SetBuild(structure);
+					/*Building.BuildProcessing.vector.X = humans[randomHuman].tilePos.X - 1;
+								Building.BuildProcessing.vector.Y = humans[randomHuman].tilePos.Y;
+								Building.Structure structure = Building.StructureFabric.GetStructure(bt);
+								Building.BuildProcessing.CallBuilding(this, structure);
+								Building.BuildProcessing.vector = Building.BuildProcessing.curStructure.position;*/
+				}
+				else
+				{
+					do
+					{
+						randomX = Values.RANDOM.Next(0, Cells.GetLength(0));
+						randomY = Values.RANDOM.Next(0, Cells.GetLength(1));
+					}
+					while (Cells[randomX, randomY] != TileType.Grass &&
+						   Cells[randomX, randomY] != TileType.Sand &&
+						   Cells[randomX, randomY] != TileType.Stone);
+
+					if (allIsNotMoving)
+					{
+						humans[randomHuman].SetTilePos(randomX, randomY);
+					}
+				}
+			}
+		}
 	}
 }
