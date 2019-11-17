@@ -34,7 +34,7 @@ namespace Empty
 			base.Initialize();
 			KeyboardInput.Initialize(this, 500f, 20);
 
-			main = new Main();
+			main = new Main(GraphicsDevice);
             
 		}
 
@@ -56,8 +56,12 @@ namespace Empty
             stoneTexture = Content.Load<Texture2D>("stone");
             woodTexture = Content.Load<Texture2D>("wood");
             ironTexture = Content.Load<Texture2D>("iron");
-			// TODO: use this.Content to load your game content here
-		}
+
+            Assets.textures.Add("Grass", Content.Load<Texture2D>("Tile/Grass"));
+            Assets.textures.Add("Sand", Content.Load<Texture2D>("Tile/Sand"));
+            Assets.textures.Add("Stone", Content.Load<Texture2D>("Tile/Stone"));
+            // TODO: use this.Content to load your game content here
+        }
 
 		/// <summary>
 		/// UnloadContent will be called once per game and is the place to unload
