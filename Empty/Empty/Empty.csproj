@@ -46,6 +46,7 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\Humans\BaseHuman.cs" />
+    <Compile Include="GameObjects\CameraMover.cs" />
     <Compile Include="GameObjects\Island.cs" />
     <Compile Include="GameObjects\IslandGenerator.cs" />
     <Compile Include="Helpers\PolygonHelper.cs" />
