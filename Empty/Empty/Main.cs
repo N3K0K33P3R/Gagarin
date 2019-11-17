@@ -1,53 +1,59 @@
 ﻿using Empty.GameObjects;
+using Empty.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoFlash.Engine;
-using System;
 
 namespace Empty
 {
-    internal class Main : Sprite
-    {
-        private readonly Camera camera;
-        private Island island;
-        private readonly GraphicsDevice gd;
-        /// <inheritdoc />
-        public Main(GraphicsDevice gd)
-        {
-            this.gd = gd;
-            island = new Island(25, 25);
-            AddChild(new UI.Property());
-            camera = new Camera() { Zoom = 2.3f };
-        }
+	internal class Main : Sprite
+	{
+		private readonly Camera         camera;
+		private readonly GraphicsDevice gd;
+		private readonly Island         island;
 
 
-        Vector2 node;
+		private Vector2 node;
 
-        public override void Update(float delta)
-        {
+		/// <inheritdoc />
+		public Main(GraphicsDevice gd)
+		{
+			this.gd = gd;
+			island  = new Island(25, 25);
+			AddChild(new Property());
+			camera = new Camera { Zoom = 2.3f };
+		}
 
-            var mouse = Mouse.GetState().Position.ToVector2();
-            node = ((mouse / 16f).ToPoint()).ToVector2() * 16;
-            island.Posing(node);
+		public override void Update(float delta)
+		{
+			Vector2 mouse = Mouse.GetState().Position.ToVector2();
+			node = (mouse / 16f).ToPoint().ToVector2() * 16;
+			island.Posing(node);
 
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-            {
-                if (island.GetCellByMouse == TileType.Empty) island.re = Color.Red;
-                if (island.GetCellByMouse != TileType.Empty) island.re = Color.Blue;
-            }
+			if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+			{
+				if (island.GetCellByMouse == TileType.Empty)
+				{
+					island.re = Color.Red;
+				}
 
-            base.Update(delta);
-        }
+				if (island.GetCellByMouse != TileType.Empty)
+				{
+					island.re = Color.Blue;
+				}
+			}
 
-        /// <inheritdoc />
-        public override void Draw(SpriteBatch sb, GameTime gameTime = null)
-        {
+			base.Update(delta);
+		}
 
-            sb.Begin();//UI
-            base.Draw(sb, gameTime);
-            island.Draw(sb);
-            sb.End();
-        }
-    }
+		/// <inheritdoc />
+		public override void Draw(SpriteBatch sb, GameTime gameTime = null)
+		{
+			sb.Begin(samplerState: SamplerState.PointClamp); //UI
+			base.Draw(sb, gameTime);
+			island.Draw(sb);
+			sb.End();
+		}
+	}
 }
