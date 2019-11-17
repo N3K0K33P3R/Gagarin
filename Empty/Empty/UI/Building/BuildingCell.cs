@@ -34,8 +34,9 @@ namespace Empty.UI.Building
 		}
 
 		public override void Update(float delta)
-		{
-			if (Resources.Stone >= costStone &&
+        {
+            Interface.UpdateInterface();
+            if (Resources.Stone >= costStone &&
 				Resources.Timber >= costTimber &&
 				Resources.Iron >= costIron)
 			{
@@ -45,7 +46,6 @@ namespace Empty.UI.Building
 					Mouse.GetState().Y < globalY + quadWidth)
 				{
 					icon.Alpha = 1;
-
 					if (Mouse.GetState().LeftButton == ButtonState.Pressed && wasPressed != ButtonState.Pressed)
 					{
 						LeftButtonPressed();

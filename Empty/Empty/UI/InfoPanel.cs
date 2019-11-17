@@ -22,7 +22,7 @@ namespace Empty.UI
 			rows.Add(new Row("GUN SKILL: ",    human.GunSkill));
 			rows.Add(new Row("REPAIR SKILL: ", human.RepairSkill));
 			width  = widthPanel;
-			height = 120;
+			height = 90;
 			AddBackground();
 			RedrawRows();
 		}
