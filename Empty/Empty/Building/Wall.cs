@@ -4,18 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace Empty.Building
 {
-    class Wall:Structure
+    class Wall : Structure
     {
-        int Healty;
 
 
-
-        public Wall(Texture2D texture, int healty, int stoneCost, int timberCost, int ironCost, int workCost) : base(texture, stoneCost, timberCost, ironCost, workCost)
+        public Wall(Texture2D texture, int stoneCost, int timberCost, int ironCost, int workCost, Vector2 offset = default) : base(texture, stoneCost, timberCost, ironCost, workCost, offset)
         {
-            this.Healty = healty;
+        }
+
+        public override bool IsCanPut(GameObjects.Island island) => island.GetCellByMouse != TileType.Empty;
+
+
+        public override void OnAddOnGrid(ref TileType[,] types,int i, int j)
+        {
+           
         }
     }
 }

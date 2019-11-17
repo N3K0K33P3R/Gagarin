@@ -34,7 +34,7 @@ namespace Empty
 			island      = new Island(25, 25);
 			cloudCanvas = new CloudCanvas();
 			AddChild(new UI.Property());
-			buildingInterface = new UI.Building.Interface(TestAction);
+			buildingInterface = new UI.Building.Interface(BuyStructure);
 			AddChild(buildingInterface);
 			camera = new CameraNew(gd.Viewport) { Zoom = 2f, Position = Vector2.UnitY * 350 + Vector2.UnitX * 600 };
 		}
@@ -84,11 +84,16 @@ namespace Empty
 			wasPressed = Mouse.GetState().LeftButton == ButtonState.Pressed;
 		}
 
-		private void TestAction(UI.Building.Interface.BuildType bt)
+		private void BuyStructure(UI.Building.Interface.BuildType bt)
 		{
-			Resources.Stone  -= 1;
-			Resources.Timber -= 1;
-			Resources.Iron   -= 1;
+            var structure = StructureFabric.GetStructure(bt);
+
+			Resources.Stone  -= structure.StoneCost;
+			Resources.Timber -= structure.TimberCost;
+			Resources.Iron   -= structure.IronCost;
+
+            island.CallBuilding(structure);
+
 			UI.Property.mainProperty.UpdateMainProperties();
 			UI.Building.Interface.UpdateInterface();
 		}

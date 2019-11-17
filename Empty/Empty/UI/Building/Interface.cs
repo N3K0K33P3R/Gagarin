@@ -8,25 +8,28 @@ using System.Threading.Tasks;
 
 namespace Empty.UI.Building
 {
-    class Interface : Sprite
+    public class Interface : Sprite
     {
         public static List<BuildingCell> cells;
         public enum BuildType { Cannon, Wall, Bridge };
 
-        public Interface(Action <BuildType> build)
+        public Interface(Action<BuildType> build)
         {
             cells = new List<BuildingCell>();
-            AddCell(Game1.stoneTexture, 1, 0, 1, BuildType.Cannon, build);
-            AddCell(Game1.woodTexture, 0, 0, 1, BuildType.Wall, build);
-            AddCell(Game1.ironTexture, 1, 10, 100, BuildType.Bridge, build);
+            AddCell(Game1.stoneTexture, BuildType.Cannon, build);
+            AddCell(Game1.woodTexture, BuildType.Wall, build);
+            AddCell(Game1.ironTexture, BuildType.Bridge, build);
             DrawCells();
         }
 
-        
 
-        public void AddCell(Texture2D icon, int stoneCost, int timberCost, int ironCost, BuildType buildtype, Action<BuildType> build)
+
+        public void AddCell(Texture2D icon, BuildType buildtype, Action<BuildType> build)
         {
-            cells.Add(new BuildingCell(icon, stoneCost, timberCost, ironCost, buildtype, build));
+
+            var str = Empty.Building.StructureFabric.GetStructure(buildtype);
+
+            cells.Add(new BuildingCell(icon, str.StoneCost, str.TimberCost, str.IronCost, buildtype, build));
         }
 
         private void DrawCells()

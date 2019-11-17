@@ -8,8 +8,8 @@ namespace Empty
 {
     class Resources
     {
-        public static int Stone = 2;
-        public static int Timber = 15;
-        public static int Iron = 2;
+        public static int Stone = 200;
+        public static int Timber = 200;
+        public static int Iron = 200;
     }
 }

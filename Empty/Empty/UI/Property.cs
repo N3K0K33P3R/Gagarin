@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Empty.UI
 {
-    class Property : Sprite
+    public class Property : Sprite
     {
         public Text text;
         public List<Property> props;

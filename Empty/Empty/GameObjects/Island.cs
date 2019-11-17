@@ -11,7 +11,7 @@ namespace Empty.GameObjects
 	{
 		public const     int             IslandSize = 16;
 		private readonly IslandGenerator islandGenerator;
-		private readonly TileType[,]     cells;
+		public           TileType[,]     Cells;
 
 		private readonly int             wight;
 		private readonly int             height;
@@ -31,7 +31,7 @@ namespace Empty.GameObjects
 			wight           = w;
 			height          = h;
 			islandGenerator = new IslandGenerator(wight, height);
-			cells           = islandGenerator.island;
+			Cells           = islandGenerator.island;
 
 			PlaceHumans();
 		}
@@ -42,17 +42,17 @@ namespace Empty.GameObjects
 			{
 				for (var j = 0; j < height; j++)
 				{
-					if (cells[i, j].Equals(TileType.Grass))
+					if (Cells[i, j].Equals(TileType.Grass))
 					{
 						sb.Draw(Assets.textures["Grass"], pos(i, j, Offset), null, Color.White);
 					}
 
-					if (cells[i, j].Equals(TileType.Sand))
+					if (Cells[i, j].Equals(TileType.Sand))
 					{
 						sb.Draw(Assets.textures["Sand"], pos(i, j, Offset), null, Color.White);
 					}
 
-					if (cells[i, j].Equals(TileType.Stone))
+					if (Cells[i, j].Equals(TileType.Stone))
 					{
 						sb.Draw(Assets.textures["Stone"], pos(i, j, Offset), null, Color.White);
 					}
@@ -69,7 +69,7 @@ namespace Empty.GameObjects
 			this.node = node;
 		}
 
-		public TileType[,] GetMap() => cells;
+		public TileType[,] GetMap() => Cells;
 
 		public void OnClick(Point tile)
 		{
@@ -98,7 +98,7 @@ namespace Empty.GameObjects
 				vector.X < wight &&
 				vector.Y < height)
 			{
-				return cells[(int)vector.X, (int)vector.Y];
+				return Cells[(int)vector.X, (int)vector.Y];
 			}
 
 			return TileType.Empty;

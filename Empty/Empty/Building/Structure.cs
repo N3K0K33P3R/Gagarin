@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MonoFlash.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Empty.GameObjects;
 
 namespace Empty.Building
 {
@@ -15,7 +16,7 @@ namespace Empty.Building
         public Texture2D texture;
         public Rectangle Rect;
 
-        public Vector2 Offset = new Vector2(0,-8);
+        public Vector2 Offset = new Vector2(0, -8);
 
         public Color StateColor;
 
@@ -27,8 +28,9 @@ namespace Empty.Building
 
         public int WorkCost = 0;
 
-        protected Structure(Texture2D texture, int stoneCost, int timberCost, int ironCost, int workCost)
+        protected Structure(Texture2D texture, int stoneCost, int timberCost, int ironCost, int workCost, Vector2 offset = default)
         {
+            Offset = offset;
             this.texture = texture;
             StoneCost = stoneCost;
             TimberCost = timberCost;
@@ -41,8 +43,13 @@ namespace Empty.Building
 
         public void Draw(SpriteBatch sb)
         {
-            sb.Draw(texture, position+Offset, color: StateColor);
+            sb.Draw(texture, position + Offset, color: StateColor);
         }
+
+        public abstract void OnAddOnGrid(ref TileType[,] types,int i, int j);
+
+        public abstract bool IsCanPut(Island island );
+
 
     }
 }

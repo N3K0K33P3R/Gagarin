@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Empty.UI.Building
 {
-    class BuildingCell : Sprite
+    public class BuildingCell : Sprite
     {
         public int quadWidth = 100;
         public Quad background;
@@ -116,18 +116,10 @@ namespace Empty.UI.Building
 
         public void LeftButtonPressed()
         {
-            //PurchaseConfirmed();
             build(buildType);
         }
 
-        /*public void PurchaseConfirmed()
-        {
-            Resources.Stone -= costStone;
-            Resources.Timber -= costTimber;
-            Resources.Iron -= costIron;
-            Property.mainProperty.UpdateMainProperties();
-            Interface.UpdateInterface();
-        }*/
+
 
         public override void Draw(SpriteBatch sb, GameTime gameTime = null)
         {

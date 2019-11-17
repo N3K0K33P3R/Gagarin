@@ -25,9 +25,10 @@ namespace Empty.Building
 
         public static void Bulding()
         {
+            if (curStructure == null) return;
             var node = Main.instance.MousePosition * 16f;
-            curStructure.position = (node/16f).ToPoint().ToVector2()*16;
-            if (!island.GetCellByMouse.Equals(TileType.Empty))
+            curStructure.position = (node / 16f).ToPoint().ToVector2() * 16;
+            if (curStructure.IsCanPut(island))
             {
                 curStructure.StateColor = Color.Green;
                 if (Mouse.GetState().LeftButton.Equals(ButtonState.Pressed))
@@ -36,9 +37,13 @@ namespace Empty.Building
             }
             else curStructure.StateColor = Color.Red;
         }
+
+
         public static void SetBuild()
         {
+            var vector = curStructure.position;
             Game1.UpdateEvent -= Bulding;
+            curStructure.OnAddOnGrid(ref island.Cells,(int)vector.X,(int)vector.Y);
             curStructure.StateColor = Color.White;
             curStructure = null;
         }

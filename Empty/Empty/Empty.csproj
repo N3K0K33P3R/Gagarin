@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Assets.cs" />
     <Compile Include="Building\BuildManager.cs" />
+    <Compile Include="Building\Most.cs" />
     <Compile Include="Building\Structure.cs" />
     <Compile Include="Building\StructureContainer.cs" />
     <Compile Include="Building\Wall.cs" />
