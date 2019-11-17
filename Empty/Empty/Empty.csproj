@@ -52,8 +52,10 @@
     <Compile Include="GameObjects\CameraNew.cs" />
     <Compile Include="GameObjects\Humans\BaseHuman.cs" />
     <Compile Include="GameObjects\CameraMover.cs" />
-    <Compile Include="GameObjects\Island.cs" />
     <Compile Include="GameObjects\IslandGenerator.cs" />
+    <Compile Include="GameObjects\Islands\EnemyIsland.cs" />
+    <Compile Include="GameObjects\Islands\Island.cs" />
+    <Compile Include="GameObjects\Islands\OurIsland.cs" />
     <Compile Include="Helpers\PerlinNoise.cs" />
     <Compile Include="Helpers\PolygonHelper.cs" />
     <Compile Include="Helpers\RandomExtensions.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="UI\Building\BuildingCell.cs" />
     <Compile Include="UI\Building\Interface.cs" />
     <Compile Include="UI\InfoBox.cs" />
+    <Compile Include="UI\TimerUI.cs" />
     <Compile Include="Values.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="UI\Property.cs" />

@@ -15,8 +15,7 @@ namespace Empty.GameObjects
 
 		private readonly int             wight;
 		private readonly int             height;
-		private          List<BaseHuman> humans;
-		private          BaseHuman       selectedHuman;
+		protected        List<BaseHuman> humans;
 		public           int             Offset;
 		public           Vector2         node;
 		public           Color           re = Color.White;
@@ -50,59 +49,12 @@ namespace Empty.GameObjects
 			PlaceHumans();
 		}
 
-		public override void Draw(SpriteBatch sb, GameTime gameTime = null)
-		{
-			for (var i = 0; i < wight; i++)
-			{
-				for (var j = 0; j < height; j++)
-				{
-					if (cells[i, j].Equals(TileType.Grass))
-					{
-						sb.Draw(Assets.textures["Grass"], pos(i, j, Offset), null, Color.White);
-					}
-
-					if (cells[i, j].Equals(TileType.Sand))
-					{
-						sb.Draw(Assets.textures["Sand"], pos(i, j, Offset), null, Color.White);
-					}
-
-					if (cells[i, j].Equals(TileType.Stone))
-					{
-						sb.Draw(Assets.textures["Stone"], pos(i, j, Offset), null, Color.White);
-					}
-				}
-			}
-
-			sb.DrawRectangle(node * Values.TILE_SIZE, Vector2.One * Values.TILE_SIZE, re, 4, 0);
-			base.Draw(sb, gameTime);
-		}
-
 		public void Posing(Vector2 node)
 		{
 			this.node = node;
 		}
 
 		public TileType[,] GetMap() => cells;
-
-		public void OnClick(Point tile)
-		{
-			if (selectedHuman == null)
-			{
-				BaseHuman human = humans.FirstOrDefault(h => h.tilePos == (tile));
-
-				if (human != null)
-				{
-					selectedHuman = human;
-				}
-			}
-			else
-			{
-				(int x1, int x2) = (tile);
-				selectedHuman.SetTilePos(x1, x2);
-				selectedHuman = null;
-			}
-		}
-
 
 		internal TileType GetCellByPose(Vector2 vector)
 		{
@@ -154,6 +106,30 @@ namespace Empty.GameObjects
 				if (shouldBreak)
 				{
 					break;
+				}
+			}
+		}
+
+		public void DrawIsland(SpriteBatch sb)
+		{
+			for (var i = 0; i < wight; i++)
+			{
+				for (var j = 0; j < height; j++)
+				{
+					if (cells[i, j].Equals(TileType.Grass))
+					{
+						sb.Draw(Assets.textures["Grass"], pos(i, j, Offset), null, Color.White);
+					}
+
+					if (cells[i, j].Equals(TileType.Sand))
+					{
+						sb.Draw(Assets.textures["Sand"], pos(i, j, Offset), null, Color.White);
+					}
+
+					if (cells[i, j].Equals(TileType.Stone))
+					{
+						sb.Draw(Assets.textures["Stone"], pos(i, j, Offset), null, Color.White);
+					}
 				}
 			}
 		}
