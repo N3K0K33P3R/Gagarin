@@ -68,7 +68,7 @@ namespace MonoFlashLib.Engine
 				texture,
 				new Vector2((float)globalX, (float)globalY),
 				sourceRectangle: source,
-				scale: new Vector2(scale,                       scale),
+				scale: new Vector2((float)Scale,                (float)Scale),
 				origin: new Vector2(frames[current].Width / 2f, frames[current].Height / 2f),
 				rotation: (float)rotation);
 		}
