@@ -118,7 +118,8 @@ namespace Empty.GameObjects
 		}
 
 
-		private Vector2 pos(int i, int j, int offset = 0) => Vector2.UnitX * 16 * i + Vector2.UnitY * 16 * j - Vector2.UnitX * offset;
+		private Vector2 pos(int i, int j, int offset = 0) =>
+			Vector2.UnitX * 16 * i + Vector2.UnitY * 16 * j - Vector2.UnitX * offset + new Vector2((float)globalX, (float)globalY);
 
 		private void PlaceHumans()
 		{
