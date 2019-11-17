@@ -83,6 +83,7 @@ namespace Empty
 			Assets.textures.Add("Wall", Content.Load<Texture2D>("Tile/Wall"));
 			Assets.textures.Add("Gun",  Content.Load<Texture2D>("Tile/Gun"));
 			Assets.textures.Add("Most", Content.Load<Texture2D>("Tile/Most"));
+			Assets.textures.Add("Explosion", Content.Load<Texture2D>("explosion"));
 
 
 			// TODO: use this.Content to load your game content here

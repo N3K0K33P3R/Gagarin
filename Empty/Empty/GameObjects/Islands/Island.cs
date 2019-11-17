@@ -41,7 +41,21 @@ namespace Empty.GameObjects
 			this.node = node;
 		}
 
+		/// <inheritdoc />
+		public override void Update(float delta)
+		{
+			for (int i = Structures.Count - 1; i >= 0; i--)
+			{
+				if (Structures[i].ShouldDelete)
+				{
+					Structures.Remove(Structures[i]);
+				}
+			}
+			base.Update(delta);
+		}
+
 		public BaseHuman FindHuman(Point point) => humans.FirstOrDefault(h => h.tilePos == point);
+		public Structure FindStructure(Point point) => Structures.FirstOrDefault(h => (h.position / 16).ToPoint() == point);
 
 		public TileType[,] GetMap() => Cells;
 

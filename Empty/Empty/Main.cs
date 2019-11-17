@@ -9,22 +9,25 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoFlash.Engine;
+using System.Collections.Generic;
 
 namespace Empty
 {
 	internal class Main : Sprite
 	{
-		private readonly CameraNew      camera;
-		private readonly GraphicsDevice gd;
-		private readonly OurIsland      island;
-		private readonly Interface      buildingInterface;
-		private readonly TimerUI        timerUI;
-		private readonly CloudCanvas    cloudCanvas;
-		private          InfoPanel      infoPanel;
-		private          EnemyIsland    enemyIsland;
-		private          bool           wasPressed;
-		private          double         timer;
-		private          double         timerSpeed;
+		private readonly CameraNew       camera;
+		private readonly GraphicsDevice  gd;
+		private readonly OurIsland       island;
+		private readonly Interface       buildingInterface;
+		private readonly TimerUI         timerUI;
+		private readonly CloudCanvas     cloudCanvas;
+		private readonly List<Ball>      balls;
+		private readonly List<Explosion> explosions;
+		private          InfoPanel       infoPanel;
+		private          EnemyIsland     enemyIsland;
+		private          bool            wasPressed;
+		private          double          timer;
+		private          double          timerSpeed;
 
 
 		private       Vector2 node;
@@ -37,6 +40,8 @@ namespace Empty
 		{
 			instance    = this;
 			this.gd     = gd;
+			balls       = new List<Ball>();
+			explosions  = new List<Explosion>();
 			island      = new OurIsland(ShowInfo, RemoveInfo);
 			cloudCanvas = new CloudCanvas();
 			AddChild(new Property());
@@ -91,12 +96,6 @@ namespace Empty
 				if (!wasPressed)
 				{
 					island.OnClick(mouseTilePos.ToPoint());
-
-					if (enemyIsland == null) { }
-					else
-					{
-						KillEnemyIsland();
-					}
 				}
 			}
 			else
@@ -107,6 +106,32 @@ namespace Empty
 			cloudCanvas.Update(delta);
 			island.Update(delta);
 			enemyIsland?.Update(delta);
+
+			for (int i = balls.Count - 1; i >= 0; i--)
+			{
+				if (balls[i].ShouldDelete)
+				{
+					Explosion explosion = new Explosion(Assets.textures["Explosion"], balls[i].x + Values.TILE_SIZE / 2, balls[i].y + Values.TILE_SIZE / 2);
+					explosions.Add(explosion);
+					balls.Remove(balls[i]);
+				}
+				else
+				{
+					balls[i].Update(delta);
+				}
+			}
+
+			for (int i = explosions.Count - 1; i >= 0; i--)
+			{
+				if (explosions[i].ShouldDelete)
+				{
+					explosions.Remove(explosions[i]);
+				}
+				else
+				{
+					explosions[i].Update(delta);
+				}
+			}
 
 			if (enemyIsland?.y > 570)
 			{
@@ -128,11 +153,16 @@ namespace Empty
 			//island.Draw(sb);
 			sb.End();
 
-			sb.Begin(samplerState: SamplerState.PointClamp, transformMatrix: camera.Transform); //UI
+			sb.Begin(samplerState: SamplerState.PointClamp, transformMatrix: camera.Transform); //Islands
+
 			island.DrawIsland(sb);
 			enemyIsland?.DrawIsland(sb);
 			island.Draw(sb);
 			enemyIsland?.Draw(sb);
+
+			balls.ForEach(b => b.Draw(sb));
+			explosions.ForEach(b => b.Draw(sb));
+
 			sb.End();
 
 			sb.Begin(samplerState: SamplerState.PointClamp); //UI
@@ -142,6 +172,18 @@ namespace Empty
 		}
 
 		public TileType[,] GetMap() => island.GetMap();
+
+		public void Shot(Cannon cannon, Point target)
+		{
+			var angle = Ball.GetAngle(cannon.position / 16, target.ToVector2());
+
+			if (angle > 0.5 || angle < -0.5)
+			{
+				return;
+			}
+			Ball ball = new Ball((cannon.position / 16).ToPoint(), target, island, enemyIsland, cannon);
+			balls.Add(ball);
+		}
 
 		public void KillEnemyIsland()
 		{

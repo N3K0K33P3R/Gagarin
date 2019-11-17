@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Empty.GameObjects.Humans
 {
-	public class BaseHuman : Sprite
+	public class BaseHuman : Sprite, IActionable
 	{
 		private readonly AnimatedSprite animated;
 		private          TextureAtlas   atlas;
@@ -129,6 +129,12 @@ namespace Empty.GameObjects.Humans
 			var pathFinder = new PathFinder(map, 1, 2, 3);
 
 			return pathFinder.FindPath(tilePos.X, tilePos.Y, x, y);
+		}
+
+		/// <inheritdoc />
+		public void OnClick(int x, int y)
+		{
+			SetTilePos(x, y);
 		}
 	}
 }

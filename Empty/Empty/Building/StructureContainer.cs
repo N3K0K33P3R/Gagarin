@@ -9,7 +9,7 @@ namespace Empty.Building
 
 		public static Structure GetWoodMost => new Most(Assets.textures["Most"], 0, 7, 1, 10);
 
-		public static Structure GetCannon => new Wall(Assets.textures["Gun"], 0, 4, 10, 10);
+		public static Structure GetCannon => new Cannon(Assets.textures["Gun"], 0, 4, 10, 10);
 
 
 		public static Structure GetStructure(Interface.BuildType bt)
