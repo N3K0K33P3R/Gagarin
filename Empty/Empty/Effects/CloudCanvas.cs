@@ -17,7 +17,7 @@ namespace Empty.Effects
 		/// <inheritdoc />
 		public override void Update(float delta)
 		{
-			if (Timer == 0)
+			if (Timer == 0 && Values.GlobalSpeed > 0)
 			{
 				int textureId = Values.RANDOM.Next(0, Assets.clouds.Count);
 				var cloud     = new Cloud(Assets.clouds[textureId]);

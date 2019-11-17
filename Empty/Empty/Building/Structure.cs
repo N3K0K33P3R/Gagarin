@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Empty.Building
 {
-	public abstract class Structure
+	public abstract class Structure : IActionable
 	{
 		public Texture2D texture;
 		public Rectangle Rect;
@@ -21,6 +21,8 @@ namespace Empty.Building
 
 		public int WorkCost;
 
+		public bool ShouldDelete = false;
+		
 		protected Structure(Texture2D texture, int stoneCost, int timberCost, int ironCost, int workCost, Vector2 offset = default)
 		{
 			Offset       = offset;
@@ -41,6 +43,11 @@ namespace Empty.Building
 		public void Draw(SpriteBatch sb)
 		{
 			sb.Draw(texture, position + Offset, StateColor);
+		}
+
+		/// <inheritdoc />
+		public virtual void OnClick(int x, int y)
+		{
 		}
 	}
 }

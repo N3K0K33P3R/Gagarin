@@ -126,3 +126,4 @@ C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Cont
 C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Tile\Most.xnb
 C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Tile\Wall.xnb
 C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\BuildFx.xnb
+C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\explosion.xnb

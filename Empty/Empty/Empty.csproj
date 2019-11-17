@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Assets.cs" />
     <Compile Include="Building\BuildManager.cs" />
+    <Compile Include="Building\Cannon.cs" />
     <Compile Include="Building\Most.cs" />
     <Compile Include="Building\Structure.cs" />
     <Compile Include="Building\StructureContainer.cs" />
@@ -52,9 +53,12 @@
     <Compile Include="Effects\CloudCanvas.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameObjects\Ball.cs" />
     <Compile Include="GameObjects\CameraNew.cs" />
+    <Compile Include="GameObjects\Explosion.cs" />
     <Compile Include="GameObjects\Humans\BaseHuman.cs" />
     <Compile Include="GameObjects\CameraMover.cs" />
+    <Compile Include="GameObjects\IActionable.cs" />
     <Compile Include="GameObjects\IslandGenerator.cs" />
     <Compile Include="GameObjects\Islands\EnemyIsland.cs" />
     <Compile Include="GameObjects\Islands\Island.cs" />

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoFlash.Engine;
+using System;
 using System.Collections.Generic;
 
 namespace MonoFlashLib.Engine
@@ -9,6 +10,7 @@ namespace MonoFlashLib.Engine
 	{
 		private readonly List<Rectangle> frames;
 		private readonly bool            isCyclic;
+		private readonly Action          onEnd;
 		private readonly int             scale;
 		private readonly float           speed;
 		private readonly Texture2D       texture;
@@ -19,11 +21,12 @@ namespace MonoFlashLib.Engine
 		public           bool            isStarted = true;
 		public           int             LoopCount;
 
-		public AnimatedSprite(Texture2D texture, int scale = 1, float speed = 0.3f, bool isCyclic = false)
+		public AnimatedSprite(Texture2D texture, int scale = 1, float speed = 0.3f, bool isCyclic = false, Action onEnd = null)
 		{
 			this.texture  = texture;
 			this.speed    = speed;
 			this.isCyclic = isCyclic;
+			this.onEnd    = onEnd;
 			this.scale    = scale;
 			frames        = new List<Rectangle>();
 		}
@@ -53,6 +56,8 @@ namespace MonoFlashLib.Engine
 					}
 
 					timer = 0;
+
+					onEnd?.Invoke();
 				}
 
 				timer += speed;
