@@ -12,7 +12,7 @@ namespace Empty
 		/// <inheritdoc />
 		public Main()
 		{
-			BaseHuman bh = new BaseHuman();
+			//BaseHuman bh = new BaseHuman();
 			
 			island = new Island();
 			AddChild(island);

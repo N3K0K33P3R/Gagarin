@@ -33,6 +33,10 @@
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
+        <e p="Resources.cs" t="Include" />
+        <e p="UI" t="Include">
+          <e p="Property.cs" t="Include" />
+        </e>
         <e p="VALUES.cs" t="Include" />
       </e>
       <e p="Empty.sln" t="IncludeFlat" />
