@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Empty.GameObjects;
+using Empty;
 
 public class CameraNew
 {
@@ -84,8 +86,22 @@ public class CameraNew
             Position = Vector2.Zero;
         }
 
+
+
         previousMouseWheelValue = currentMouseWheelValue;
         currentMouseWheelValue = Mouse.GetState().ScrollWheelValue;
+
+        if (currentMouseWheelValue > previousMouseWheelValue)
+        {
+            Values.MAP_SCALE += .01f;
+            Position += Bounds.Size.ToVector2() *.001f;
+        }
+
+        if (currentMouseWheelValue < previousMouseWheelValue && Values.MAP_SCALE > 1)
+        {
+            Values.MAP_SCALE -= .01f;
+            Position -= Bounds.Size.ToVector2() *.001f;
+        }
 
         previousZoom = zoom;
         zoom = Zoom;

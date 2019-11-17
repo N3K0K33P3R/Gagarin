@@ -33,7 +33,7 @@ namespace Empty
 			island      = new Island(25, 25);
 			cloudCanvas = new CloudCanvas();
 			AddChild(new Property());
-			camera = new CameraNew(gd.Viewport) { Zoom = 1f, Position = Vector2.UnitY * 150 };
+			camera = new CameraNew(gd.Viewport) { Zoom = 1f, Position = Vector2.UnitY * 350 + Vector2.UnitX * 600 };
 
 
 			int humanCount = 5;
@@ -74,8 +74,8 @@ namespace Empty
 			Vector2 mouse = Mouse.GetState().Position.ToVector2();
 			mouse -= camera.Bounds.Size.ToVector2() / (2f) - camera.Position;
 
-			node = (mouse / 16f).ToPoint().ToVector2() * 16;
-			island.Posing(node);
+            node = (mouse / (16f*Values.MAP_SCALE)).ToPoint().ToVector2() * 16*Values.MAP_SCALE;
+            island.Posing(node);
 
 			camera.UpdateCamera(gd.Viewport);
 
