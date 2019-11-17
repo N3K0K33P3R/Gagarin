@@ -24,14 +24,14 @@ namespace Empty.GameObjects
         {
             get
             {
-                Vector2 vc = node /= 16 * Values.MapScale;
+                Vector2 vc = node /= 16 * Values.MAP_SCALE;
 
                 if (vc.X > 0 &&
                     vc.Y > 0 &&
-                    vc.X < wight / 16f * Values.MapScale &&
-                    vc.Y < height / 16f * Values.MapScale)
+                    vc.X < wight / 16f * Values.MAP_SCALE &&
+                    vc.Y < height / 16f * Values.MAP_SCALE)
                 {
-                    return cells[(int)(vc.X * 16*Values.MapScale), (int)(vc.Y * 16* Values.MapScale)];
+                    return cells[(int)(vc.X * 16*Values.MAP_SCALE), (int)(vc.Y * 16* Values.MAP_SCALE)];
                 }
 
                 return TileType.Empty;
@@ -55,22 +55,22 @@ namespace Empty.GameObjects
                 {
                     if (cells[i, j].Equals(TileType.Grass))
                     {
-                        sb.Draw(Assets.textures["Grass"], pos(i, j, Offset), null, color: Color.White, scale: Vector2.One * Values.MapScale);
+                        sb.Draw(Assets.textures["Grass"], pos(i, j, Offset), null, color: Color.White, scale: Vector2.One * Values.MAP_SCALE);
                     }
 
                     if (cells[i, j].Equals(TileType.Sand))
                     {
-                        sb.Draw(Assets.textures["Sand"], pos(i, j, Offset), null, color: Color.White, scale: Vector2.One * Values.MapScale);
+                        sb.Draw(Assets.textures["Sand"], pos(i, j, Offset), null, color: Color.White, scale: Vector2.One * Values.MAP_SCALE);
                     }
 
                     if (cells[i, j].Equals(TileType.Stone))
                     {
-                        sb.Draw(Assets.textures["Stone"], pos(i, j, Offset), null, color: Color.White, scale: Vector2.One * Values.MapScale);
+                        sb.Draw(Assets.textures["Stone"], pos(i, j, Offset), null, color: Color.White, scale: Vector2.One * Values.MAP_SCALE);
                     }
                 }
             }
 
-            sb.DrawRectangle(node, Vector2.One * 16 * Values.MapScale, re, Values.MapScale, 1);
+            sb.DrawRectangle(node, Vector2.One * 16 * Values.MAP_SCALE, re, Values.MAP_SCALE, 1);
             base.Draw(sb, gameTime);
         }
 
@@ -84,7 +84,7 @@ namespace Empty.GameObjects
 
         internal TileType GetCellByPose(Vector2 vector)
         {
-            Vector2 vc = vector /= 16f * Values.MapScale;
+            Vector2 vc = vector /= 16f * Values.MAP_SCALE;
 
             if (vc.X > 0 &&
                 vc.Y > 0 &&
@@ -98,6 +98,6 @@ namespace Empty.GameObjects
         }
 
 
-        private Vector2 pos(int i, int j, int offset = 0) => Vector2.UnitX * 16 * i * Values.MapScale + Vector2.UnitY * 16 * j * Values.MapScale - Vector2.UnitX * offset;
+        private Vector2 pos(int i, int j, int offset = 0) => Vector2.UnitX * 16 * i * Values.MAP_SCALE + Vector2.UnitY * 16 * j * Values.MAP_SCALE - Vector2.UnitX * offset;
     }
 }

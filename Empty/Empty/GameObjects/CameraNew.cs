@@ -93,13 +93,13 @@ public class CameraNew
 
         if (currentMouseWheelValue > previousMouseWheelValue)
         {
-            Values.MapScale += .01f;
+            Values.MAP_SCALE += .01f;
             Position += Bounds.Size.ToVector2() *.001f;
         }
 
-        if (currentMouseWheelValue < previousMouseWheelValue && Values.MapScale > 1)
+        if (currentMouseWheelValue < previousMouseWheelValue && Values.MAP_SCALE > 1)
         {
-            Values.MapScale -= .01f;
+            Values.MAP_SCALE -= .01f;
             Position -= Bounds.Size.ToVector2() *.001f;
         }
 

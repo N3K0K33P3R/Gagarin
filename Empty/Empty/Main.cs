@@ -71,7 +71,7 @@ namespace Empty
             Vector2 mouse = Mouse.GetState().Position.ToVector2();
             mouse -= camera.Bounds.Size.ToVector2() / (2f) - camera.Position;
 
-            node = (mouse / 16f).ToPoint().ToVector2() * 16;
+            node = (mouse / (16f*Values.MAP_SCALE)).ToPoint().ToVector2() * 16*Values.MAP_SCALE;
             island.Posing(node);
 
             camera.UpdateCamera(gd.Viewport);
