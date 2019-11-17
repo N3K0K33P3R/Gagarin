@@ -7,6 +7,7 @@
 		Sand,
 		Stone,
 		Wall,
-		Gun
-	}
+		Gun,
+        Castle
+    }
 }

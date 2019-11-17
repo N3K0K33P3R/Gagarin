@@ -82,11 +82,6 @@ public class CameraNew
 		prevMouseY = Mouse.GetState().Y;
 
 
-		if (Keyboard.GetState().IsKeyDown(Keys.Down))
-		{
-			Position = Vector2.Zero;
-		}
-
 
 		previousMouseWheelValue = currentMouseWheelValue;
 		currentMouseWheelValue  = Mouse.GetState().ScrollWheelValue;

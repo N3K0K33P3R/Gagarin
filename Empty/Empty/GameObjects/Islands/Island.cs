@@ -19,9 +19,10 @@ namespace Empty.GameObjects
 		public           TileType[,]     Cells;
 		public           int             Offset;
 		public           Vector2         node;
-		public           Color           re = Color.White;
+        public           Castle          castle;
+        public           Color           re;
 
-		public List<Structure> Structures = new List<Structure>();
+        public List<Structure> Structures = new List<Structure>();
 
 		internal TileType GetCellByMouse => GetCellByPose(Main.instance.MousePosition);
 
@@ -32,7 +33,7 @@ namespace Empty.GameObjects
 			height          = h;
 			islandGenerator = new IslandGenerator(wight, height);
 			Cells           = islandGenerator.island;
-
+            castle = new Castle(new Rectangle(0, 0, 48, 48), Assets.textures["Castle"], Color.White, this);
 			PlaceHumans();
 		}
 
@@ -82,7 +83,9 @@ namespace Empty.GameObjects
 				}
 			}
 
+            
 			Structures.ForEach(item => item.Draw(sb));
+            castle.Draw(sb);
 		}
 
 		internal TileType GetCellByPose(Vector2 vector)
