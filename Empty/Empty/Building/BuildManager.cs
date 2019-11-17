@@ -16,7 +16,6 @@ namespace Empty.Building
 
         public static void CallBuilding(this Island island, Structure structure)
         {
-            if (curStructure != null) return;
             Game1.UpdateEvent += Bulding;
             island.Structures.Add(structure);
             BuildProcessing.island = island;
@@ -37,7 +36,7 @@ namespace Empty.Building
 			{
 				curStructure.StateColor = Color.Green;
 
-				if (Mouse.GetState().LeftButton.Equals(ButtonState.Pressed))
+				if (Mouse.GetState().LeftButton.Equals(ButtonState.Pressed)&&Mouse.GetState().Y<700)
 				{
 					SetBuild(curStructure);
 				}
