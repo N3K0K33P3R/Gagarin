@@ -36,7 +36,20 @@ namespace Empty
 
 					if (PolygonHelper.IsPointInPolygon(point, polygon))
 					{
-						island[i, j] = (TileType)Values.RANDOM.Next(1, 4);
+						var d = Values.RANDOM.NextDouble();
+
+						if (d < 0.5)
+						{
+							island[i, j] = TileType.Grass;
+						}
+						else if (d < 0.8)
+						{
+							island[i, j] = TileType.Sand;
+						}
+						else
+						{
+							island[i, j] = TileType.Stone;
+						}
 					}
 				}
 			}

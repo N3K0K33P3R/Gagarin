@@ -16,7 +16,7 @@ namespace Empty
 
 		public Game1()
 		{
-			graphics              = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = 1280, PreferredBackBufferHeight = 720 };
+			graphics              = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = 1600, PreferredBackBufferHeight = 800 };
 			IsMouseVisible        = true;
 			Content.RootDirectory = "Content";
 		}

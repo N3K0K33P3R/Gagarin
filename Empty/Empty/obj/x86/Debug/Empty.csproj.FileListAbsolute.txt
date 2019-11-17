@@ -83,3 +83,12 @@ C:\Projects\Planet\Empty\Empty\bin\Windows\x86\Debug\Content\Fons\fon1.xnb
 C:\Projects\Planet\Empty\Empty\bin\Windows\x86\Debug\Content\Fons\fongrib.xnb
 C:\Projects\Planet\Empty\Empty\bin\Windows\x86\Debug\Content\Fons\mountin.xnb
 C:\Projects\Planet\Empty\Empty\bin\Windows\x86\Debug\Content\Fons\mountincold.xnb
+C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Skys\sky0.xnb
+C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Skys\sky1.xnb
+C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Fons\desert.xnb
+C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Fons\fly.xnb
+C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Fons\fon1.xnb
+C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Fons\fongrib.xnb
+C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Fons\mountin.xnb
+C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Fons\mountincold.xnb
+C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\font.xnb
