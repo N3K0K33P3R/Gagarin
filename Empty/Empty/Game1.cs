@@ -19,7 +19,7 @@ namespace Empty
 			graphics              = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = 1600, PreferredBackBufferHeight = 800 };
 			IsMouseVisible        = true;
 			Content.RootDirectory = "Content";
-            //graphics.ToggleFullScreen();
+            graphics.ToggleFullScreen();
 		}
 
 		/// <summary>
