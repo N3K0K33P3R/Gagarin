@@ -1,17 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoFlash.Engine;
+﻿using MonoFlash.Engine;
 using System;
 
 namespace Empty.GameObjects
 {
 	public class EnemyIsland : Island
 	{
-		public float Velocity     { get; set; }
-		public float Acceleration { get; set; }
-
-		private AnimationController acY;
-		private AnimationController acSpeed;
+		private readonly AnimationController acY;
+		private readonly AnimationController acSpeed;
+		public           float               Velocity     { get; set; }
+		public           float               Acceleration { get; set; }
 
 		public bool IsDefeated { get; set; }
 
@@ -38,7 +35,7 @@ namespace Empty.GameObjects
 			}
 			else
 			{
-				y                  = acY.MakeStep(delta);
+				y = acY.MakeStep(delta);
 			}
 
 			Values.GlobalSpeed = acSpeed.MakeStep(delta);

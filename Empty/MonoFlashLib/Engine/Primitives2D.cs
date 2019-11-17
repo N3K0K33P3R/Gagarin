@@ -56,14 +56,14 @@ namespace MonoFlash.Engine
 			return pixel;
 		}
 
-        /// <summary>
-        /// Draws a filled rectangle.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="rect">The rectangle to draw</param>
-        /// <param name="color">The color to draw the rectangle in</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float layerDepth)
+		/// <summary>
+		/// Draws a filled rectangle.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="rect">The rectangle to draw</param>
+		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float layerDepth)
 		{
 			// Simply use the function already there
 			spriteBatch.Draw(
@@ -77,15 +77,15 @@ namespace MonoFlash.Engine
 				layerDepth == 0f ? 0f : 1f / layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a filled rectangle.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="rect">The rectangle to draw</param>
-        /// <param name="color">The color to draw the rectangle in</param>
-        /// <param name="angle">The angle in radians to draw the rectangle at</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void FillRectangle(
+		/// <summary>
+		/// Draws a filled rectangle.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="rect">The rectangle to draw</param>
+		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="angle">The angle in radians to draw the rectangle at</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void FillRectangle(
 			this SpriteBatch spriteBatch,
 			Rectangle rect,
 			Color color,
@@ -103,15 +103,15 @@ namespace MonoFlash.Engine
 				layerDepth == 0f ? 0f : 1f / layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a filled rectangle.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="location">Where to draw</param>
-        /// <param name="size">The size of the rectangle</param>
-        /// <param name="color">The color to draw the rectangle in</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void FillRectangle(
+		/// <summary>
+		/// Draws a filled rectangle.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="location">Where to draw</param>
+		/// <param name="size">The size of the rectangle</param>
+		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void FillRectangle(
 			this SpriteBatch spriteBatch,
 			Vector2 location,
 			Vector2 size,
@@ -131,16 +131,16 @@ namespace MonoFlash.Engine
 				layerDepth == 0f ? 0f : 1f / layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a filled rectangle.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="location">Where to draw</param>
-        /// <param name="size">The size of the rectangle</param>
-        /// <param name="color">The color to draw the rectangle in</param>
-        /// <param name="angle">The angle in radians to draw the rectangle at</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void FillRectangle(
+		/// <summary>
+		/// Draws a filled rectangle.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="location">Where to draw</param>
+		/// <param name="size">The size of the rectangle</param>
+		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="angle">The angle in radians to draw the rectangle at</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void FillRectangle(
 			this SpriteBatch spriteBatch,
 			Vector2 location,
 			Vector2 size,
@@ -173,17 +173,17 @@ namespace MonoFlash.Engine
 				layerDepth == 0f ? 0f : 1f / layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a filled rectangle.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="x">The X coordinate of the left side</param>
-        /// <param name="y">The Y coordinate of the upper side</param>
-        /// <param name="w">Width</param>
-        /// <param name="h">Height</param>
-        /// <param name="color">The color to draw the rectangle in</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void FillRectangle(
+		/// <summary>
+		/// Draws a filled rectangle.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="x">The X coordinate of the left side</param>
+		/// <param name="y">The Y coordinate of the upper side</param>
+		/// <param name="w">Width</param>
+		/// <param name="h">Height</param>
+		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void FillRectangle(
 			this SpriteBatch spriteBatch,
 			float x,
 			float y,
@@ -202,18 +202,18 @@ namespace MonoFlash.Engine
 				Vector2.Zero);
 		}
 
-        /// <summary>
-        /// Draws a filled rectangle.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="x">The X coordinate of the left side</param>
-        /// <param name="y">The Y coordinate of the upper side</param>
-        /// <param name="w">Width</param>
-        /// <param name="h">Height</param>
-        /// <param name="color">The color to draw the rectangle in</param>
-        /// <param name="angle">The angle of the rectangle in radians</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void FillRectangle(
+		/// <summary>
+		/// Draws a filled rectangle.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="x">The X coordinate of the left side</param>
+		/// <param name="y">The Y coordinate of the upper side</param>
+		/// <param name="w">Width</param>
+		/// <param name="h">Height</param>
+		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="angle">The angle of the rectangle in radians</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void FillRectangle(
 			this SpriteBatch spriteBatch,
 			float x,
 			float y,
@@ -233,27 +233,27 @@ namespace MonoFlash.Engine
 				Vector2.Zero);
 		}
 
-        /// <summary>
-        /// Draws a rectangle with the thickness provided.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="rect">The rectangle to draw</param>
-        /// <param name="color">The color to draw the rectangle in</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float layerDepth)
+		/// <summary>
+		/// Draws a rectangle with the thickness provided.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="rect">The rectangle to draw</param>
+		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float layerDepth)
 		{
 			DrawRectangle(spriteBatch, rect, color, 1.0f, layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a rectangle with the thickness provided.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="rect">The rectangle to draw</param>
-        /// <param name="color">The color to draw the rectangle in</param>
-        /// <param name="thickness">The thickness of the lines</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawRectangle(
+		/// <summary>
+		/// Draws a rectangle with the thickness provided.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="rect">The rectangle to draw</param>
+		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="thickness">The thickness of the lines</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawRectangle(
 			this SpriteBatch spriteBatch,
 			Rectangle rect,
 			Color color,
@@ -297,15 +297,15 @@ namespace MonoFlash.Engine
 				layerDepth); // right
 		}
 
-        /// <summary>
-        /// Draws a rectangle with the thickness provided
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="location">Where to draw</param>
-        /// <param name="size">The size of the rectangle</param>
-        /// <param name="color">The color to draw the rectangle in</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawRectangle(
+		/// <summary>
+		/// Draws a rectangle with the thickness provided
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="location">Where to draw</param>
+		/// <param name="size">The size of the rectangle</param>
+		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawRectangle(
 			this SpriteBatch spriteBatch,
 			Vector2 location,
 			Vector2 size,
@@ -320,16 +320,16 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a rectangle with the thickness provided.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="location">Where to draw</param>
-        /// <param name="size">The size of the rectangle</param>
-        /// <param name="color">The color to draw the rectangle in</param>
-        /// <param name="thickness">The thickness of the line</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawRectangle(
+		/// <summary>
+		/// Draws a rectangle with the thickness provided.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="location">Where to draw</param>
+		/// <param name="size">The size of the rectangle</param>
+		/// <param name="color">The color to draw the rectangle in</param>
+		/// <param name="thickness">The thickness of the line</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawRectangle(
 			this SpriteBatch spriteBatch,
 			Vector2 location,
 			Vector2 size,
@@ -345,17 +345,17 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a line from point1 to point2.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="x1">The X coordinate of the first point</param>
-        /// <param name="y1">The Y coordinate of the first point</param>
-        /// <param name="x2">The X coordinate of the second point</param>
-        /// <param name="y2">The Y coordinate of the second point</param>
-        /// <param name="color">The color to use</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawLine(
+		/// <summary>
+		/// Draws a line from point1 to point2.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="x1">The X coordinate of the first point</param>
+		/// <param name="y1">The Y coordinate of the first point</param>
+		/// <param name="x2">The X coordinate of the second point</param>
+		/// <param name="y2">The Y coordinate of the second point</param>
+		/// <param name="color">The color to use</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawLine(
 			this SpriteBatch spriteBatch,
 			float x1,
 			float y1,
@@ -373,18 +373,18 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a line from point1 to point2.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="x1">The X coordinate of the first point</param>
-        /// <param name="y1">The Y coordinate of the first point</param>
-        /// <param name="x2">The X coordinate of the second point</param>
-        /// <param name="y2">The Y coordinate of the second point</param>
-        /// <param name="color">The color to use</param>
-        /// <param name="thickness">The thickness of the line</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawLine(
+		/// <summary>
+		/// Draws a line from point1 to point2.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="x1">The X coordinate of the first point</param>
+		/// <param name="y1">The Y coordinate of the first point</param>
+		/// <param name="x2">The X coordinate of the second point</param>
+		/// <param name="y2">The Y coordinate of the second point</param>
+		/// <param name="color">The color to use</param>
+		/// <param name="thickness">The thickness of the line</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawLine(
 			this SpriteBatch spriteBatch,
 			float x1,
 			float y1,
@@ -403,15 +403,15 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a line from point1 to point2.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="point1">The first point</param>
-        /// <param name="point2">The second point</param>
-        /// <param name="color">The color to use</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawLine(
+		/// <summary>
+		/// Draws a line from point1 to point2.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="point1">The first point</param>
+		/// <param name="point2">The second point</param>
+		/// <param name="color">The color to use</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawLine(
 			this SpriteBatch spriteBatch,
 			Vector2 point1,
 			Vector2 point2,
@@ -427,16 +427,16 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a line from point1 to point2 with a thickness.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="point1">The first point</param>
-        /// <param name="point2">The second point</param>
-        /// <param name="color">The color to use</param>
-        /// <param name="thickness">The thickness of the line</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawLine(
+		/// <summary>
+		/// Draws a line from point1 to point2 with a thickness.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="point1">The first point</param>
+		/// <param name="point2">The second point</param>
+		/// <param name="color">The color to use</param>
+		/// <param name="thickness">The thickness of the line</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawLine(
 			this SpriteBatch spriteBatch,
 			Vector2 point1,
 			Vector2 point2,
@@ -460,16 +460,16 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a line from point1 to point2.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="point">The starting point</param>
-        /// <param name="length">The length of the line</param>
-        /// <param name="angle">The angle of this line from the starting point in radians</param>
-        /// <param name="color">The color to use</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawLine(
+		/// <summary>
+		/// Draws a line from point1 to point2.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="point">The starting point</param>
+		/// <param name="length">The length of the line</param>
+		/// <param name="angle">The angle of this line from the starting point in radians</param>
+		/// <param name="color">The color to use</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawLine(
 			this SpriteBatch spriteBatch,
 			Vector2 point,
 			float length,
@@ -487,17 +487,17 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a line from point1 to point2.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="point">The starting point</param>
-        /// <param name="length">The length of the line</param>
-        /// <param name="angle">The angle of this line from the starting point</param>
-        /// <param name="color">The color to use</param>
-        /// <param name="thickness">The thickness of the line</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawLine(
+		/// <summary>
+		/// Draws a line from point1 to point2.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="point">The starting point</param>
+		/// <param name="length">The length of the line</param>
+		/// <param name="angle">The angle of this line from the starting point</param>
+		/// <param name="color">The color to use</param>
+		/// <param name="thickness">The thickness of the line</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawLine(
 			this SpriteBatch spriteBatch,
 			Vector2 point,
 			float length,
@@ -529,16 +529,16 @@ namespace MonoFlash.Engine
 			spriteBatch.Draw(spriteBatch.GetWhitePixel(), position, color);
 		}
 
-        /// <summary>
-        /// Draw a circle.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="center">The center of the circle</param>
-        /// <param name="radius">The radius of the circle</param>
-        /// <param name="sides">The number of sides to generate</param>
-        /// <param name="color">The color of the circle</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawCircle(
+		/// <summary>
+		/// Draw a circle.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="center">The center of the circle</param>
+		/// <param name="radius">The radius of the circle</param>
+		/// <param name="sides">The number of sides to generate</param>
+		/// <param name="color">The color of the circle</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawCircle(
 			this SpriteBatch spriteBatch,
 			Vector2 center,
 			float radius,
@@ -555,17 +555,17 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draw a circle.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="center">The center of the circle</param>
-        /// <param name="radius">The radius of the circle</param>
-        /// <param name="sides">The number of sides to generate</param>
-        /// <param name="color">The color of the circle</param>
-        /// <param name="thickness">The thickness of the lines used</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawCircle(
+		/// <summary>
+		/// Draw a circle.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="center">The center of the circle</param>
+		/// <param name="radius">The radius of the circle</param>
+		/// <param name="sides">The number of sides to generate</param>
+		/// <param name="color">The color of the circle</param>
+		/// <param name="thickness">The thickness of the lines used</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawCircle(
 			this SpriteBatch spriteBatch,
 			Vector2 center,
 			float radius,
@@ -583,17 +583,17 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draw a circle.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="x">The center X of the circle</param>
-        /// <param name="y">The center Y of the circle</param>
-        /// <param name="radius">The radius of the circle</param>
-        /// <param name="sides">The number of sides to generate</param>
-        /// <param name="color">The color of the circle</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawCircle(
+		/// <summary>
+		/// Draw a circle.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="x">The center X of the circle</param>
+		/// <param name="y">The center Y of the circle</param>
+		/// <param name="radius">The radius of the circle</param>
+		/// <param name="sides">The number of sides to generate</param>
+		/// <param name="color">The color of the circle</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawCircle(
 			this SpriteBatch spriteBatch,
 			float x,
 			float y,
@@ -611,18 +611,18 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draw a circle.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="x">The center X of the circle</param>
-        /// <param name="y">The center Y of the circle</param>
-        /// <param name="radius">The radius of the circle</param>
-        /// <param name="sides">The number of sides to generate</param>
-        /// <param name="color">The color of the circle</param>
-        /// <param name="thickness">The thickness of the lines used</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawCircle(
+		/// <summary>
+		/// Draw a circle.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="x">The center X of the circle</param>
+		/// <param name="y">The center Y of the circle</param>
+		/// <param name="radius">The radius of the circle</param>
+		/// <param name="sides">The number of sides to generate</param>
+		/// <param name="color">The color of the circle</param>
+		/// <param name="thickness">The thickness of the lines used</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawCircle(
 			this SpriteBatch spriteBatch,
 			float x,
 			float y,
@@ -641,18 +641,18 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draw a arc.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="center">The center of the arc</param>
-        /// <param name="radius">The radius of the arc</param>
-        /// <param name="sides">The number of sides to generate</param>
-        /// <param name="startingAngle">The starting angle of arc, 0 being to the east, increasing as you go clockwise</param>
-        /// <param name="radians">The number of radians to draw, clockwise from the starting angle</param>
-        /// <param name="color">The color of the arc</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawArc(
+		/// <summary>
+		/// Draw a arc.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="center">The center of the arc</param>
+		/// <param name="radius">The radius of the arc</param>
+		/// <param name="sides">The number of sides to generate</param>
+		/// <param name="startingAngle">The starting angle of arc, 0 being to the east, increasing as you go clockwise</param>
+		/// <param name="radians">The number of radians to draw, clockwise from the starting angle</param>
+		/// <param name="color">The color of the arc</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawArc(
 			this SpriteBatch spriteBatch,
 			Vector2 center,
 			float radius,
@@ -674,19 +674,19 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draw a arc.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="center">The center of the arc</param>
-        /// <param name="radius">The radius of the arc</param>
-        /// <param name="sides">The number of sides to generate</param>
-        /// <param name="startingAngle">The starting angle of arc, 0 being to the east, increasing as you go clockwise</param>
-        /// <param name="radians">The number of radians to draw, clockwise from the starting angle</param>
-        /// <param name="color">The color of the arc</param>
-        /// <param name="thickness">The thickness of the arc</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        public static void DrawArc(
+		/// <summary>
+		/// Draw a arc.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="center">The center of the arc</param>
+		/// <param name="radius">The radius of the arc</param>
+		/// <param name="sides">The number of sides to generate</param>
+		/// <param name="startingAngle">The starting angle of arc, 0 being to the east, increasing as you go clockwise</param>
+		/// <param name="radians">The number of radians to draw, clockwise from the starting angle</param>
+		/// <param name="color">The color of the arc</param>
+		/// <param name="thickness">The thickness of the arc</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		public static void DrawArc(
 			this SpriteBatch spriteBatch,
 			Vector2 center,
 			float radius,
@@ -709,16 +709,16 @@ namespace MonoFlash.Engine
 				layerDepth);
 		}
 
-        /// <summary>
-        /// Draws a list of connecting points.
-        /// </summary>
-        /// <param name="spriteBatch">The destination drawing surface</param>
-        /// <param name="position">Where to position the points</param>
-        /// <param name="points">The points to connect with lines</param>
-        /// <param name="color">The color to use</param>
-        /// <param name="thickness">The thickness of the lines</param>
-        /// <param name="layerDepth">The layer depth.</param>
-        private static void DrawPoints(
+		/// <summary>
+		/// Draws a list of connecting points.
+		/// </summary>
+		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="position">Where to position the points</param>
+		/// <param name="points">The points to connect with lines</param>
+		/// <param name="color">The color to use</param>
+		/// <param name="thickness">The thickness of the lines</param>
+		/// <param name="layerDepth">The layer depth.</param>
+		private static void DrawPoints(
 			SpriteBatch spriteBatch,
 			Vector2 position,
 			List<Vector2> points,
@@ -743,13 +743,13 @@ namespace MonoFlash.Engine
 			}
 		}
 
-        /// <summary>
-        /// Creates a list of vectors that represents a circle.
-        /// </summary>
-        /// <param name="radius">The radius of the circle</param>
-        /// <param name="sides">The number of sides to generate</param>
-        /// <returns>A list of vectors that, if connected, will create a circle</returns>
-        private static List<Vector2> CreateCircle(double radius, int sides)
+		/// <summary>
+		/// Creates a list of vectors that represents a circle.
+		/// </summary>
+		/// <param name="radius">The radius of the circle</param>
+		/// <param name="sides">The number of sides to generate</param>
+		/// <returns>A list of vectors that, if connected, will create a circle</returns>
+		private static List<Vector2> CreateCircle(double radius, int sides)
 		{
 			// Look for a cached version of this circle.
 			string        circleKey = radius + "x" + sides;
@@ -778,15 +778,15 @@ namespace MonoFlash.Engine
 			return result;
 		}
 
-        /// <summary>
-        /// Creates a list of vectors that represents an arc.
-        /// </summary>
-        /// <param name="radius">The radius of the arc</param>
-        /// <param name="sides">The number of sides to generate in the circle that this will cut out from</param>
-        /// <param name="startingAngle">The starting angle of arc, 0 being to the east, increasing as you go clockwise</param>
-        /// <param name="radians">The radians to draw, clockwise from the starting angle</param>
-        /// <returns>A list of vectors that, if connected, will create an arc</returns>
-        private static List<Vector2> CreateArc(float radius, int sides, float startingAngle, float radians)
+		/// <summary>
+		/// Creates a list of vectors that represents an arc.
+		/// </summary>
+		/// <param name="radius">The radius of the arc</param>
+		/// <param name="sides">The number of sides to generate in the circle that this will cut out from</param>
+		/// <param name="startingAngle">The starting angle of arc, 0 being to the east, increasing as you go clockwise</param>
+		/// <param name="radians">The radians to draw, clockwise from the starting angle</param>
+		/// <returns>A list of vectors that, if connected, will create an arc</returns>
+		private static List<Vector2> CreateArc(float radius, int sides, float startingAngle, float radians)
 		{
 			// Look for a cached version of this arc.
 			string        arcKey = radius + "x" + sides + "," + startingAngle + "," + radians;

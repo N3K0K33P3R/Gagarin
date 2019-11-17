@@ -179,11 +179,11 @@ namespace MonoFlash.Engine
 			Alpha  = 1;
 		}
 
-        /// <summary>
-        /// Вывод в консоль
-        /// </summary>
-        /// <param name="list">Выводимые объекты</param>
-        public void Trace(params object[] list)
+		/// <summary>
+		/// Вывод в консоль
+		/// </summary>
+		/// <param name="list">Выводимые объекты</param>
+		public void Trace(params object[] list)
 		{
 			foreach (object item in list)
 			{
@@ -196,11 +196,11 @@ namespace MonoFlash.Engine
 			Console.WriteLine();
 		}
 
-        /// <summary>
-        /// Сделать переход определённого типа плавным
-        /// </summary>
-        /// <param name="type">Тип перехода</param>
-        public void SetTransition(Transitions type)
+		/// <summary>
+		/// Сделать переход определённого типа плавным
+		/// </summary>
+		/// <param name="type">Тип перехода</param>
+		public void SetTransition(Transitions type)
 		{
 			switch (type)
 			{
@@ -220,15 +220,15 @@ namespace MonoFlash.Engine
 			}
 		}
 
-        /// <summary>
-        /// Переместить спрайт.
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="speed"></param>
-        /// <param name="onEnd">Действие при завершении анимации</param>
-        /// <param name="offset">Задержка</param>
-        public void SetPosition(float x, float y, Animation anim, float speed = 1, Action onEnd = null, float offset = 0)
+		/// <summary>
+		/// Переместить спрайт.
+		/// </summary>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <param name="speed"></param>
+		/// <param name="onEnd">Действие при завершении анимации</param>
+		/// <param name="offset">Задержка</param>
+		public void SetPosition(float x, float y, Animation anim, float speed = 1, Action onEnd = null, float offset = 0)
 		{
 			if (acX != null)
 			{

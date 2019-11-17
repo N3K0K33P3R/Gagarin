@@ -1,13 +1,12 @@
 ﻿using MonoFlash.Engine;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Empty.Effects
 {
 	public class CloudCanvas : Sprite
 	{
-		private List<Cloud> clouds;
-		private int         Timer { get; set; }
+		private readonly List<Cloud> clouds;
+		private          int         Timer { get; set; }
 
 		/// <inheritdoc />
 		public CloudCanvas()
@@ -21,7 +20,7 @@ namespace Empty.Effects
 			if (Timer == 0)
 			{
 				int textureId = Values.RANDOM.Next(0, Assets.clouds.Count);
-				var cloud = new Cloud(Assets.clouds[textureId]);
+				var cloud     = new Cloud(Assets.clouds[textureId]);
 				AddChild(cloud);
 				clouds.Add(cloud);
 				Timer = Values.RANDOM.Next(50, 120);

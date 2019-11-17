@@ -1,9 +1,9 @@
-﻿using Empty.GameObjects.Humans;
+﻿using Empty.Building;
+using Empty.GameObjects.Humans;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoFlash.Engine;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Empty.GameObjects
 {
@@ -11,19 +11,19 @@ namespace Empty.GameObjects
 	{
 		public const     int             IslandSize = 16;
 		private readonly IslandGenerator islandGenerator;
-		public           TileType[,]     Cells;
 
 		private readonly int             wight;
 		private readonly int             height;
 		protected        List<BaseHuman> humans;
+		public           TileType[,]     Cells;
 		public           int             Offset;
 		public           Vector2         node;
 		public           Color           re = Color.White;
 
-        public List<Building.Structure> Structures= new List<Building.Structure>();
+		public List<Structure> Structures = new List<Structure>();
 
-        internal TileType GetCellByMouse => GetCellByPose(Main.instance.MousePosition);
-        
+		internal TileType GetCellByMouse => GetCellByPose(Main.instance.MousePosition);
+
 		/// <inheritdoc />
 		public Island(int w = IslandSize, int h = IslandSize)
 		{
@@ -41,6 +41,32 @@ namespace Empty.GameObjects
 		}
 
 		public TileType[,] GetMap() => Cells;
+
+		public void DrawIsland(SpriteBatch sb)
+		{
+			for (var i = 0; i < wight; i++)
+			{
+				for (var j = 0; j < height; j++)
+				{
+					if (Cells[i, j].Equals(TileType.Grass))
+					{
+						sb.Draw(Assets.textures["Grass"], pos(i, j, Offset), null, Color.White);
+					}
+
+					if (Cells[i, j].Equals(TileType.Sand))
+					{
+						sb.Draw(Assets.textures["Sand"], pos(i, j, Offset), null, Color.White);
+					}
+
+					if (Cells[i, j].Equals(TileType.Stone))
+					{
+						sb.Draw(Assets.textures["Stone"], pos(i, j, Offset), null, Color.White);
+					}
+				}
+			}
+
+			Structures.ForEach(item => item.Draw(sb));
+		}
 
 		internal TileType GetCellByPose(Vector2 vector)
 		{
@@ -94,31 +120,6 @@ namespace Empty.GameObjects
 					break;
 				}
 			}
-		}
-
-		public void DrawIsland(SpriteBatch sb)
-		{
-			for (var i = 0; i < wight; i++)
-			{
-				for (var j = 0; j < height; j++)
-				{
-					if (Cells[i, j].Equals(TileType.Grass))
-					{
-						sb.Draw(Assets.textures["Grass"], pos(i, j, Offset), null, Color.White);
-					}
-
-					if (Cells[i, j].Equals(TileType.Sand))
-					{
-						sb.Draw(Assets.textures["Sand"], pos(i, j, Offset), null, Color.White);
-					}
-
-					if (Cells[i, j].Equals(TileType.Stone))
-					{
-						sb.Draw(Assets.textures["Stone"], pos(i, j, Offset), null, Color.White);
-					}
-				}
-			}
-			Structures.ForEach((item) => item.Draw(sb));
 		}
 	}
 }

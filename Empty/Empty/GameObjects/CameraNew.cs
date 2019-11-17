@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Xml;
 
 
 public class CameraNew
@@ -35,12 +34,11 @@ public class CameraNew
 	{
 		Vector2 newPosition = Position + movePosition;
 
-		
+
 		if (!restrictions.Contains(newPosition))
 		{
-
 			(float lx, float ly) = newPosition;
-			
+
 			if (lx < restrictions.X)
 			{
 				lx = restrictions.X;
@@ -58,7 +56,7 @@ public class CameraNew
 				ly = restrictions.Bottom;
 			}
 
-			newPosition = new Vector2(lx,ly);
+			newPosition = new Vector2(lx, ly);
 		}
 
 		Position = newPosition;

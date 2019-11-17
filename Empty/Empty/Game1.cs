@@ -2,8 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoFlash.Engine;
-using KeyboardInput = MonoFlash.Engine.KeyboardInput;
 using System;
+using KeyboardInput = MonoFlash.Engine.KeyboardInput;
 
 namespace Empty
 {
@@ -16,33 +16,8 @@ namespace Empty
 		private          Main                  main;
 		private          SpriteBatch           spriteBatch;
 
-		public Game1()
-		{
-			graphics              = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = Values.SCREEN_WIDTH, PreferredBackBufferHeight = Values.SCREEN_HEIGHT };
-			IsMouseVisible        = true;
-			Content.RootDirectory = "Content";
-            
 
-        }
-
-
-        public static event Action UpdateEvent;
-
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-        protected override void Initialize()
-		{
-			// TODO: Add your initialization logic here
-
-			base.Initialize();
-			KeyboardInput.Initialize(this, 500f, 20);
-
-			main = new Main(GraphicsDevice);
-		}
+		private readonly Color sky = Colors.hexToRGB(0x3498db);
 
 		/// <summary>
 		/// LoadContent will be called once per game and is the place to load
@@ -54,6 +29,34 @@ namespace Empty
 		public static Texture2D woodTexture;
 		public static Texture2D ironTexture;
 
+
+		public static event Action UpdateEvent;
+
+		public Game1()
+		{
+			graphics =
+				new GraphicsDeviceManager(this) { PreferredBackBufferWidth = Values.SCREEN_WIDTH, PreferredBackBufferHeight = Values.SCREEN_HEIGHT };
+
+			IsMouseVisible        = true;
+			Content.RootDirectory = "Content";
+		}
+
+		/// <summary>
+		/// Allows the game to perform any initialization it needs to before starting to run.
+		/// This is where it can query for any required services and load any non-graphic
+		/// related content.  Calling base.Initialize will enumerate through any components
+		/// and initialize them as well.
+		/// </summary>
+		protected override void Initialize()
+		{
+			// TODO: Add your initialization logic here
+
+			base.Initialize();
+			KeyboardInput.Initialize(this, 500f, 20);
+
+			main = new Main(GraphicsDevice);
+		}
+
 		protected override void LoadContent()
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
@@ -62,27 +65,28 @@ namespace Empty
 			Assets.font = Content.Load<SpriteFont>("font");
 
 
-            fontForProperties = Content.Load<SpriteFont>("fontForProperties");
-            stoneTexture = Content.Load<Texture2D>("stone");
-            woodTexture = Content.Load<Texture2D>("wood");
-            ironTexture = Content.Load<Texture2D>("iron");
+			fontForProperties        = Content.Load<SpriteFont>("fontForProperties");
+			stoneTexture             = Content.Load<Texture2D>("stone");
+			woodTexture              = Content.Load<Texture2D>("wood");
+			ironTexture              = Content.Load<Texture2D>("iron");
 			Assets.textures["Human"] = Content.Load<Texture2D>("Pers/human");
 
-            Assets.textures.Add("Grass", Content.Load<Texture2D>("Tile/Grass"));
-            Assets.textures.Add("Sand", Content.Load<Texture2D>("Tile/Sand"));
-            Assets.textures.Add("Stone", Content.Load<Texture2D>("Tile/Stone"));
+			Assets.textures.Add("Grass", Content.Load<Texture2D>("Tile/Grass"));
+			Assets.textures.Add("Sand",  Content.Load<Texture2D>("Tile/Sand"));
+			Assets.textures.Add("Stone", Content.Load<Texture2D>("Tile/Stone"));
 
-			for (int i = 0; i < 8; i++)
+			for (var i = 0; i < 8; i++)
 			{
-				Assets.clouds.Add(Content.Load<Texture2D>($"Clouds/Cloud{i+1}"));
+				Assets.clouds.Add(Content.Load<Texture2D>($"Clouds/Cloud{i + 1}"));
 			}
-            Assets.textures.Add("Wall", Content.Load<Texture2D>("Tile/Wall"));
-            Assets.textures.Add("Gun", Content.Load<Texture2D>("Tile/Gun"));
-            Assets.textures.Add("Most", Content.Load<Texture2D>("Tile/Most"));
+
+			Assets.textures.Add("Wall", Content.Load<Texture2D>("Tile/Wall"));
+			Assets.textures.Add("Gun",  Content.Load<Texture2D>("Tile/Gun"));
+			Assets.textures.Add("Most", Content.Load<Texture2D>("Tile/Most"));
 
 
-            // TODO: use this.Content to load your game content here
-        }
+			// TODO: use this.Content to load your game content here
+		}
 
 		/// <summary>
 		/// UnloadContent will be called once per game and is the place to unload
@@ -112,11 +116,8 @@ namespace Empty
 
 			base.Update(gameTime);
 
-            UpdateEvent?.Invoke();
+			UpdateEvent?.Invoke();
 		}
-
-
-        Color sky = Colors.hexToRGB(0x3498db);
 
 		/// <summary>
 		/// This is called when the game should draw itself.

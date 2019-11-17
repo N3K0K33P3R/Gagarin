@@ -8,14 +8,14 @@ namespace Empty.GameObjects.Humans
 {
 	public class BaseHuman : Sprite
 	{
-		private readonly AnimatedSprite  animated;
-		public           Point           tilePos;
-		private          TextureAtlas    atlas;
-		private          Rectangle[]     walkAnim;
-		private          Rectangle[]     deathAnim;
-		private          bool            isMoving;
-		private          Stack<Point>    path;
-		private          Point           lastPathPoint;
+		private readonly AnimatedSprite animated;
+		private          TextureAtlas   atlas;
+		private          Rectangle[]    walkAnim;
+		private          Rectangle[]    deathAnim;
+		private          bool           isMoving;
+		private          Stack<Point>   path;
+		private          Point          lastPathPoint;
+		public           Point          tilePos;
 
 		public float  GunSkill    { get; set; }
 		public float  RepairSkill { get; set; }
@@ -98,8 +98,6 @@ namespace Empty.GameObjects.Humans
 					OnMoveEnd);
 			}
 		}
-
-
 
 
 		private List<Point> FindPath(int x, int y)

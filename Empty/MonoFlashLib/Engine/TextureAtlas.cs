@@ -7,7 +7,7 @@ namespace MonoFlashLib.Engine
 	public class TextureAtlas
 	{
 		private readonly int       offset;
-		private          int       tilesetTileSize;
+		private readonly int       tilesetTileSize;
 		public           Texture2D atlas;
 		public           int       atlasTileHeight;
 		public           int       atlasTileWidth;
@@ -116,7 +116,7 @@ namespace MonoFlashLib.Engine
 		{
 			var res = new Rectangle[count];
 
-			for (int i = 0; i < count; i++)
+			for (var i = 0; i < count; i++)
 			{
 				res[i] = new Rectangle((gid + i) * tilesetTileSize, 0, tilesetTileSize, tilesetTileSize);
 			}

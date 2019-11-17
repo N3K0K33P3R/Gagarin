@@ -1,10 +1,8 @@
 ﻿using Empty.Helpers;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using MonoFlash.Engine;
 using System;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace Empty
 {
@@ -28,16 +26,16 @@ namespace Empty
 
 			island = new TileType[width, height];
 
-			for (int i = 0; i < width; i++)
+			for (var i = 0; i < width; i++)
 			{
-				for (int j = 0; j < height; j++)
+				for (var j = 0; j < height; j++)
 				{
-					Point point = new Point(i, j);
-                    int T = new Random().Next(0, 10);
+					var point = new Point(i, j);
+					int T     = new Random().Next(0, 10);
 
-					if (PolygonHelper.IsPointInPolygon(point, polygon)&&Math.Abs( Perlin.Noise((i+T)/5f,(j+T)/5f))>0.01f)
+					if (PolygonHelper.IsPointInPolygon(point, polygon) && Math.Abs(Perlin.Noise((i + T) / 5f, (j + T) / 5f)) > 0.01f)
 					{
-						var d = Values.RANDOM.NextDouble();
+						double d = Values.RANDOM.NextDouble();
 
 						if (d < 0.5)
 						{

@@ -1,5 +1,7 @@
-﻿using Empty.Effects;
+﻿using Empty.Building;
+using Empty.Effects;
 using Empty.GameObjects;
+using Empty.GameObjects.Humans;
 using Empty.Helpers;
 using Empty.UI;
 using Empty.UI.Building;
@@ -7,11 +9,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoFlash.Engine;
-using System.Collections.Generic;
-using System.Linq;
-using Empty.Building;
-using IDrawable = MonoFlash.Engine.IDrawable;
-using System;
 
 namespace Empty
 {
@@ -22,8 +19,8 @@ namespace Empty
 		private readonly OurIsland      island;
 		private readonly Interface      buildingInterface;
 		private readonly TimerUI        timerUI;
-		private          EnemyIsland    enemyIsland;
 		private readonly CloudCanvas    cloudCanvas;
+		private          EnemyIsland    enemyIsland;
 		private          bool           wasPressed;
 		private          double         timer;
 		private          double         timerSpeed;
@@ -32,6 +29,8 @@ namespace Empty
 		private       Vector2 node;
 		public static Main    instance;
 
+		public Vector2 MousePosition;
+
 		/// <inheritdoc />
 		public Main(GraphicsDevice gd)
 		{
@@ -39,10 +38,12 @@ namespace Empty
 			this.gd     = gd;
 			island      = new OurIsland();
 			cloudCanvas = new CloudCanvas();
-			AddChild(new UI.Property());
-			buildingInterface = new UI.Building.Interface(BuyStructure);
+			AddChild(new Property());
+			buildingInterface = new Interface(BuyStructure);
 			AddChild(buildingInterface);
 			camera = new CameraNew(gd.Viewport) { Zoom = 2f, Position = (Vector2.UnitY * 12 + Vector2.UnitX * 12) * Values.TILE_SIZE };
+
+			AddChild(new InfoPanel(new BaseHuman(Assets.textures["Human"], 0, 0)));
 
 			timerUI = new TimerUI();
 			AddChild(timerUI);
@@ -50,13 +51,6 @@ namespace Empty
 			SetTimer();
 		}
 
-		private void SetTimer()
-		{
-			timer      = 1;
-			timerSpeed = Values.RANDOM.NextDouble(0.001, 0.01);
-		}
-
-        public Vector2 MousePosition;
 		public override void Update(float delta)
 		{
 			camera.UpdateCamera(gd.Viewport);
@@ -70,7 +64,7 @@ namespace Empty
 				camera.Zoom;
 
 			island.Posing(mouseTilePos.ToPoint().ToVector2());
-            MousePosition = mouseTilePos;
+			MousePosition = mouseTilePos;
 
 			if (enemyIsland == null && timer > 0)
 			{
@@ -127,20 +121,6 @@ namespace Empty
 			wasPressed = Mouse.GetState().LeftButton == ButtonState.Pressed;
 		}
 
-		private void BuyStructure(UI.Building.Interface.BuildType bt)
-		{
-            var structure = StructureFabric.GetStructure(bt);
-
-			Resources.Stone  -= structure.StoneCost;
-			Resources.Timber -= structure.TimberCost;
-			Resources.Iron   -= structure.IronCost;
-
-            island.CallBuilding(structure);
-
-			UI.Property.mainProperty.UpdateMainProperties();
-			UI.Building.Interface.UpdateInterface();
-		}
-
 		/// <inheritdoc />
 		public override void Draw(SpriteBatch sb, GameTime gameTime = null)
 		{
@@ -167,6 +147,28 @@ namespace Empty
 		public void KillEnemyIsland()
 		{
 			enemyIsland.Kill();
+		}
+
+		private void SetTimer()
+		{
+			timer      = 1;
+			timerSpeed = Values.RANDOM.NextDouble(0.001, 0.01);
+		}
+
+		private void ShowInfo(BaseHuman human) { }
+
+		private void BuyStructure(Interface.BuildType bt)
+		{
+			Structure structure = StructureFabric.GetStructure(bt);
+
+			Resources.Stone  -= structure.StoneCost;
+			Resources.Timber -= structure.TimberCost;
+			Resources.Iron   -= structure.IronCost;
+
+			island.CallBuilding(structure);
+
+			Property.mainProperty.UpdateMainProperties();
+			Interface.UpdateInterface();
 		}
 
 		private void TestAction(Interface.BuildType bt)
