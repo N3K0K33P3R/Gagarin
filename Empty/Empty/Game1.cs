@@ -19,6 +19,7 @@ namespace Empty
 			graphics              = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = 1600, PreferredBackBufferHeight = 800 };
 			IsMouseVisible        = true;
 			Content.RootDirectory = "Content";
+            //graphics.ToggleFullScreen();
 		}
 
 		/// <summary>
@@ -92,13 +93,16 @@ namespace Empty
 			base.Update(gameTime);
 		}
 
+
+        Color sky = new Color(49, 47, 47);
+
 		/// <summary>
 		/// This is called when the game should draw itself.
 		/// </summary>
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.Clear(Color.CornflowerBlue);
+			GraphicsDevice.Clear(sky);
 
 			main.Draw(spriteBatch);
 			// TODO: Add your drawing code here

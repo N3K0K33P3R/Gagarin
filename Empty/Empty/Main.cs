@@ -15,7 +15,7 @@ namespace Empty
         public Main(GraphicsDevice gd)
 		{
             this.gd = gd;
-			island = new Island();
+			island = new Island(20,20);
 			AddChild(new UI.Property());
             camera = new Camera() { Zoom=3f};
         }

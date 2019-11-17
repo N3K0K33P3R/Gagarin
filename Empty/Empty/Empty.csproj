@@ -48,6 +48,7 @@
     <Compile Include="GameObjects\CameraMover.cs" />
     <Compile Include="GameObjects\Island.cs" />
     <Compile Include="GameObjects\IslandGenerator.cs" />
+    <Compile Include="Helpers\PerlinNoise.cs" />
     <Compile Include="Helpers\PolygonHelper.cs" />
     <Compile Include="Helpers\RandomExtensions.cs" />
     <Compile Include="Helpers\RectangleExtensions.cs" />
