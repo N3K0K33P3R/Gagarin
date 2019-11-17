@@ -16,6 +16,7 @@ namespace Empty.Building
 
         public static void CallBuilding(this Island island, Structure structure)
         {
+            Clean();
             Game1.UpdateEvent += Bulding;
             island.Structures.Add(structure);
             BuildProcessing.island = island;
@@ -36,24 +37,13 @@ namespace Empty.Building
 			{
 				curStructure.StateColor = Color.Green;
 
-				if (Mouse.GetState().LeftButton.Equals(ButtonState.Pressed)&&Mouse.GetState().Y<700)
+				if (Mouse.GetState().LeftButton.Equals(ButtonState.Pressed)&&Mouse.GetState().Y<600)
 				{
 					SetBuild(curStructure);
 				}
                 if (Mouse.GetState().RightButton.Equals(ButtonState.Pressed))
                 {
-                    Game1.UpdateEvent -= Bulding;
-
-                    Resources.Stone += curStructure.StoneCost;
-                    Resources.Timber += curStructure.TimberCost;
-                    Resources.Iron += curStructure.IronCost;
-
-                    Property.mainProperty.UpdateMainProperties();
-                    Interface.UpdateInterface();
-
-                    island.Structures.Remove(curStructure);
-
-                    curStructure = null;
+                    Clean();
                 }
             }
 			else
@@ -62,6 +52,24 @@ namespace Empty.Building
 			}
 		}
 
+        public static void Clean()
+        {
+            if (curStructure != null)
+            {
+                Game1.UpdateEvent -= Bulding;
+
+                Resources.Stone += curStructure.StoneCost;
+                Resources.Timber += curStructure.TimberCost;
+                Resources.Iron += curStructure.IronCost;
+
+                Property.mainProperty.UpdateMainProperties();
+                Interface.UpdateInterface();
+
+                if(curStructure.StateColor!=Color.White)
+                island.Structures.Remove(curStructure);
+            }
+            curStructure = null;
+        }
 
 		public static void SetBuild(Structure curStructure)
 		{

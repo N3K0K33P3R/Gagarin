@@ -4,15 +4,16 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Empty.Building
 {
-	internal class Most : Structure
-	{
-		public Most(Texture2D texture, int stoneCost, int timberCost, int ironCost, int workCost, Vector2 offset = default) : base(
-			texture,
-			stoneCost,
-			timberCost,
-			ironCost,
-			workCost,
-			offset) { }
+    internal class Most : Structure
+    {
+        public Most(Texture2D texture, int stoneCost, int timberCost, int ironCost, int workCost, Vector2 offset = default) : base(
+            texture,
+            stoneCost,
+            timberCost,
+            ironCost,
+            workCost,
+            offset)
+        { }
 
         public override bool IsCanPut(GameObjects.Island island)
         {
@@ -29,12 +30,17 @@ namespace Empty.Building
 
         public override void OnAddOnGrid(ref TileType[,] types, int i, int j)
         {
+            i /= 16;
+            j /= 16;
             if (
-               i > 0  &&
-               j > 0  &&
-               i < 25 &&
-               j < 25)
+               i > 0 &&
+               j > 0 &&
+               i < 16 &&
+               j < 16)
+            {
+                System.Console.WriteLine($"{i}:====:{j}");
                 types[i, j] = TileType.Grass;
+            }
         }
 
     }
