@@ -73,8 +73,10 @@ namespace Empty.GameObjects
 			{
 				foreach (Structure structure in i2.Structures)
 				{
-					Point center = (new Vector2((float)structure.globalX + structure.position.X, (float)structure.globalY + structure.position.Y) + Vector2.One * Values.TILE_SIZE / 2).ToPoint();
-						//Trace(center.GetDist(new Point((int)globalX + r, (int)globalY + r)));
+					Point center = (new Vector2((float)structure.globalX + structure.position.X, (float)structure.globalY + structure.position.Y) +
+									Vector2.One * Values.TILE_SIZE / 2).ToPoint();
+
+					//Trace(center.GetDist(new Point((int)globalX + r, (int)globalY + r)));
 					//Trace(globalX, globalY, structure.globalX + structure.position.X, structure.globalY + structure.position.Y);
 					if (center.GetDist(new Point((int)x + r, (int)y + r)) < r)
 					{
@@ -82,10 +84,18 @@ namespace Empty.GameObjects
 						structure.ShouldDelete = true;
 					}
 				}
+
+				Point centerCastle = (new Vector2((float)i2.globalX + i2.castle.position.X, (float)i2.globalY + i2.castle.position.Y) +
+									  Vector2.One * Values.TILE_SIZE * 1.5f).ToPoint();
+
+				if (centerCastle.GetDist(new Point((int)globalX + r, (int)globalY + r)) < Values.TILE_SIZE * 1.5f)
+				{
+					ShouldDelete     =  true;
+					i2.castle.Healty -= 100;
+				}
 			}
 
-			
-			
+
 			base.Update(delta);
 		}
 

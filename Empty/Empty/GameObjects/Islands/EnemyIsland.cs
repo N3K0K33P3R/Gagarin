@@ -42,6 +42,12 @@ namespace Empty.GameObjects
 			}
 
 			Values.GlobalSpeed = acSpeed.MakeStep(delta);
+
+			if (castle.Healty <= 0 && !IsDefeated)
+			{
+				Kill();
+			}
+			
             UpdateAI();
 			base.Update(delta);
 		}
