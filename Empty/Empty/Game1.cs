@@ -82,11 +82,13 @@ namespace Empty
 
 			Assets.textures.Add("Wall", Content.Load<Texture2D>("Tile/Wall"));
 			Assets.textures.Add("Gun",  Content.Load<Texture2D>("Tile/Gun"));
-			Assets.textures.Add("Most", Content.Load<Texture2D>("Tile/Most"));
+            Assets.textures.Add("Most", Content.Load<Texture2D>("Tile/Most"));
+
+            Assets.textures.Add("Castle", Content.Load<Texture2D>("Tile/Castle"));
 
 
-			// TODO: use this.Content to load your game content here
-		}
+            // TODO: use this.Content to load your game content here
+        }
 
 		/// <summary>
 		/// UnloadContent will be called once per game and is the place to unload

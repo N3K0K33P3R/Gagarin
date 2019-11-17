@@ -186,3 +186,4 @@ C:\Projects\Planet\Empty\Empty\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
 C:\Projects\Planet\Empty\Empty\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
 C:\Projects\Planet\Empty\Empty\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Projects\Planet\Empty\Empty\obj\x86\Debug\Empty.csproj.CopyComplete
+C:\Projects\Planet\Empty\Empty\bin\Windows\x86\Debug\Content\Tile\Castle.xnb
