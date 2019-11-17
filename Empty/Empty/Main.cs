@@ -12,8 +12,10 @@ namespace Empty
 		/// <inheritdoc />
 		public Main()
 		{
-			//BaseHuman bh = new BaseHuman();
-			
+			BaseHuman bh = new BaseHuman(Assets.textures["Human"]);
+			AddChild(bh);
+			bh.x = 720;
+			bh.y = 300;
 			island = new Island();
 			AddChild(island);
 			AddChild(new UI.Property());
@@ -22,7 +24,7 @@ namespace Empty
 		/// <inheritdoc />
 		public override void Draw(SpriteBatch sb, GameTime gameTime = null)
 		{
-			sb.Begin();
+			sb.Begin(samplerState: SamplerState.PointClamp);
 			base.Draw(sb, gameTime);
 			sb.End();
 		}

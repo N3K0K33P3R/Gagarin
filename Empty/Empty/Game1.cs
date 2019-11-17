@@ -56,6 +56,7 @@ namespace Empty
             stoneTexture = Content.Load<Texture2D>("stone");
             woodTexture = Content.Load<Texture2D>("wood");
             ironTexture = Content.Load<Texture2D>("iron");
+			Assets.textures["Human"] = Content.Load<Texture2D>("Pers/human");
 			// TODO: use this.Content to load your game content here
 		}
 
