@@ -7,7 +7,8 @@ namespace Empty.Building
 	public static class BuildProcessing
 	{
 		private static Structure curStructure;
-		private static Island    island;
+		public static Island    island;
+        public static bool EnemyBuild = false;
 
 		public static void CallBuilding(this Island island, Structure structure)
 		{
@@ -33,7 +34,7 @@ namespace Empty.Building
 
 				if (Mouse.GetState().LeftButton.Equals(ButtonState.Pressed))
 				{
-					SetBuild();
+					SetBuild(curStructure);
 				}
 			}
 			else
@@ -43,7 +44,7 @@ namespace Empty.Building
 		}
 
 
-		public static void SetBuild()
+		public static void SetBuild(Structure curStructure)
 		{
 			Vector2 vector = curStructure.position;
 			Game1.UpdateEvent -= Bulding;
