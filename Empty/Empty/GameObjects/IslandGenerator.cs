@@ -33,8 +33,9 @@ namespace Empty
 				for (int j = 0; j < height; j++)
 				{
 					Point point = new Point(i, j);
+                    int T = new Random().Next(0, 10);
 
-					if (PolygonHelper.IsPointInPolygon(point, polygon))
+					if (PolygonHelper.IsPointInPolygon(point, polygon)&&Math.Abs( Perlin.Noise((i+T)/5f,(j+T)/5f))>0.01f)
 					{
 						var d = Values.RANDOM.NextDouble();
 

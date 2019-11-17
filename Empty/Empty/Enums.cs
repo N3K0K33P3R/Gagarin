@@ -1,6 +1,6 @@
 ﻿namespace Empty
 {
-	internal enum TileType
+	public enum TileType
 	{
 		Empty, Grass, Sand, Stone
 	}

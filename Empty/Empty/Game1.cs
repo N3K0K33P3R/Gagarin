@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoFlash.Engine;
 using KeyboardInput = MonoFlash.Engine.KeyboardInput;
 
 namespace Empty
@@ -16,10 +17,12 @@ namespace Empty
 
 		public Game1()
 		{
-			graphics              = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = 1600, PreferredBackBufferHeight = 800 };
+			graphics              = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = Values.SCREEN_WIDTH, PreferredBackBufferHeight = Values.SCREEN_HEIGHT };
 			IsMouseVisible        = true;
 			Content.RootDirectory = "Content";
-		}
+            
+
+        }
 
 		/// <summary>
 		/// Allows the game to perform any initialization it needs to before starting to run.
@@ -34,30 +37,43 @@ namespace Empty
 			base.Initialize();
 			KeyboardInput.Initialize(this, 500f, 20);
 
-			main = new Main();
-            
+			main = new Main(GraphicsDevice);
 		}
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        public static SpriteFont fontForProperties;
-        public static Texture2D stoneTexture;
-        public static Texture2D woodTexture;
-        public static Texture2D ironTexture;
+		/// <summary>
+		/// LoadContent will be called once per game and is the place to load
+		/// all of your content.
+		/// </summary>
+		public static SpriteFont fontForProperties;
+
+		public static Texture2D stoneTexture;
+		public static Texture2D woodTexture;
+		public static Texture2D ironTexture;
+
 		protected override void LoadContent()
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
 			Assets.font = Content.Load<SpriteFont>("font");
+
+
             fontForProperties = Content.Load<SpriteFont>("fontForProperties");
             stoneTexture = Content.Load<Texture2D>("stone");
             woodTexture = Content.Load<Texture2D>("wood");
             ironTexture = Content.Load<Texture2D>("iron");
-			// TODO: use this.Content to load your game content here
-		}
+			Assets.textures["Human"] = Content.Load<Texture2D>("Pers/human");
+
+            Assets.textures.Add("Grass", Content.Load<Texture2D>("Tile/Grass"));
+            Assets.textures.Add("Sand", Content.Load<Texture2D>("Tile/Sand"));
+            Assets.textures.Add("Stone", Content.Load<Texture2D>("Tile/Stone"));
+
+			for (int i = 0; i < 8; i++)
+			{
+				Assets.clouds.Add(Content.Load<Texture2D>($"Clouds/Cloud{i+1}"));
+			}
+            // TODO: use this.Content to load your game content here
+        }
 
 		/// <summary>
 		/// UnloadContent will be called once per game and is the place to unload
@@ -88,13 +104,16 @@ namespace Empty
 			base.Update(gameTime);
 		}
 
+
+        Color sky = Colors.hexToRGB(0x3498db);
+
 		/// <summary>
 		/// This is called when the game should draw itself.
 		/// </summary>
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.Clear(Color.CornflowerBlue);
+			GraphicsDevice.Clear(sky);
 
 			main.Draw(spriteBatch);
 			// TODO: Add your drawing code here
