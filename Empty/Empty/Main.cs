@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Empty.GameObjects;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoFlash.Engine;
 
@@ -6,11 +7,12 @@ namespace Empty
 {
 	internal class Main : Sprite
 	{
+		private Island island;
 		/// <inheritdoc />
 		public Main()
 		{
-			IslandGenerator ig = new IslandGenerator(25, 25);
-			AddChild(ig);
+			island = new Island();
+			AddChild(island);
 		}
 
 		/// <inheritdoc />

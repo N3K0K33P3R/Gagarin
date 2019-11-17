@@ -10,10 +10,10 @@ namespace Empty
 {
 	public class IslandGenerator : Sprite
 	{
-		private readonly Point[]     polygon;
-		private readonly TileType[,] island;
-		private          int         Width  { get; }
-		private          int         Height { get; }
+		private readonly  Point[]     polygon;
+		internal readonly TileType[,] island;
+		private           int         Width  { get; }
+		private           int         Height { get; }
 
 		/// <inheritdoc />
 		public IslandGenerator(int width, int height)
@@ -53,41 +53,6 @@ namespace Empty
 					}
 				}
 			}
-		}
-
-		/// <inheritdoc />
-		public override void Draw(SpriteBatch sb, GameTime gameTime = null)
-		{
-			for (int i = 0; i < Width; i++)
-			{
-				for (int j = 0; j < Height; j++)
-				{
-					if (island[i, j] != TileType.Empty)
-					{
-						Color color = island[i,j] switch
-						{
-							TileType.Grass => Color.Green,
-							TileType.Sand  => Color.Yellow,
-							TileType.Stone => Color.Gray
-						};
-
-						sb.FillRectangle(i * Values.TILE_SIZE, j * Values.TILE_SIZE, Values.TILE_SIZE, Values.TILE_SIZE, color, 0);
-					}
-					else
-					{
-						
-					}
-				}
-			}
-
-			for (var i = 0; i < polygon.Length - 1; i++)
-			{
-				sb.DrawLine(polygon[i].ToVector2(), polygon[i + 1].ToVector2(), Color.White, 0);
-			}
-
-			sb.DrawLine(polygon.Last().ToVector2(), polygon[0].ToVector2(), Color.White, 0);
-
-			base.Draw(sb, gameTime);
 		}
 
 		public void GenerateIsland() { }
