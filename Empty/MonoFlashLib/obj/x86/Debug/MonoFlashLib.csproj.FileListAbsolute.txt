@@ -108,4 +108,3 @@ C:\Projects\Planet\Empty\MonoFlashLib\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Projects\Planet\Empty\MonoFlashLib\obj\x86\Debug\MonoFlashLib.csproj.CopyComplete
 C:\Projects\Planet\Empty\MonoFlashLib\obj\x86\Debug\MonoFlashLib.exe
 C:\Projects\Planet\Empty\MonoFlashLib\obj\x86\Debug\MonoFlashLib.pdb
-C:\Projects\Planet\Empty\MonoFlashLib\obj\x86\Debug\MonoFlashLib.csprojAssemblyReference.cache

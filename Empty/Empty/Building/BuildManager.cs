@@ -25,8 +25,8 @@ namespace Empty.Building
 
         public static void Bulding()
         {
-
-            curStructure.position = island.node;
+            var node = Main.instance.MousePosition * 16f;
+            curStructure.position = (node/16f).ToPoint().ToVector2()*16;
             if (!island.GetCellByMouse.Equals(TileType.Empty))
             {
                 curStructure.StateColor = Color.Green;

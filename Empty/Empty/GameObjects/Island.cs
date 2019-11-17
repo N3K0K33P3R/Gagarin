@@ -17,34 +17,10 @@ namespace Empty.GameObjects
 		public           Vector2 node;
 		public           Color   re = Color.White;
 
-		internal TileType GetCellByMouse
-		{
-			get
-			{
-				Vector2 vc = node /= 16;
-
-				if (vc.X > 0 &&
-					vc.Y > 0 &&
-					vc.X < wight / 16f &&
-					vc.Y < height / 16f)
-				{
-					return cells[(int)(vc.X * 16), (int)(vc.Y * 16)];
-				}
-
-				return TileType.Empty;
-			}
-		}
+        public List<Building.Structure> Structures= new List<Building.Structure>();
 
         internal TileType GetCellByMouse => GetCellByPose(Main.instance.MousePosition);
         
-        /// <inheritdoc />
-        public Island(int w = IslandSize, int h = IslandSize)
-        {
-            wight = w;
-            height = h;
-            islandGenerator = new IslandGenerator(wight, height);
-            cells = islandGenerator.island;
-        }
 		/// <inheritdoc />
 		public Island(int w = IslandSize, int h = IslandSize)
 		{
@@ -77,20 +53,11 @@ namespace Empty.GameObjects
 				}
 			}
 
-			sb.DrawRectangle(node*Values.TILE_SIZE, Vector2.One * Values.TILE_SIZE, re, 4, 0);
+            Structures.ForEach((item) => item.Draw(sb));
+            sb.DrawRectangle(node*Values.TILE_SIZE, Vector2.One * Values.TILE_SIZE, re, 1, 0);
 			base.Draw(sb, gameTime);
-		}
-
-                    if (cells[i, j].Equals(TileType.Stone))
-                    {
-                        sb.Draw(Assets.textures["Stone"], pos(i, j, Offset), null, color: Color.White, scale: Vector2.One * Values.MAP_SCALE);
-                    }
-                }
-            }
-            Structures.ForEach((item) =>item.Draw(sb));
-            sb.DrawRectangle(node, Vector2.One * 16 * Values.MAP_SCALE, re, Values.MAP_SCALE, 1);
-            base.Draw(sb, gameTime);
-        }
+		}            
+        
 		public void Posing(Vector2 node)
 		{
 			this.node = node;

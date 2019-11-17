@@ -41,14 +41,7 @@ namespace Empty.Building
 
         public void Draw(SpriteBatch sb)
         {
-            var pos = Vector2.One;
-            if (StateColor == Color.White)
-                pos = position * Values.MAP_SCALE;
-            else
-                pos = position;
-
-            var size = (Vector2.One * Values.MAP_SCALE);
-            sb.Draw(texture, position: pos+Offset, scale: size, color: StateColor);
+            sb.Draw(texture, position+Offset, color: StateColor);
         }
 
     }

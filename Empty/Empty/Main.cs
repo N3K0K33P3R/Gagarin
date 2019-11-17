@@ -74,6 +74,7 @@ namespace Empty
 			}
 		}
 
+        public Vector2 MousePosition;
 		public override void Update(float delta)
 		{
 			//Vector2 mouse = Mouse.GetState().Position.ToVector2();
@@ -98,7 +99,7 @@ namespace Empty
 				camera.Zoom;
 
 			island.Posing(mouseTilePos.ToPoint().ToVector2());
-
+            MousePosition = mouseTilePos;
 
 			if (Mouse.GetState().LeftButton == ButtonState.Pressed)
 			{
