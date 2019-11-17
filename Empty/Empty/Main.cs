@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoFlash.Engine;
 using System.Collections.Generic;
 using System.Linq;
+using Empty.Building;
 using IDrawable = MonoFlash.Engine.IDrawable;
 
 namespace Empty
@@ -41,6 +42,7 @@ namespace Empty
 
 			int humanCount = 5;
 			humans = new List<BaseHuman>();
+            island.CallBuilding(new Wall(Assets.textures["Wall"], 25, 25, 25, 25, 25));
 
 			for (int i = 0; i < island.GetMap().GetLength(0); i++)
 			{

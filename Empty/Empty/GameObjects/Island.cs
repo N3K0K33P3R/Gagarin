@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoFlash.Engine;
-
+using System.Collections.Generic;
 
 namespace Empty.GameObjects
 {
@@ -35,6 +35,16 @@ namespace Empty.GameObjects
 			}
 		}
 
+        internal TileType GetCellByMouse => GetCellByPose(Main.instance.MousePosition);
+        
+        /// <inheritdoc />
+        public Island(int w = IslandSize, int h = IslandSize)
+        {
+            wight = w;
+            height = h;
+            islandGenerator = new IslandGenerator(wight, height);
+            cells = islandGenerator.island;
+        }
 		/// <inheritdoc />
 		public Island(int w = IslandSize, int h = IslandSize)
 		{
@@ -71,6 +81,16 @@ namespace Empty.GameObjects
 			base.Draw(sb, gameTime);
 		}
 
+                    if (cells[i, j].Equals(TileType.Stone))
+                    {
+                        sb.Draw(Assets.textures["Stone"], pos(i, j, Offset), null, color: Color.White, scale: Vector2.One * Values.MAP_SCALE);
+                    }
+                }
+            }
+            Structures.ForEach((item) =>item.Draw(sb));
+            sb.DrawRectangle(node, Vector2.One * 16 * Values.MAP_SCALE, re, Values.MAP_SCALE, 1);
+            base.Draw(sb, gameTime);
+        }
 		public void Posing(Vector2 node)
 		{
 			this.node = node;

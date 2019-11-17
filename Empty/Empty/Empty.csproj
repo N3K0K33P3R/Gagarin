@@ -45,6 +45,8 @@
     <Compile Include="Assets.cs" />
     <Compile Include="Building\BuildManager.cs" />
     <Compile Include="Building\Structure.cs" />
+    <Compile Include="Building\StructureContainer.cs" />
+    <Compile Include="Building\Wall.cs" />
     <Compile Include="Effects\Cloud.cs" />
     <Compile Include="Effects\CloudCanvas.cs" />
     <Compile Include="Enums.cs" />

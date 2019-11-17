@@ -99,6 +99,9 @@ namespace Empty.GameObjects.Humans
 			}
 		}
 
+
+
+
 		private List<Point> FindPath(int x, int y)
 		{
 			TileType[,] mapEnum = Main.instance.GetMap();
