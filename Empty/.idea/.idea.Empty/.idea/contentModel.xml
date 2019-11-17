@@ -15,6 +15,7 @@
         <e p="Enums.cs" t="Include" />
         <e p="Game1.cs" t="Include" />
         <e p="GameObjects" t="Include">
+          <e p="CameraMover.cs" t="Include" />
           <e p="Humans" t="Include">
             <e p="BaseHuman.cs" t="Include" />
           </e>

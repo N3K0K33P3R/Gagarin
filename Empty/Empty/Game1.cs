@@ -34,7 +34,7 @@ namespace Empty
 			base.Initialize();
 			KeyboardInput.Initialize(this, 500f, 20);
 
-			main = new Main();
+			main = new Main(GraphicsDevice);
 		}
 
 		/// <summary>
