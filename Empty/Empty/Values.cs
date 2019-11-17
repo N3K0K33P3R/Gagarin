@@ -8,11 +8,11 @@ namespace Empty
 		public const            int          TILE_SIZE     = 16;
 		public const            int          SCREEN_WIDTH  = 1600;
 		public const            int          SCREEN_HEIGHT = 800;
-		public const            double       GlobalSpeed   = 1;
-		private static readonly List<string> NAMES         = new List<string> { "Троцкий", "Ульянов", "Маркс", "Энгельс", "Молотов" };
+		private static readonly List<string> NAMES         = new List<string> { "Trozky", "Ulyanov", "Marx", "Engels", "Molotov" };
 		public static readonly  Random       RANDOM        = new Random();
+		public static           double       GlobalSpeed   = 1;
 		public static           float        MAP_SCALE     = 1;
 
-        public static string GetRandomName() => NAMES[RANDOM.Next(0, NAMES.Count)];
+		public static string GetRandomName() => NAMES[RANDOM.Next(0, NAMES.Count)];
 	}
 }

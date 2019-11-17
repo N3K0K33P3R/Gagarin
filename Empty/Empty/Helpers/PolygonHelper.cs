@@ -5,6 +5,8 @@ namespace Empty
 {
 	public class PolygonHelper
 	{
+		private static readonly int INF = 10000;
+
 		public static bool IsPointInPolygon(Point p, Point[] polygon)
 		{
 			double minX = polygon[0].X;
@@ -12,7 +14,7 @@ namespace Empty
 			double minY = polygon[0].Y;
 			double maxY = polygon[0].Y;
 
-			for (int i = 1; i < polygon.Length; i++)
+			for (var i = 1; i < polygon.Length; i++)
 			{
 				Point q = polygon[i];
 				minX = Math.Min(q.X, minX);
@@ -27,14 +29,14 @@ namespace Empty
 			}
 
 			// http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-			bool inside = false;
+			var inside = false;
 
 			for (int i = 0,
 					 j = polygon.Length - 1;
 				 i < polygon.Length;
 				 j = i++)
 			{
-				if ((polygon[i].Y > p.Y) != (polygon[j].Y > p.Y) &&
+				if (polygon[i].Y > p.Y != polygon[j].Y > p.Y &&
 					p.X < (polygon[j].X - polygon[i].X) * (p.Y - polygon[i].Y) / (polygon[j].Y - polygon[i].Y) + polygon[i].X)
 				{
 					inside = !inside;
@@ -44,7 +46,58 @@ namespace Empty
 			return inside;
 		}
 
-		private static readonly int INF = 10000;
+		// Returns true if the point p lies  
+		// inside the polygon[] with n vertices 
+		public static bool IsInside(Point[] polygon, int n, Point p)
+		{
+			// There must be at least 3 vertices in polygon[] 
+			if (n < 3)
+			{
+				return false;
+			}
+
+			// Create a point for line segment from p to infinite 
+			var extreme = new Point(INF, p.Y);
+
+			// Count intersections of the above line  
+			// with sides of polygon 
+			int count = 0,
+				i     = 0;
+
+			do
+			{
+				int next = (i + 1) % n;
+
+				// Check if the line segment from 'p' to  
+				// 'extreme' intersects with the line  
+				// segment from 'polygon[i]' to 'polygon[next]' 
+				if (DoIntersect(
+					polygon[i],
+					polygon[next],
+					p,
+					extreme))
+				{
+					// If the point 'p' is colinear with line  
+					// segment 'i-next', then check if it lies  
+					// on segment. If it lies, return true, otherwise false 
+					if (Orientation(polygon[i], p, polygon[next]) == 0)
+					{
+						return OnSegment(
+							polygon[i],
+							p,
+							polygon[next]);
+					}
+
+					count++;
+				}
+
+				i = next;
+			}
+			while (i != 0);
+
+			// Return true if count is odd, false otherwise 
+			return count % 2 == 1; // Same as (count%2 == 1) 
+		}
 
 
 		// Given three colinear points p, q, r,  
@@ -126,59 +179,6 @@ namespace Empty
 
 			// Doesn't fall in any of the above cases 
 			return false;
-		}
-
-		// Returns true if the point p lies  
-		// inside the polygon[] with n vertices 
-		public static bool IsInside(Point[] polygon, int n, Point p)
-		{
-			// There must be at least 3 vertices in polygon[] 
-			if (n < 3)
-			{
-				return false;
-			}
-
-			// Create a point for line segment from p to infinite 
-			var extreme = new Point(INF, p.Y);
-
-			// Count intersections of the above line  
-			// with sides of polygon 
-			int count = 0,
-				i     = 0;
-
-			do
-			{
-				int next = (i + 1) % n;
-
-				// Check if the line segment from 'p' to  
-				// 'extreme' intersects with the line  
-				// segment from 'polygon[i]' to 'polygon[next]' 
-				if (DoIntersect(
-					polygon[i],
-					polygon[next],
-					p,
-					extreme))
-				{
-					// If the point 'p' is colinear with line  
-					// segment 'i-next', then check if it lies  
-					// on segment. If it lies, return true, otherwise false 
-					if (Orientation(polygon[i], p, polygon[next]) == 0)
-					{
-						return OnSegment(
-							polygon[i],
-							p,
-							polygon[next]);
-					}
-
-					count++;
-				}
-
-				i = next;
-			}
-			while (i != 0);
-
-			// Return true if count is odd, false otherwise 
-			return count % 2 == 1; // Same as (count%2 == 1) 
 		}
 	}
 }

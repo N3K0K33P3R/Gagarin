@@ -29,10 +29,10 @@ using System;
 
 namespace MonoGame_Textbox
 {
-    /// <summary>
-    /// Data structure responsible for keeping track of the characters.
-    /// </summary>
-    public class Text
+	/// <summary>
+	/// Data structure responsible for keeping track of the characters.
+	/// </summary>
+	public class Text
 	{
 		private readonly char[] _char;
 

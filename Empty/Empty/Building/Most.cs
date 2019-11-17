@@ -1,14 +1,22 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Empty.GameObjects;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Empty.Building
 {
-    class Most : Structure
-    {
+	internal class Most : Structure
+	{
+		public Most(Texture2D texture, int stoneCost, int timberCost, int ironCost, int workCost, Vector2 offset = default) : base(
+			texture,
+			stoneCost,
+			timberCost,
+			ironCost,
+			workCost,
+			offset) { }
 
-        public Most(Texture2D texture, int stoneCost, int timberCost, int ironCost, int workCost, Vector2 offset = default) : base(texture, stoneCost, timberCost, ironCost, workCost, offset)
-        {
-        }
+		public override bool IsCanPut(Island island)
+		{
+			Vector2 vector = position / 16f;
 
         public override bool IsCanPut(GameObjects.Island island)
         {

@@ -47,20 +47,20 @@ namespace MonoGame_Textbox
 
 		public bool Active { get; set; }
 
-        /// <summary>
-        /// The current location of the cursor in the array
-        /// </summary>
-        public int TextCursor
+		/// <summary>
+		/// The current location of the cursor in the array
+		/// </summary>
+		public int TextCursor
 		{
 			get { return textCursor; }
 			set { textCursor = value.Clamp(0, textBox.Text.Length); }
 		}
 
-        /// <summary>
-        /// All characters between SelectedChar and the TextCursor are selected
-        /// when SelectedChar != null. Cannot be the same as the TextCursor value.
-        /// </summary>
-        public int? SelectedChar
+		/// <summary>
+		/// All characters between SelectedChar and the TextCursor are selected
+		/// when SelectedChar != null. Cannot be the same as the TextCursor value.
+		/// </summary>
+		public int? SelectedChar
 		{
 			get { return selectedChar; }
 			set

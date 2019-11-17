@@ -32,23 +32,23 @@ using System.Linq;
 
 namespace MonoFlash.Engine
 {
-    /// <summary>
-    /// All printable characters are returned using the CharPressed event and captured using the Game.Window.TextInput
-    /// event exposed by MonoGame.
-    /// Those automatically honor keyboard-layout and repeat-frequency of the keyboard for all platforms.
-    /// The flag filterSpecialCharactersFromCharPressed you may specify when calling Initialize tells the class to filter
-    /// those characters exposed in the SpecialCharacters char[] or not.
-    /// When running on a OpenGl-system those characters are not captured by the system. So the default for filtering them
-    /// out is for the sake of compatibility.
-    /// The repetition of the special characters as well as the arrow keys, etc, is handled by the class itself using the
-    /// values you pass it when calling Initialize.
-    /// The repetition is not done by sending the characters through the CharPressed event (since they may be not even
-    /// characters and some of them are omitted by the OpenGl platform), but through the KeyPressed event and the keys are
-    /// captured by getting the KeyboardState from MonoGame in the Update-method.
-    /// So if you want to capture those, use that one.
-    /// The KeyDown and KeyUp event are standard events being getting the KeyboardState from MonoGame in the Update-method.
-    /// </summary>
-    public static class KeyboardInput
+	/// <summary>
+	/// All printable characters are returned using the CharPressed event and captured using the Game.Window.TextInput
+	/// event exposed by MonoGame.
+	/// Those automatically honor keyboard-layout and repeat-frequency of the keyboard for all platforms.
+	/// The flag filterSpecialCharactersFromCharPressed you may specify when calling Initialize tells the class to filter
+	/// those characters exposed in the SpecialCharacters char[] or not.
+	/// When running on a OpenGl-system those characters are not captured by the system. So the default for filtering them
+	/// out is for the sake of compatibility.
+	/// The repetition of the special characters as well as the arrow keys, etc, is handled by the class itself using the
+	/// values you pass it when calling Initialize.
+	/// The repetition is not done by sending the characters through the CharPressed event (since they may be not even
+	/// characters and some of them are omitted by the OpenGl platform), but through the KeyPressed event and the keys are
+	/// captured by getting the KeyboardState from MonoGame in the Update-method.
+	/// So if you want to capture those, use that one.
+	/// The KeyDown and KeyUp event are standard events being getting the KeyboardState from MonoGame in the Update-method.
+	/// </summary>
+	public static class KeyboardInput
 	{
 		private static Game game;
 

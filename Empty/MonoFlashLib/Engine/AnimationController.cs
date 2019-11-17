@@ -24,27 +24,27 @@ namespace MonoFlash.Engine
 		public double i;
 		public bool   isStarted;
 
-        /// <summary>
-        /// </summary>
-        /// <param name="defaultValue">Значение по умолчанию</param>
-        public AnimationController(float defaultValue)
+		/// <summary>
+		/// </summary>
+		/// <param name="defaultValue">Значение по умолчанию</param>
+		public AnimationController(float defaultValue)
 		{
 			i                 = 0;
 			isStarted         = false;
 			this.defaultValue = defaultValue;
 		}
 
-        /// <summary>
-        /// Запустить анимацию
-        /// </summary>
-        /// <param name="newAnimation">Функция анимации. Заготовки в Maths.cs</param>
-        /// <param name="start">Начальное значение</param>
-        /// <param name="target">Конечное</param>
-        /// <param name="speed">Скорость</param>
-        /// <param name="isCyclic">Повторяется ли</param>
-        /// <param name="offset">Задержка</param>
-        /// <param name="finished">Функция выполняющаяся в конце</param>
-        public void StartAnimation(
+		/// <summary>
+		/// Запустить анимацию
+		/// </summary>
+		/// <param name="newAnimation">Функция анимации. Заготовки в Maths.cs</param>
+		/// <param name="start">Начальное значение</param>
+		/// <param name="target">Конечное</param>
+		/// <param name="speed">Скорость</param>
+		/// <param name="isCyclic">Повторяется ли</param>
+		/// <param name="offset">Задержка</param>
+		/// <param name="finished">Функция выполняющаяся в конце</param>
+		public void StartAnimation(
 			Animation newAnimation,
 			double start,
 			double target,
@@ -66,21 +66,21 @@ namespace MonoFlash.Engine
 			this.finished = finished;
 		}
 
-        /// <summary>
-        /// Запустить аниацию в обратном порядке
-        /// </summary>
-        /// <param name="finished">Функция, которая вызовется по завершению</param>
-        public void Reverse(Action finished = null)
+		/// <summary>
+		/// Запустить аниацию в обратном порядке
+		/// </summary>
+		/// <param name="finished">Функция, которая вызовется по завершению</param>
+		public void Reverse(Action finished = null)
 		{
 			StartAnimation(animation, curent, start, speed, isCyclic, 0, finished);
 		}
 
-        /// <summary>
-        /// Сделать шаг анимации, возвращает значение её
-        /// </summary>
-        /// <param name="delta"></param>
-        /// <returns></returns>
-        public double MakeStep(float delta)
+		/// <summary>
+		/// Сделать шаг анимации, возвращает значение её
+		/// </summary>
+		/// <param name="delta"></param>
+		/// <returns></returns>
+		public double MakeStep(float delta)
 		{
 			curent = start;
 

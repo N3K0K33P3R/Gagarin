@@ -2,6 +2,11 @@
 {
 	public enum TileType
 	{
-		Empty, Grass, Sand, Stone,Wall,Gun
+		Empty,
+		Grass,
+		Sand,
+		Stone,
+		Wall,
+		Gun
 	}
 }

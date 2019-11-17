@@ -6,7 +6,7 @@ namespace Empty.Effects
 {
 	public class Cloud : Image
 	{
-		private double LocalSpeed { get; set; }
+		private double LocalSpeed { get; }
 
 		/// <inheritdoc />
 		public Cloud(Texture2D texture2D) : base(texture2D)

@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoFlash.Engine
 {
-    /// <summary>
-    /// an enum of all available mouse buttons.
-    /// </summary>
-    public enum MouseButtons
+	/// <summary>
+	/// an enum of all available mouse buttons.
+	/// </summary>
+	public enum MouseButtons
 	{
 		LeftButton,
 		MiddleButton,
@@ -46,10 +46,10 @@ namespace MonoFlash.Engine
 
 		public bool IsCursorValid { get; private set; }
 
-        /// <summary>
-        /// Constructs a new input state.
-        /// </summary>
-        public InputHelper()
+		/// <summary>
+		/// Constructs a new input state.
+		/// </summary>
+		public InputHelper()
 		{
 			KeyboardState = new KeyboardState();
 			GamePadState  = new GamePadState();
@@ -70,10 +70,10 @@ namespace MonoFlash.Engine
 			_viewport = viewport;
 		}
 
-        /// <summary>
-        /// Reads the latest state of the keyboard and gamepad and mouse/touchpad.
-        /// </summary>
-        public void Update(GameTime gameTime)
+		/// <summary>
+		/// Reads the latest state of the keyboard and gamepad and mouse/touchpad.
+		/// </summary>
+		public void Update(GameTime gameTime)
 		{
 			PreviousKeyboardState = KeyboardState;
 			PreviousGamePadState  = GamePadState;
@@ -113,24 +113,24 @@ namespace MonoFlash.Engine
 		}
 
 
-        /// <summary>
-        /// Helper for checking if a key was newly pressed during this update.
-        /// </summary>
-        public bool IsNewKeyPress(Keys key) => KeyboardState.IsKeyDown(key) && PreviousKeyboardState.IsKeyUp(key);
+		/// <summary>
+		/// Helper for checking if a key was newly pressed during this update.
+		/// </summary>
+		public bool IsNewKeyPress(Keys key) => KeyboardState.IsKeyDown(key) && PreviousKeyboardState.IsKeyUp(key);
 
 		public bool IsNewKeyRelease(Keys key) => PreviousKeyboardState.IsKeyDown(key) && KeyboardState.IsKeyUp(key);
 
-        /// <summary>
-        /// Helper for checking if a button was newly pressed during this update.
-        /// </summary>
-        public bool IsNewButtonPress(Buttons button) => GamePadState.IsButtonDown(button) && PreviousGamePadState.IsButtonUp(button);
+		/// <summary>
+		/// Helper for checking if a button was newly pressed during this update.
+		/// </summary>
+		public bool IsNewButtonPress(Buttons button) => GamePadState.IsButtonDown(button) && PreviousGamePadState.IsButtonUp(button);
 
 		public bool IsNewButtonRelease(Buttons button) => PreviousGamePadState.IsButtonDown(button) && GamePadState.IsButtonUp(button);
 
-        /// <summary>
-        /// Helper for checking if a mouse button was newly pressed during this update.
-        /// </summary>
-        public bool IsNewMouseButtonPress(MouseButtons button)
+		/// <summary>
+		/// Helper for checking if a mouse button was newly pressed during this update.
+		/// </summary>
+		public bool IsNewMouseButtonPress(MouseButtons button)
 		{
 			switch (button)
 			{
@@ -153,11 +153,11 @@ namespace MonoFlash.Engine
 			}
 		}
 
-        /// <summary>
-        /// Checks if the requested mouse button is released.
-        /// </summary>
-        /// <param name="button">The button.</param>
-        public bool IsNewMouseButtonRelease(MouseButtons button)
+		/// <summary>
+		/// Checks if the requested mouse button is released.
+		/// </summary>
+		/// <param name="button">The button.</param>
+		public bool IsNewMouseButtonRelease(MouseButtons button)
 		{
 			switch (button)
 			{
@@ -180,20 +180,20 @@ namespace MonoFlash.Engine
 			}
 		}
 
-        /// <summary>
-        /// Checks if the mouse wheel has been scrolled up
-        /// </summary>
-        public bool IsNewScrollWheelUp() => MouseState.ScrollWheelValue - PreviousMouseState.ScrollWheelValue > 0;
+		/// <summary>
+		/// Checks if the mouse wheel has been scrolled up
+		/// </summary>
+		public bool IsNewScrollWheelUp() => MouseState.ScrollWheelValue - PreviousMouseState.ScrollWheelValue > 0;
 
-        /// <summary>
-        /// Checks if the mouse wheel has been scrolled down
-        /// </summary>
-        public bool IsNewScrollWheelDown() => PreviousMouseState.ScrollWheelValue - MouseState.ScrollWheelValue > 0;
+		/// <summary>
+		/// Checks if the mouse wheel has been scrolled down
+		/// </summary>
+		public bool IsNewScrollWheelDown() => PreviousMouseState.ScrollWheelValue - MouseState.ScrollWheelValue > 0;
 
-        /// <summary>
-        /// Checks for a "menu select" input action.
-        /// </summary>
-        public bool IsMenuSelect() =>
+		/// <summary>
+		/// Checks for a "menu select" input action.
+		/// </summary>
+		public bool IsMenuSelect() =>
 			IsNewKeyPress(Keys.Space) ||
 			IsNewKeyPress(Keys.Enter) ||
 			IsNewButtonPress(Buttons.A) ||
@@ -207,10 +207,10 @@ namespace MonoFlash.Engine
 			GamePadState.IsButtonUp(Buttons.A) &&
 			MouseState.LeftButton == ButtonState.Released;
 
-        /// <summary>
-        /// Checks for a "menu cancel" input action.
-        /// </summary>
-        public bool IsMenuCancel() =>
+		/// <summary>
+		/// Checks for a "menu cancel" input action.
+		/// </summary>
+		public bool IsMenuCancel() =>
 			IsNewKeyPress(Keys.Escape) ||
 			IsNewKeyPress(Keys.Back) ||
 			IsNewButtonPress(Buttons.B) ||

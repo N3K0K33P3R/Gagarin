@@ -8,7 +8,9 @@ namespace MonoFlashLib.Engine
 {
 	public class PathFinder
 	{
-		private readonly byte[,]        map;
+		private readonly byte[,] map;
+
+		private readonly byte[]         allowedToWalk;
 		private          List<PathTile> checkedTiles;
 		private          List<PathTile> tilesToCheck;
 
@@ -16,8 +18,6 @@ namespace MonoFlashLib.Engine
 					y1,
 					x2,
 					y2;
-
-		private readonly byte[] allowedToWalk;
 
 		public PathFinder(byte[,] map, params byte[] allowedToWalk)
 		{
