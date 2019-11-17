@@ -28,7 +28,7 @@ namespace Empty
             this.gd = gd;
             island = new Island(25, 25);
             AddChild(new Property());
-            camera = new CameraNew(gd.Viewport) { Zoom = 1f, Position = Vector2.UnitY * 150 };
+            camera = new CameraNew(gd.Viewport) { Zoom = 1f, Position = Vector2.UnitY * 350 +Vector2.UnitX*600};
 
             var bh = new BaseHuman(Assets.textures["Human"], 0, 0);
             bh.SetTilePos(4, 5);
@@ -40,7 +40,7 @@ namespace Empty
             Vector2 mouse = Mouse.GetState().Position.ToVector2();
             mouse -= camera.Bounds.Size.ToVector2() / (2f) - camera.Position;
 
-            node = (mouse / 16f).ToPoint().ToVector2() * 16;
+            node = (mouse / (16f * Values.MapScale)).ToPoint().ToVector2() * 16* Values.MapScale;
             island.Posing(node);
 
             camera.UpdateCamera(gd.Viewport);
