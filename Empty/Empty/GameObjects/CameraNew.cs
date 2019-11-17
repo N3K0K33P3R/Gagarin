@@ -15,7 +15,7 @@ public class CameraNew
 
 
 
-    private float currentMouseWheelValue, previousMouseWheelValue, zoom, previousZoom, prevMouseX, prevMouseY;
+    private float currentMouseWheelValue, previousMouseWheelValue, previousZoom, prevMouseX, prevMouseY;
 
     public CameraNew(Viewport viewport)
     {
@@ -93,18 +93,19 @@ public class CameraNew
 
         if (currentMouseWheelValue > previousMouseWheelValue)
         {
-            Values.MAP_SCALE += .01f;
-            Position += Bounds.Size.ToVector2() *.001f;
+            Zoom += 0.05f;
+            //Values.MAP_SCALE += .01f;
+            //Position += Bounds.Size.ToVector2() *.001f;
         }
 
-        if (currentMouseWheelValue < previousMouseWheelValue && Values.MAP_SCALE > 1)
+        if (currentMouseWheelValue < previousMouseWheelValue && Zoom > 1)
         {
-            Values.MAP_SCALE -= .01f;
-            Position -= Bounds.Size.ToVector2() *.001f;
+            Zoom -= 0.05f;
+            //Position -= Bounds.Size.ToVector2() *.001f;
         }
 
-        previousZoom = zoom;
-        zoom = Zoom;
+        previousZoom = Zoom;
+        Values.MAP_SCALE = Zoom;
 
         MoveCamera(cameraMovement);
     }

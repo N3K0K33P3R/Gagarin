@@ -74,7 +74,7 @@ namespace Empty
 			Vector2 mouse = Mouse.GetState().Position.ToVector2();
 			mouse -= camera.Bounds.Size.ToVector2() / (2f) - camera.Position;
 
-            node = (mouse / (16f*Values.MAP_SCALE)).ToPoint().ToVector2() * 16*Values.MAP_SCALE;
+            node = (mouse / (16f)).ToPoint().ToVector2() * 16;
             island.Posing(node);
 
 			camera.UpdateCamera(gd.Viewport);
@@ -95,7 +95,12 @@ namespace Empty
 				if (selectedHuman == null)
 				{
 					BaseHuman human = humans.FirstOrDefault(h => h.tilePos == (node / 16).ToPoint());
-					Trace(humans[0].tilePos, node / 16);
+
+					var v =
+						(Mouse.GetState().Position.ToVector2() - new Point(Values.SCREEN_WIDTH / 2, Values.SCREEN_HEIGHT / 2).ToVector2() 
+						 * Values.MAP_SCALE
+						 + camera.Position * Values.MAP_SCALE);
+					Trace(v);
 
 					if (human != null)
 					{
