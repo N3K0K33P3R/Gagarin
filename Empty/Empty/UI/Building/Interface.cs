@@ -13,9 +13,9 @@ namespace Empty.UI.Building
 		public Interface(Action<BuildType> build)
 		{
 			cells = new List<BuildingCell>();
-			AddCell(Game1.stoneTexture, BuildType.Cannon, build);
-			AddCell(Game1.woodTexture,  BuildType.Wall,   build);
-			AddCell(Game1.ironTexture,  BuildType.Bridge, build);
+			AddCell(Assets.textures["Gun"], BuildType.Cannon, build);
+			AddCell(Assets.textures["Wall"],  BuildType.Wall,   build);
+			AddCell(Assets.textures["Most"],  BuildType.Bridge, build);
 			DrawCells();
 		}
 

@@ -122,3 +122,7 @@ C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\iron.
 C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\stone.xnb
 C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\wood.xnb
 C:\Users\Mi\source\repos\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\FontForProperties.xnb
+C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Tile\Gun.xnb
+C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Tile\Most.xnb
+C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\Tile\Wall.xnb
+C:\Users\Hr7iod\Documents\gagarin\Gagarin\Empty\Empty\bin\Windows\x86\Debug\Content\BuildFx.xnb
