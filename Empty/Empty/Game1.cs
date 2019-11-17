@@ -16,7 +16,8 @@ namespace Empty
 
 		public Game1()
 		{
-			graphics              = new GraphicsDeviceManager(this);
+			graphics              = new GraphicsDeviceManager(this) { PreferredBackBufferWidth = 1600, PreferredBackBufferHeight = 800 };
+			IsMouseVisible        = true;
 			Content.RootDirectory = "Content";
 		}
 
@@ -31,9 +32,6 @@ namespace Empty
 			// TODO: Add your initialization logic here
 
 			base.Initialize();
-			graphics.PreferredBackBufferWidth  = 1280;
-			graphics.PreferredBackBufferHeight = 720;
-			IsMouseVisible                     = true;
 			KeyboardInput.Initialize(this, 500f, 20);
 
 			main = new Main();
@@ -47,10 +45,10 @@ namespace Empty
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
-            
-            Assets.font = Content.Load<SpriteFont>("font");
-            // TODO: use this.Content to load your game content here
-        }
+
+			Assets.font = Content.Load<SpriteFont>("font");
+			// TODO: use this.Content to load your game content here
+		}
 
 		/// <summary>
 		/// UnloadContent will be called once per game and is the place to unload
@@ -90,7 +88,7 @@ namespace Empty
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
 			main.Draw(spriteBatch);
-            // TODO: Add your drawing code here
+			// TODO: Add your drawing code here
 			base.Draw(gameTime);
 		}
 	}
