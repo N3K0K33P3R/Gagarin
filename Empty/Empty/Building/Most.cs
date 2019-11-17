@@ -19,6 +19,7 @@ namespace Empty.Building
             vector.Y > 0 &&
             vector.X < 25 &&
             vector.Y < 25;
+;
         }
 
 
@@ -26,10 +27,10 @@ namespace Empty.Building
         public override void OnAddOnGrid(ref TileType[,] types, int i, int j)
         {
             if (
-               i > 0 &&
-             j > 0 &&
-              i < 25 &&
-              j < 25)
+               i > 0  &&
+               j > 0  &&
+               i < 25 &&
+               j < 25)
                 types[i, j] = TileType.Grass;
         }
 

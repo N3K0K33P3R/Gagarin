@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Empty.GameObjects;
+using MonoFlash.Engine;
 
 namespace Empty.Building
 {
@@ -13,9 +14,11 @@ namespace Empty.Building
     {
         private static Structure curStructure;
         private static Island island;
+        public static bool lockFlag = false;
 
         public static void CallBuilding(this Island island, Structure structure)
         {
+            if (curStructure!=null) return;
             Game1.UpdateEvent += Bulding;
             island.Structures.Add(structure);
             BuildProcessing.island = island;
@@ -41,6 +44,8 @@ namespace Empty.Building
 
         public static void SetBuild()
         {
+            if (lockFlag) return;
+            if (Mouse.GetState().Y > 700) return; 
             var vector = curStructure.position;
             Game1.UpdateEvent -= Bulding;
             curStructure.OnAddOnGrid(ref island.Cells,(int)vector.X,(int)vector.Y);

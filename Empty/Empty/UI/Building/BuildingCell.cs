@@ -102,14 +102,21 @@ namespace Empty.UI.Building
                 Mouse.GetState().Y > globalY && Mouse.GetState().Y < globalY + quadWidth)
                 {
                     icon.Alpha = 1;
+                    Empty.Building.BuildProcessing.lockFlag = true;
                     if (Mouse.GetState().LeftButton == ButtonState.Pressed && wasPressed != ButtonState.Pressed)
                     {
                         LeftButtonPressed();
                     }
                 }
-                else icon.Alpha = 0.15;
+                else
+                {
+                    icon.Alpha = 0.15;
+                    Empty.Building.BuildProcessing.lockFlag = false;
+                }
             }
             else icon.Alpha = 0.15;
+
+
             wasPressed = Mouse.GetState().LeftButton;
             base.Update(delta);
         }
