@@ -126,14 +126,13 @@ namespace Empty.UI.Building
 		{
 			background = new Quad(quadWidth, quadWidth, 0x333333, 0.15f);
 			AddChild(background);
+			AddChild(icon);
 			icon.ScaleX =  (background.width - borderThickness * 2) / icon.width;
 			icon.ScaleY =  (background.height - borderThickness * 2) / icon.height;
 			icon.x      += background.width / 2;
 			icon.y      += background.height / 2 + borderThickness;
 			icon.Alpha  =  0.15;
 			DrawCosts();
-
-			AddChild(icon);
 		}
 	}
 }

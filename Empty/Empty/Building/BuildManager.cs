@@ -37,7 +37,7 @@ namespace Empty.Building
 
 				if (Mouse.GetState().LeftButton.Equals(ButtonState.Pressed))
 				{
-					SetBuild();
+					SetBuild(curStructure);
 				}
 			}
 			else
@@ -46,15 +46,14 @@ namespace Empty.Building
 			}
 		}
 
-        public static void SetBuild()
-        {
-            if (lockFlag) return;
-            if (Mouse.GetState().Y > 700) return; 
-            var vector = curStructure.position;
-            Game1.UpdateEvent -= Bulding;
-            curStructure.OnAddOnGrid(ref island.Cells,(int)vector.X,(int)vector.Y);
-            curStructure.StateColor = Color.White;
-            curStructure = null;
-        }
+
+		public static void SetBuild(Structure curStructure)
+		{
+			Vector2 vector = curStructure.position;
+			Game1.UpdateEvent -= Bulding;
+			curStructure.OnAddOnGrid(ref island.Cells, (int)vector.X, (int)vector.Y);
+			curStructure.StateColor = Color.White;
+			curStructure            = null;
+		}
 	}
 }

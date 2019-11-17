@@ -14,7 +14,7 @@ namespace Empty.GameObjects.Humans
 		private          TextureAtlas   atlas;
 		private          Rectangle[]    walkAnim;
 		private          Rectangle[]    deathAnim;
-		private          bool           isMoving;
+		public          bool           isMoving;
 		private          Stack<Point>   path;
 		private          Point          lastPathPoint;
 		private          Island         island;

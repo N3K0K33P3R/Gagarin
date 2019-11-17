@@ -22,13 +22,6 @@ namespace Empty.UI.Building
 		public static void UpdateInterface()
 		{
 			Property.mainProperty.UpdateMainProperties();
-
-			foreach (BuildingCell cell in cells)
-			{
-				cell.costs.RemoveChildren();
-				cell.costs.props.Clear();
-				cell.DrawCosts();
-			}
 		}
 
 

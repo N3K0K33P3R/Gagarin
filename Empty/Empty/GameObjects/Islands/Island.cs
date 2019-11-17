@@ -47,6 +47,7 @@ namespace Empty.GameObjects
 		{
 			for (int i = Structures.Count - 1; i >= 0; i--)
 			{
+				
 				if (Structures[i].ShouldDelete)
 				{
 					Structures.Remove(Structures[i]);

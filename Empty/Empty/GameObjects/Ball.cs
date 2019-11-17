@@ -73,8 +73,9 @@ namespace Empty.GameObjects
 			{
 				foreach (Structure structure in i2.Structures)
 				{
-					Point center = (structure.position + Vector2.One * Values.TILE_SIZE / 2).ToPoint();
-
+					Point center = (new Vector2((float)structure.globalX + structure.position.X, (float)structure.globalY + structure.position.Y) + Vector2.One * Values.TILE_SIZE / 2).ToPoint();
+						//Trace(center.GetDist(new Point((int)globalX + r, (int)globalY + r)));
+					//Trace(globalX, globalY, structure.globalX + structure.position.X, structure.globalY + structure.position.Y);
 					if (center.GetDist(new Point((int)x + r, (int)y + r)) < r)
 					{
 						ShouldDelete           = true;
@@ -83,6 +84,8 @@ namespace Empty.GameObjects
 				}
 			}
 
+			
+			
 			base.Update(delta);
 		}
 

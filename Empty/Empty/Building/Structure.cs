@@ -1,10 +1,11 @@
 ﻿using Empty.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoFlash.Engine;
 
 namespace Empty.Building
 {
-	public abstract class Structure : IActionable
+	public abstract class Structure : Sprite, IActionable
 	{
 		public Texture2D texture;
 		public Rectangle Rect;
@@ -42,7 +43,7 @@ namespace Empty.Building
 
 		public void Draw(SpriteBatch sb)
 		{
-			sb.Draw(texture, position + Offset, StateColor);
+			sb.Draw(texture, position + Offset + new Vector2((int)globalX, (int)globalY), StateColor);
 		}
 
 		/// <inheritdoc />
