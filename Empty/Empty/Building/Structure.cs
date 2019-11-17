@@ -15,6 +15,8 @@ namespace Empty.Building
         public Texture2D texture;
         public Rectangle Rect;
 
+        public Vector2 Offset = new Vector2(0,-8);
+
         public Color StateColor;
 
         public Vector2 position;
@@ -46,7 +48,7 @@ namespace Empty.Building
                 pos = position;
 
             var size = (Vector2.One * Values.MAP_SCALE);
-            sb.Draw(texture, position: pos, scale: size, color: StateColor);
+            sb.Draw(texture, position: pos+Offset, scale: size, color: StateColor);
         }
 
     }
