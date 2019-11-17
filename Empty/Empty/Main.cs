@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoFlash.Engine;
 using System.Collections.Generic;
 using System.Linq;
+using Empty.Building;
 using IDrawable = MonoFlash.Engine.IDrawable;
 
 namespace Empty
@@ -35,6 +36,7 @@ namespace Empty
 
 			int humanCount = 5;
 			humans = new List<BaseHuman>();
+            island.CallBuilding(new Wall(Assets.textures["Wall"], 25, 25, 25, 25, 25));
 
 			for (int i = 0; i < island.GetMap().GetLength(0); i++)
 			{
@@ -66,24 +68,26 @@ namespace Empty
 			}
 		}
 
+        public Vector2 MousePosition;
+
         public override void Update(float delta)
         {
-            Vector2 mouse = Mouse.GetState().Position.ToVector2();
-            mouse -= camera.Bounds.Size.ToVector2() / (2f) - camera.Position;
+            MousePosition = Mouse.GetState().Position.ToVector2();
+            MousePosition -= camera.Bounds.Size.ToVector2() / (2f) - camera.Position;
 
-            node = (mouse / (16f*Values.MAP_SCALE)).ToPoint().ToVector2() * 16*Values.MAP_SCALE;
+            node = (MousePosition / (16f*Values.MAP_SCALE)).ToPoint().ToVector2() * 16*Values.MAP_SCALE;
             island.Posing(node);
 
             camera.UpdateCamera(gd.Viewport);
 
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                if (island.GetCellByPose(mouse) == TileType.Empty)
+                if (island.GetCellByPose(MousePosition) == TileType.Empty)
                 {
                     island.re = Color.Red;
                 }
 
-                if (island.GetCellByPose(mouse) != TileType.Empty)
+                if (island.GetCellByPose(MousePosition) != TileType.Empty)
                 {
                     island.re = Color.Blue;
                 }

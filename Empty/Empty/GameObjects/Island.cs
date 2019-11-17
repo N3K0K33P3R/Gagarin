@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoFlash.Engine;
-
+using System.Collections.Generic;
 
 namespace Empty.GameObjects
 {
@@ -20,24 +20,10 @@ namespace Empty.GameObjects
         public Vector2 node;
         public Color re = Color.White;
 
-        internal TileType GetCellByMouse
-        {
-            get
-            {
-                Vector2 vc = node /= 16 * Values.MAP_SCALE;
+        public List<Building.Structure> Structures=new List<Building.Structure>();
 
-                if (vc.X > 0 &&
-                    vc.Y > 0 &&
-                    vc.X < wight / 16f * Values.MAP_SCALE &&
-                    vc.Y < height / 16f * Values.MAP_SCALE)
-                {
-                    return cells[(int)(vc.X * 16*Values.MAP_SCALE), (int)(vc.Y * 16* Values.MAP_SCALE)];
-                }
-
-                return TileType.Empty;
-            }
-        }
-
+        internal TileType GetCellByMouse => GetCellByPose(Main.instance.MousePosition);
+        
         /// <inheritdoc />
         public Island(int w = IslandSize, int h = IslandSize)
         {
@@ -69,7 +55,7 @@ namespace Empty.GameObjects
                     }
                 }
             }
-
+            Structures.ForEach((item) =>item.Draw(sb));
             sb.DrawRectangle(node, Vector2.One * 16 * Values.MAP_SCALE, re, Values.MAP_SCALE, 1);
             base.Draw(sb, gameTime);
         }

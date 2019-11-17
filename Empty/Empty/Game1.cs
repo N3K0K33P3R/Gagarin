@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using KeyboardInput = MonoFlash.Engine.KeyboardInput;
+using System;
 
 namespace Empty
 {
@@ -23,13 +24,16 @@ namespace Empty
 
         }
 
-		/// <summary>
-		/// Allows the game to perform any initialization it needs to before starting to run.
-		/// This is where it can query for any required services and load any non-graphic
-		/// related content.  Calling base.Initialize will enumerate through any components
-		/// and initialize them as well.
-		/// </summary>
-		protected override void Initialize()
+
+        public static event Action UpdateEvent;
+
+        /// <summary>
+        /// Allows the game to perform any initialization it needs to before starting to run.
+        /// This is where it can query for any required services and load any non-graphic
+        /// related content.  Calling base.Initialize will enumerate through any components
+        /// and initialize them as well.
+        /// </summary>
+        protected override void Initialize()
 		{
 			// TODO: Add your initialization logic here
 
@@ -66,6 +70,9 @@ namespace Empty
             Assets.textures.Add("Grass", Content.Load<Texture2D>("Tile/Grass"));
             Assets.textures.Add("Sand", Content.Load<Texture2D>("Tile/Sand"));
             Assets.textures.Add("Stone", Content.Load<Texture2D>("Tile/Stone"));
+            Assets.textures.Add("Wall", Content.Load<Texture2D>("Tile/Wall"));
+
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -96,6 +103,8 @@ namespace Empty
 			// TODO: Add your update logic here
 
 			base.Update(gameTime);
+
+            UpdateEvent?.Invoke();
 		}
 
 
