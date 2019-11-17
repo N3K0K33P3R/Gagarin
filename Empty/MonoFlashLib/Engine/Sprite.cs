@@ -228,12 +228,12 @@ namespace MonoFlash.Engine
         /// <param name="speed"></param>
         /// <param name="onEnd">Действие при завершении анимации</param>
         /// <param name="offset">Задержка</param>
-        public void SetPosition(float x, float y, float speed = 1, Action onEnd = null, float offset = 0)
+        public void SetPosition(float x, float y, Animation anim, float speed = 1, Action onEnd = null, float offset = 0)
 		{
 			if (acX != null)
 			{
-				acX.StartAnimation(Maths.easeInOutQuad, this.x, x, speed, finished: onEnd, offset: offset);
-				acY.StartAnimation(Maths.easeInOutQuad, this.y, y, speed, offset: offset);
+				acX.StartAnimation(anim, this.x, x, speed, finished: onEnd, offset: offset);
+				acY.StartAnimation(anim, this.y, y, speed, offset: offset);
 			}
 			else
 			{

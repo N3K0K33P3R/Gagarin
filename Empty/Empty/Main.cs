@@ -1,9 +1,12 @@
 ﻿using Empty.GameObjects;
+using Empty.GameObjects.Humans;
 using Empty.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoFlash.Engine;
+using System.Collections.Generic;
+using IDrawable = MonoFlash.Engine.IDrawable;
 
 namespace Empty
 {
@@ -12,6 +15,7 @@ namespace Empty
 		private readonly Camera         camera;
 		private readonly GraphicsDevice gd;
 		private readonly Island         island;
+		public static    Main           instance;
 
 
 		private Vector2 node;
@@ -23,6 +27,10 @@ namespace Empty
 			island  = new Island(25, 25);
 			AddChild(new Property());
 			camera = new Camera { Zoom = 2.3f };
+
+			var bh = new BaseHuman(Assets.textures["Human"], 0, 0);
+			bh.SetTilePos(4, 5);
+			AddChild(bh);
 		}
 
 		public override void Update(float delta)
@@ -55,5 +63,7 @@ namespace Empty
 			island.Draw(sb);
 			sb.End();
 		}
+
+		public TileType[,] GetMap() => island.GetMap();
 	}
 }

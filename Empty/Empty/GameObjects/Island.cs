@@ -74,6 +74,9 @@ namespace Empty.GameObjects
 		{
 			this.node = node;
 		}
+		
+        public TileType[,] GetMap() => cells;
+
 
 		internal TileType GetCellByPose(Vector2 vector)
 		{

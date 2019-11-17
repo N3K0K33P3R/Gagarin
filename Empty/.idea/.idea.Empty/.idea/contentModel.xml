@@ -15,6 +15,10 @@
         <e p="Enums.cs" t="Include" />
         <e p="Game1.cs" t="Include" />
         <e p="GameObjects" t="Include">
+          <e p="CameraMover.cs" t="Include" />
+          <e p="Humans" t="Include">
+            <e p="BaseHuman.cs" t="Include" />
+          </e>
           <e p="Island.cs" t="Include" />
           <e p="IslandGenerator.cs" t="Include" />
         </e>
@@ -29,6 +33,11 @@
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Resources.cs" t="Include" />
+        <e p="UI" t="Include">
+          <e p="InfoBox.cs" t="Include" />
+          <e p="Property.cs" t="Include" />
         </e>
         <e p="VALUES.cs" t="Include" />
       </e>
