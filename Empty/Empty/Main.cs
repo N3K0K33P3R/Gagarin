@@ -6,16 +6,19 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoFlash.Engine;
 using System.Collections.Generic;
+using System.Linq;
 using IDrawable = MonoFlash.Engine.IDrawable;
 
 namespace Empty
 {
 	internal class Main : Sprite
 	{
-		private readonly Camera         camera;
-		private readonly GraphicsDevice gd;
-		private readonly Island         island;
-		public static    Main           instance;
+		private readonly Camera          camera;
+		private readonly GraphicsDevice  gd;
+		private readonly Island          island;
+		public static    Main            instance;
+		private          List<BaseHuman> humans;
+		private          BaseHuman       selectedHuman;
 
 
 		private Vector2 node;
@@ -23,14 +26,43 @@ namespace Empty
 		/// <inheritdoc />
 		public Main(GraphicsDevice gd)
 		{
-			this.gd = gd;
-			island  = new Island(25, 25);
+			instance = this;
+			this.gd  = gd;
+			island   = new Island(25, 25);
 			AddChild(new Property());
 			camera = new Camera { Zoom = 2.3f };
 
-			var bh = new BaseHuman(Assets.textures["Human"], 0, 0);
-			bh.SetTilePos(4, 5);
-			AddChild(bh);
+			int humanCount = 5;
+			humans = new List<BaseHuman>();
+
+			for (int i = 0; i < island.GetMap().GetLength(0); i++)
+			{
+				bool shouldBreak = false;
+
+				for (int j = 0; j < island.GetMap().GetLength(1); j++)
+				{
+					if (island.GetMap()[i, j] == TileType.Empty)
+					{
+						continue;
+					}
+
+					var bh = new BaseHuman(Assets.textures["Human"], i, j);
+					AddChild(bh);
+					humans.Add(bh);
+					humanCount--;
+
+					if (humanCount == 0)
+					{
+						shouldBreak = true;
+						break;
+					}
+				}
+
+				if (shouldBreak)
+				{
+					break;
+				}
+			}
 		}
 
 		public override void Update(float delta)
@@ -50,6 +82,22 @@ namespace Empty
 				{
 					island.re = Color.Blue;
 				}
+
+				if (selectedHuman == null)
+				{
+					BaseHuman human = humans.FirstOrDefault(h => h.tilePos == (node / 16).ToPoint());
+
+					if (human != null)
+					{
+						selectedHuman = human;
+					}
+				}
+				else
+				{
+					(int x1, int x2) = (node / 16).ToPoint();
+					selectedHuman.SetTilePos(x1, x2);
+					selectedHuman = null;
+				}
 			}
 
 			base.Update(delta);
@@ -59,8 +107,8 @@ namespace Empty
 		public override void Draw(SpriteBatch sb, GameTime gameTime = null)
 		{
 			sb.Begin(samplerState: SamplerState.PointClamp); //UI
-			base.Draw(sb, gameTime);
 			island.Draw(sb);
+			base.Draw(sb, gameTime);
 			sb.End();
 		}
 

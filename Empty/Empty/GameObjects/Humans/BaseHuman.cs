@@ -9,7 +9,7 @@ namespace Empty.GameObjects.Humans
 	public class BaseHuman : Sprite
 	{
 		private readonly AnimatedSprite animated;
-		private          Point          tilePos;
+		public           Point          tilePos;
 		private          TextureAtlas   atlas;
 		private          Rectangle[]    walkAnim;
 		private          Rectangle[]    deathAnim;

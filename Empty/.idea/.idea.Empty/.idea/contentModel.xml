@@ -8,6 +8,10 @@
         <e p="app.manifest" t="Include" />
         <e p="Assets.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Building" t="Include">
+          <e p="BuildManager.cs" t="Include" />
+          <e p="Structure.cs" t="Include" />
+        </e>
         <e p="Content" t="Include">
           <e p="Content.mgcb" t="Include" />
         </e>
@@ -23,6 +27,7 @@
           <e p="IslandGenerator.cs" t="Include" />
         </e>
         <e p="Helpers" t="Include">
+          <e p="PerlinNoise.cs" t="Include" />
           <e p="PolygonHelper.cs" t="Include" />
           <e p="RandomExtensions.cs" t="Include" />
           <e p="RectangleExtensions.cs" t="Include" />
