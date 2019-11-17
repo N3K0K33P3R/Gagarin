@@ -78,22 +78,22 @@ namespace Empty.GameObjects
         public TileType[,] GetMap() => cells;
 
 
-		internal TileType GetCellByPose(Vector2 vector)
-		{
-			Vector2 vc = vector /= 16f;
+        internal TileType GetCellByPose(Vector2 vector)
+        {
+            Vector2 vc = vector /= 16f;
 
-			if (vc.X > 0 &&
-				vc.Y > 0 &&
-				vc.X < wight / 16f &&
-				vc.Y < height / 16f)
-			{
-				return cells[(int)(vc.X * 16), (int)(vc.Y * 16)];
-			}
+            if (vc.X > 0 &&
+                vc.Y > 0 &&
+                vc.X < wight / 16f &&
+                vc.Y < height / 16f)
+            {
+                return cells[(int)(vc.X * 16), (int)(vc.Y * 16)];
+            }
 
-			return TileType.Empty;
-		}
+            return TileType.Empty;
+        }
 
 
-		private Vector2 pos(int i, int j, int offset = 0) => Vector2.UnitX * 16 * i + Vector2.UnitY * 16 * j - Vector2.UnitX * offset;
+        private Vector2 pos(int i, int j, int offset = 0) => Vector2.UnitX * 16 * i + Vector2.UnitY * 16 * j - Vector2.UnitX * offset;
 	}
 }
