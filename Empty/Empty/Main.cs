@@ -30,7 +30,7 @@ namespace Empty
 			this.gd  = gd;
 			island   = new Island(25, 25);
 			AddChild(new Property());
-			camera = new CameraNew(gd.Viewport) { Zoom = 1f, Position = Vector2.UnitY * 150 };
+			camera = new CameraNew(gd.Viewport) { Zoom = 1f, Position = Vector2.UnitY * 350 + Vector2.UnitX * 600 };
 
 
 			int humanCount = 5;
