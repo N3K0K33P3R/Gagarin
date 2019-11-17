@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoFlash.Engine;
+using System;
 using System.Linq;
 
 namespace Empty.GameObjects
@@ -9,6 +10,16 @@ namespace Empty.GameObjects
 	public class OurIsland : Island
 	{
 		private BaseHuman selectedHuman;
+		private Action<BaseHuman> showInfo;
+		private Action removeInfo;
+
+		/// <inheritdoc />
+		public OurIsland(Action<BaseHuman> showInfo, Action removeInfo, int w = IslandSize, int h = IslandSize) : base(w, h)
+		{
+			this.showInfo = showInfo;
+			this.removeInfo = removeInfo;
+		}
+
 
 		/// <inheritdoc />
 		public override void Draw(SpriteBatch sb, GameTime gameTime = null)
@@ -26,6 +37,7 @@ namespace Empty.GameObjects
 				if (human != null)
 				{
 					selectedHuman = human;
+					showInfo(selectedHuman);
 				}
 			}
 			else
@@ -33,6 +45,7 @@ namespace Empty.GameObjects
 				(int x1, int x2) = tile;
 				selectedHuman.SetTilePos(x1, x2);
 				selectedHuman = null;
+				removeInfo();
 			}
 		}
 	}

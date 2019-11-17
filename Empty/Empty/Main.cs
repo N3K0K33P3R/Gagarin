@@ -20,6 +20,7 @@ namespace Empty
 		private readonly Interface      buildingInterface;
 		private readonly TimerUI        timerUI;
 		private readonly CloudCanvas    cloudCanvas;
+		private          InfoPanel      infoPanel;
 		private          EnemyIsland    enemyIsland;
 		private          bool           wasPressed;
 		private          double         timer;
@@ -36,14 +37,12 @@ namespace Empty
 		{
 			instance    = this;
 			this.gd     = gd;
-			island      = new OurIsland();
+			island      = new OurIsland(ShowInfo, RemoveInfo);
 			cloudCanvas = new CloudCanvas();
 			AddChild(new Property());
 			buildingInterface = new Interface(BuyStructure);
 			AddChild(buildingInterface);
 			camera = new CameraNew(gd.Viewport) { Zoom = 2f, Position = (Vector2.UnitY * 12 + Vector2.UnitX * 12) * Values.TILE_SIZE };
-
-			AddChild(new InfoPanel(new BaseHuman(Assets.textures["Human"], 0, 0)));
 
 			timerUI = new TimerUI();
 			AddChild(timerUI);
@@ -155,7 +154,17 @@ namespace Empty
 			timerSpeed = Values.RANDOM.NextDouble(0.001, 0.01);
 		}
 
-		private void ShowInfo(BaseHuman human) { }
+		private void ShowInfo(BaseHuman human)
+		{
+			infoPanel = new InfoPanel(human);
+			AddChild(infoPanel);
+		}
+
+		private void RemoveInfo()
+		{
+			RemoveChild(infoPanel);
+			infoPanel = null;
+		}
 
 		private void BuyStructure(Interface.BuildType bt)
 		{
