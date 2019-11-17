@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Empty.GameObjects;
+using Empty.UI.Building;
+using Empty.UI;
 using MonoFlash.Engine;
 
 namespace Empty.Building
@@ -39,7 +41,22 @@ namespace Empty.Building
 				{
 					SetBuild(curStructure);
 				}
-			}
+                if (Mouse.GetState().RightButton.Equals(ButtonState.Pressed))
+                {
+                    Game1.UpdateEvent -= Bulding;
+
+                    Resources.Stone += curStructure.StoneCost;
+                    Resources.Timber += curStructure.TimberCost;
+                    Resources.Iron += curStructure.IronCost;
+
+                    Property.mainProperty.UpdateMainProperties();
+                    Interface.UpdateInterface();
+
+                    island.Structures.Remove(curStructure);
+
+                    curStructure = null;
+                }
+            }
 			else
 			{
 				curStructure.StateColor = Color.Red;
