@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Empty.Building;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoFlash.Engine;
 using MonoFlashLib.Engine;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Empty.GameObjects.Humans
 {
@@ -15,6 +17,7 @@ namespace Empty.GameObjects.Humans
 		private          bool           isMoving;
 		private          Stack<Point>   path;
 		private          Point          lastPathPoint;
+		private          Island         island;
 		public           Point          tilePos;
 
 		public float  GunSkill    { get; set; }
@@ -23,11 +26,12 @@ namespace Empty.GameObjects.Humans
 
 
 		/// <inheritdoc />
-		internal BaseHuman(Texture2D atlasTexture, int x, int y)
+		internal BaseHuman(Texture2D atlasTexture, int x, int y, Island island)
 		{
-			tilePos = new Point(x, y);
-			this.x  = x * Values.TILE_SIZE;
-			this.y  = y * Values.TILE_SIZE;
+			this.island = island;
+			tilePos     = new Point(x, y);
+			this.x      = x * Values.TILE_SIZE;
+			this.y      = y * Values.TILE_SIZE;
 			var ta = new TextureAtlas(atlasTexture, 0, 16, 16, 16);
 			animated = new AnimatedSprite(atlasTexture, 1, 0.1f);
 			animated.AddFrames(ta.GetFrames(0, 5));
@@ -102,7 +106,7 @@ namespace Empty.GameObjects.Humans
 
 		private List<Point> FindPath(int x, int y)
 		{
-			TileType[,] mapEnum = Main.instance.GetMap();
+			TileType[,] mapEnum = island.Cells;
 			var         map     = new byte[mapEnum.GetLength(0), mapEnum.GetLength(1)];
 
 			for (var i = 0; i < map.GetLength(0); i++)
@@ -110,6 +114,15 @@ namespace Empty.GameObjects.Humans
 				for (var j = 0; j < map.GetLength(1); j++)
 				{
 					map[i, j] = (byte)mapEnum[i, j];
+
+					var structure = island.Structures.FirstOrDefault(s => s.position / 16 == new Vector2(i, j));
+
+					map[i, j] = structure switch
+					{
+						Wall _ => (byte)0,
+						Most _ => (byte)1,
+						_      => (byte)mapEnum[i, j]
+					};
 				}
 			}
 
