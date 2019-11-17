@@ -7,7 +7,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BB7F8B34-9639-423D-9CFB-67EEDE1361A1}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Empty</RootNamespace>
     <AssemblyName>Empty</AssemblyName>
@@ -43,30 +43,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets.cs" />
-    <Compile Include="Building\BuildManager.cs" />
-    <Compile Include="Building\Structure.cs" />
-    <Compile Include="Effects\Cloud.cs" />
-    <Compile Include="Effects\CloudCanvas.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="GameObjects\CameraNew.cs" />
-    <Compile Include="GameObjects\Humans\BaseHuman.cs" />
-    <Compile Include="GameObjects\CameraMover.cs" />
     <Compile Include="GameObjects\Island.cs" />
     <Compile Include="GameObjects\IslandGenerator.cs" />
-    <Compile Include="Helpers\PerlinNoise.cs" />
     <Compile Include="Helpers\PolygonHelper.cs" />
     <Compile Include="Helpers\RandomExtensions.cs" />
     <Compile Include="Helpers\RectangleExtensions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Building\BuildingCell.cs" />
-    <Compile Include="UI\Building\Interface.cs" />
-    <Compile Include="UI\InfoBox.cs" />
+<<<<<<< HEAD
     <Compile Include="Values.cs" />
+=======
     <Compile Include="Resources.cs" />
     <Compile Include="UI\Property.cs" />
+>>>>>>> origin/UI
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

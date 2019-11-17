@@ -14,13 +14,14 @@ namespace Empty
 {
 	internal class Main : Sprite
 	{
-		private readonly CameraNew       camera;
-		private readonly GraphicsDevice  gd;
-		private readonly Island          island;
-		public static    Main            instance;
-		private          List<BaseHuman> humans;
-		private          BaseHuman       selectedHuman;
-		private          CloudCanvas     cloudCanvas;
+		private          UI.Building.Interface buildingInterface;
+		private readonly CameraNew             camera;
+		private readonly GraphicsDevice        gd;
+		private readonly Island                island;
+		public static    Main                  instance;
+		private          List<BaseHuman>       humans;
+		private          BaseHuman             selectedHuman;
+		private          CloudCanvas           cloudCanvas;
 
 
 		private Vector2 node;
@@ -32,7 +33,9 @@ namespace Empty
 			this.gd     = gd;
 			island      = new Island(25, 25);
 			cloudCanvas = new CloudCanvas();
-			AddChild(new Property());
+			AddChild(new UI.Property());
+			buildingInterface = new UI.Building.Interface(TestAction);
+			AddChild(buildingInterface);
 			camera = new CameraNew(gd.Viewport) { Zoom = 1f, Position = Vector2.UnitY * 350 + Vector2.UnitX * 600 };
 
 
@@ -117,6 +120,15 @@ namespace Empty
 			cloudCanvas.Update(delta);
 			island.Update(delta);
 			base.Update(delta);
+		}
+
+		private void TestAction(UI.Building.Interface.BuildType bt)
+		{
+			Resources.Stone  -= 1;
+			Resources.Timber -= 1;
+			Resources.Iron   -= 1;
+			UI.Property.mainProperty.UpdateMainProperties();
+			UI.Building.Interface.UpdateInterface();
 		}
 
 		/// <inheritdoc />

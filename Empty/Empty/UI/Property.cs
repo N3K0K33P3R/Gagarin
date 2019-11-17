@@ -12,19 +12,21 @@ namespace Empty.UI
     {
         public Text text;
         public List<Property> props;
+        private bool main;
+        public static Property mainProperty;
 
-        public Property()
+        public Property(bool main = true)
         {
             props = new List<Property>();
-            SetProperty(Game1.stoneTexture, Resources.Stone.ToString());
-            SetProperty(Game1.woodTexture, Resources.Timber.ToString());
-            SetProperty(Game1.ironTexture, Resources.Iron.ToString());
+            this.main = main;
+            if (main) mainProperty = this;
+            UpdateMainProperties();
         }
 
-        public void SetProperty(Texture2D texture, string textForSet)
+        public void SetProperty(Texture2D texture, string textForSet, Microsoft.Xna.Framework.Color textColor)
         {
             Image image = new Image(texture);
-            text = new Text(Game1.fontForProperties, textForSet, Microsoft.Xna.Framework.Color.Black);
+            text = new Text(Game1.fontForProperties, textForSet, textColor);
             text.x += text.height + 25;
             int localY = 15 + ((int)text.height + 5) * props.Count;
             text.y = localY;
@@ -35,6 +37,23 @@ namespace Empty.UI
             AddChild(image);
             AddChild(text);
             props.Add(this);
+        }
+
+        public void UpdateMainProperties()
+        {
+            if (main)
+            {
+                this.RemoveChildren();
+                props.Clear();
+                SetProperty(Game1.stoneTexture, Resources.Stone.ToString(), Microsoft.Xna.Framework.Color.Black);
+                SetProperty(Game1.woodTexture, Resources.Timber.ToString(), Microsoft.Xna.Framework.Color.Black);
+                SetProperty(Game1.ironTexture, Resources.Iron.ToString(), Microsoft.Xna.Framework.Color.Black);
+            }
+        }
+
+        public void UpdateProperties()
+        {
+            
         }
     }
 }
